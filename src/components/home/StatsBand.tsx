@@ -8,6 +8,11 @@ interface StatsBandProps {
   locale: Locale;
 }
 
+/*
+ * IMPORTANT: These values should be verified by the client.
+ * They are placeholders that can be updated through the admin panel
+ * or by editing this file directly. Do not display unverified numbers.
+ */
 const stats = [
   { key: "years", value: 20, suffix: "+" },
   { key: "cases", value: 150, suffix: "+" },
@@ -29,18 +34,13 @@ function useCountUp(target: number, duration = 2000) {
         if (entry.isIntersecting && !started.current) {
           started.current = true;
           const start = performance.now();
-
           function tick(now: number) {
             const elapsed = now - start;
             const progress = Math.min(elapsed / duration, 1);
             const eased = 1 - Math.pow(1 - progress, 3);
             setCount(Math.floor(eased * target));
-
-            if (progress < 1) {
-              requestAnimationFrame(tick);
-            }
+            if (progress < 1) requestAnimationFrame(tick);
           }
-
           requestAnimationFrame(tick);
         }
       },
@@ -60,11 +60,11 @@ function StatItem({ stat }: { stat: (typeof stats)[number] }) {
 
   return (
     <div ref={ref} className="flex flex-col items-center text-center">
-      <span className="text-3xl font-bold text-gold-400 sm:text-4xl lg:text-5xl">
+      <span className="text-4xl font-bold text-gold-400 sm:text-5xl lg:text-6xl tracking-tight">
         {count}
         {stat.suffix}
       </span>
-      <span className="mt-2 text-sm font-medium text-navy-200 sm:text-base">
+      <span className="mt-3 text-xs font-medium text-white/40 uppercase tracking-widest sm:text-sm">
         {t(stat.key)}
       </span>
     </div>
@@ -73,20 +73,12 @@ function StatItem({ stat }: { stat: (typeof stats)[number] }) {
 
 export function StatsBand({ locale }: StatsBandProps) {
   return (
-    <section className="relative bg-navy-900 py-14 lg:py-20">
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="h-full w-full"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(90deg, rgba(212,175,55,0.1) 0px, transparent 1px, transparent 60px), repeating-linear-gradient(0deg, rgba(212,175,55,0.1) 0px, transparent 1px, transparent 60px)",
-          }}
-          aria-hidden="true"
-        />
-      </div>
+    <section className="relative bg-navy-900 py-16 lg:py-24">
+      {/* Subtle gold divider at top */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-400/30 to-transparent" aria-hidden="true" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-12">
+        <div className="grid grid-cols-2 gap-10 lg:grid-cols-4 lg:gap-16">
           {stats.map((stat) => (
             <StatItem key={stat.key} stat={stat} />
           ))}

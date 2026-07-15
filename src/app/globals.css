@@ -35,10 +35,6 @@
   --font-body: "Inter", "Noto Naskh Arabic", system-ui, sans-serif;
   --font-mono: "Geist Mono", monospace;
 
-  /* ─── Spacing Scale ─── */
-  --spacing-section: 5rem;
-  --spacing-section-sm: 3rem;
-
   /* ─── Animations ─── */
   --animate-fade-in: fade-in 0.6s ease-out forwards;
   --animate-slide-up: slide-up 0.6s ease-out forwards;
@@ -46,7 +42,6 @@
   --animate-slide-in-left: slide-in-left 0.6s ease-out forwards;
 }
 
-/* ─── Keyframes ─── */
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -67,7 +62,7 @@
   to { opacity: 1; transform: translateX(0); }
 }
 
-/* ─── Base Styles ─── */
+/* ─── Base ─── */
 html {
   scroll-behavior: smooth;
 }
@@ -80,7 +75,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ─── Typography ─── */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
@@ -88,51 +82,31 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-navy-900);
 }
 
-/* ─── RTL Support ─── */
-[dir="rtl"] {
-  text-align: right;
-}
+/* ─── RTL ─── */
+[dir="rtl"] { text-align: right; }
+[dir="ltr"] { text-align: left; }
 
-[dir="ltr"] {
-  text-align: left;
-}
-
-/* ─── Arabic Typography Improvements ─── */
 [dir="rtl"] body {
   line-height: 1.8;
   letter-spacing: 0;
   word-spacing: 0.05em;
 }
 
-[dir="rtl"] h1,
-[dir="rtl"] h2,
-[dir="rtl"] h3,
-[dir="rtl"] h4,
-[dir="rtl"] h5,
-[dir="rtl"] h6 {
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3,
+[dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6 {
   line-height: 1.4;
   letter-spacing: 0;
 }
 
-[dir="rtl"] p,
-[dir="rtl"] li {
+[dir="rtl"] p, [dir="rtl"] li {
   line-height: 1.9;
 }
 
-/* ─── RTL Overflow Protection ─── */
-html[dir="rtl"] {
-  overflow-x: hidden;
-}
+html[dir="rtl"] { overflow-x: hidden; }
+[dir="rtl"] .rtl\:rotate-180 { transform: rotate(180deg); }
 
-[dir="rtl"] .rtl\:rotate-180 {
-  transform: rotate(180deg);
-}
-
-/* ─── Gold Accent Utilities ─── */
-.gold-accent {
-  position: relative;
-}
-
+/* ─── Gold Accent ─── */
+.gold-accent { position: relative; }
 .gold-accent::after {
   content: "";
   position: absolute;
@@ -143,20 +117,15 @@ html[dir="rtl"] {
   background: linear-gradient(90deg, var(--color-gold-500), var(--color-gold-300));
   border-radius: 2px;
 }
+[dir="rtl"] .gold-accent::after { left: auto; right: 0; }
 
-[dir="rtl"] .gold-accent::after {
-  left: auto;
-  right: 0;
-}
-
-/* ─── Section Divider ─── */
 .section-divider {
   width: 4rem;
   height: 2px;
   background: linear-gradient(90deg, var(--color-gold-500), var(--color-gold-300));
 }
 
-/* ─── Navy Gradient Backgrounds ─── */
+/* ─── Gradients ─── */
 .bg-navy-gradient {
   background: linear-gradient(135deg, var(--color-navy-900) 0%, var(--color-navy-800) 50%, var(--color-navy-700) 100%);
 }
@@ -165,54 +134,100 @@ html[dir="rtl"] {
   background: linear-gradient(180deg, var(--color-warm-50) 0%, var(--color-navy-50) 100%);
 }
 
+/* ─── Premium Hero Background ─── */
+.bg-hero-premium {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 40%, rgba(201,168,76,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 20%, rgba(201,168,76,0.05) 0%, transparent 50%),
+    linear-gradient(160deg, #070b14 0%, #0d1524 30%, #1a2a48 70%, #0d1524 100%);
+}
+
+/* ─── Glass Header ─── */
+.header-scrolled {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: 0 1px 3px rgba(13, 21, 36, 0.08), 0 4px 24px rgba(13, 21, 36, 0.04);
+}
+
+.header-scrolled-dark {
+  background: rgba(13, 21, 36, 0.92);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* ─── Premium Card Hover ─── */
+.card-premium {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.card-premium:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px -12px rgba(13, 21, 36, 0.15),
+              0 8px 24px -8px rgba(13, 21, 36, 0.1);
+}
+
+/* ─── Editorial Number ─── */
+.editorial-number {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--color-navy-100);
+  transition: color 0.3s ease;
+}
+.group:hover .editorial-number {
+  color: var(--color-gold-400);
+}
+
+/* ─── Process Connector ─── */
+.process-connector {
+  background: linear-gradient(90deg, transparent, var(--color-gold-300), transparent);
+}
+
+/* ─── Quote Mark ─── */
+.quote-mark {
+  font-family: Georgia, serif;
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--color-gold-300);
+  opacity: 0.6;
+}
+
 /* ─── Scroll Animations ─── */
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
-
 .animate-on-scroll.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ─── Focus Styles (Accessibility) ─── */
+/* ─── Focus ─── */
 :focus-visible {
   outline: 2px solid var(--color-gold-500);
   outline-offset: 2px;
 }
 
-/* ─── Selection Colors ─── */
+/* ─── Selection ─── */
 ::selection {
   background-color: var(--color-gold-200);
   color: var(--color-navy-900);
 }
 
-/* ─── Scrollbar Styling ─── */
-::-webkit-scrollbar {
-  width: 8px;
-}
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-warm-100); }
+::-webkit-scrollbar-thumb { background: var(--color-navy-300); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-navy-400); }
 
-::-webkit-scrollbar-track {
-  background: var(--color-warm-100);
-}
+/* ─── Form ─── */
+input, textarea, select { font-family: var(--font-body); }
 
-::-webkit-scrollbar-thumb {
-  background: var(--color-navy-300);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-navy-400);
-}
-
-/* ─── Form Input Styles ─── */
-input, textarea, select {
-  font-family: var(--font-body);
-}
-
-/* ─── Skip to Content Link ─── */
+/* ─── Skip Link ─── */
 .skip-link {
   position: absolute;
   top: -40px;
@@ -223,7 +238,4 @@ input, textarea, select {
   z-index: 100;
   transition: top 0.3s;
 }
-
-.skip-link:focus {
-  top: 0;
-}
+.skip-link:focus { top: 0; }

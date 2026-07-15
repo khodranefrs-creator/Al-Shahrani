@@ -1,48 +1,28 @@
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
-import { Star } from 'lucide-react';
-import { SectionHeading } from '@/components/ui/SectionHeading';
 import type { Locale } from '@/types';
 
 const testimonials = [
   {
-    quoteAr:
-      'تعاملنا مع المكتب في عدة قضايا تجارية وكان التعامل احترافيًا للغاية. نوصي بهم بشدة لأي شركة تبحث عن تمثيل قانوني متميز.',
-    quoteEn:
-      'We worked with the firm on several corporate matters and the service was extremely professional. We highly recommend them to any business seeking outstanding legal representation.',
-    nameAr: 'خالد الشمري',
-    nameEn: 'Khalid Al-Shammar',
-    roleAr: 'الرئيس التنفيذي',
-    roleEn: 'CEO',
-    companyAr: 'مجموعة الأفق للتطوير',
-    companyEn: 'Al-Ufooq Development Group',
-    rating: 5,
+    quoteAr: 'تعاملنا مع المكتب في عدة قضايا تجارية وكان التعامل احترافيًا للغاية. نوصي بهم بشدة لأي شركة تبحث عن تمثيل قانوني متميز.',
+    quoteEn: 'We worked with the firm on several corporate matters and the service was extremely professional. We highly recommend them to any business seeking outstanding legal representation.',
+    nameAr: 'خالد الشمري', nameEn: 'Khalid Al-Shammar',
+    roleAr: 'الرئيس التنفيذي', roleEn: 'CEO',
+    companyAr: 'مجموعة الأفق للتطوير', companyEn: 'Al-Ufooq Development Group',
   },
   {
-    quoteAr:
-      'ساعدنا الفريق القانوني في تأسيس شركتنا والحصول على جميع التراخيص اللازمة. خبرة استثنائية في قوانين الأعمال.',
-    quoteEn:
-      'The legal team helped us establish our company and obtain all necessary licenses. Exceptional expertise in business law.',
-    nameAr: 'نورة الحربي',
-    nameEn: 'Noura Al-Harbi',
-    roleAr: 'مؤسسة ومدير عام',
-    roleEn: 'Founder & Managing Director',
-    companyAr: 'تقنية المستقبل',
-    companyEn: 'Future Tech Solutions',
-    rating: 5,
+    quoteAr: 'ساعدنا الفريق القانوني في تأسيس شركتنا والحصول على جميع التراخيص اللازمة. خبرة استثنائية في قوانين الأعمال.',
+    quoteEn: 'The legal team helped us establish our company and obtain all necessary licenses. Exceptional expertise in business law.',
+    nameAr: 'نورة الحربي', nameEn: 'Noura Al-Harbi',
+    roleAr: 'مؤسسة ومدير عام', roleEn: 'Founder & Managing Director',
+    companyAr: 'تقنية المستقبل', companyEn: 'Future Tech Solutions',
   },
   {
-    quoteAr:
-      'فريق محترف ومتعاون في التعامل مع عقود الشركة والالتزامات التنظيمية. نثق بهم تمامًا في جميع مسائلنا القانونية.',
-    quoteEn:
-      'A professional and cooperative team in handling corporate contracts and regulatory compliance. We fully trust them with all our legal matters.',
-    nameAr: 'فهد العتيبي',
-    nameEn: 'Fahad Al-Otaibi',
-    roleAr: 'مدير المالية',
-    roleEn: 'Chief Financial Officer',
-    companyAr: 'مجموعة الاستثمارات',
-    companyEn: 'Al-Invest Holdings',
-      rating: 5,
+    quoteAr: 'فريق محترف ومتعاون في التعامل مع عقود الشركة والالتزامات التنظيمية. نثق بهم تمامًا في جميع مسائلنا القانونية.',
+    quoteEn: 'A professional and cooperative team in handling corporate contracts and regulatory compliance. We fully trust them with all our legal matters.',
+    nameAr: 'فهد العتيبي', nameEn: 'Fahad Al-Otaibi',
+    roleAr: 'مدير المالية', roleEn: 'Chief Financial Officer',
+    companyAr: 'مجموعة الاستثمارات', companyEn: 'Al-Invest Holdings',
   },
 ] as const;
 
@@ -51,43 +31,51 @@ export default function TestimonialsSection({ locale }: { locale: Locale }) {
   const t = useTranslations('testimonials');
 
   return (
-    <section className="bg-warm-50 py-20 lg:py-28">
+    <section className="bg-white py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading title={t('title')} subtitle={t('subtitle')} />
+        {/* Editorial header */}
+        <div className="max-w-2xl mb-16">
+          <p className="text-sm font-semibold tracking-widest uppercase text-gold-600 mb-4">
+            {locale === 'ar' ? 'عملاؤنا' : 'Client Voices'}
+          </p>
+          <h2
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy-900 leading-tight"
+            style={{ fontFamily: 'var(--font-heading)' }}
+          >
+            {t('title')}
+          </h2>
+          <div className="mt-6 h-px w-16 bg-gradient-to-r from-gold-500 to-gold-300" />
+        </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3">
+        {/* Testimonials — editorial layout */}
+        <div className="grid grid-cols-1 gap-0 divide-y divide-navy-100 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
           {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="group rounded-2xl border border-navy-100 bg-white p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl rtl:border-r-4 rtl:border-r-gold-500 ltr:border-l-4 ltr:border-l-gold-500"
-            >
-              <div className="mb-4 flex gap-1">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`h-5 w-5 ${
-                      i < testimonial.rating
-                        ? 'fill-gold-400 text-gold-400'
-                        : 'text-navy-200'
-                    }`}
-                  />
-                ))}
-              </div>
+            <div key={index} className="py-10 px-6 lg:px-10 group">
+              {/* Quote mark */}
+              <div className="quote-mark mb-2 select-none" aria-hidden="true">&ldquo;</div>
 
-              <p className="mb-6 leading-relaxed text-navy-600 italic">
-                &ldquo;{locale === 'ar' ? testimonial.quoteAr : testimonial.quoteEn}&rdquo;
+              <p className="text-navy-600 leading-relaxed mb-8 text-[15px]">
+                {locale === 'ar' ? testimonial.quoteAr : testimonial.quoteEn}
               </p>
 
-              <div className="border-t border-navy-100 pt-6">
-                <p className="font-bold text-navy-900">
-                  {locale === 'ar' ? testimonial.nameAr : testimonial.nameEn}
-                </p>
-                <p className="mt-1 text-sm text-navy-500">
-                  {locale === 'ar' ? testimonial.roleAr : testimonial.roleEn}
-                </p>
-                <p className="text-sm font-medium text-gold-600">
-                  {locale === 'ar' ? testimonial.companyAr : testimonial.companyEn}
-                </p>
+              {/* Attribution */}
+              <div className="flex items-center gap-4">
+                {/* Avatar placeholder */}
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-navy-900 text-gold-400 text-sm font-bold">
+                  {(locale === 'ar' ? testimonial.nameAr : testimonial.nameEn).charAt(0)}
+                </div>
+                <div>
+                  <p className="font-semibold text-navy-900 text-sm">
+                    {locale === 'ar' ? testimonial.nameAr : testimonial.nameEn}
+                  </p>
+                  <p className="text-xs text-navy-400">
+                    {locale === 'ar' ? testimonial.roleAr : testimonial.roleEn}
+                    {' · '}
+                    <span className="text-gold-600 font-medium">
+                      {locale === 'ar' ? testimonial.companyAr : testimonial.companyEn}
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
           ))}
