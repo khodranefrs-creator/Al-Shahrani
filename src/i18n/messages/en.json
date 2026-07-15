@@ -62,13 +62,16 @@
       "description": "Professional litigation representation before all judicial bodies, applying strategic approaches to ensure the best outcomes."
     },
     "governance": {
-      "title": "Corporate Governance"
+      "title": "Corporate Governance",
+      "description": "Establishing effective governance frameworks to ensure transparency, accountability, and sustainable growth."
     },
     "ma": {
-      "title": "Mergers & Acquisitions"
+      "title": "Mergers & Acquisitions",
+      "description": "Strategic guidance through complex transactions, from due diligence to deal completion."
     },
     "labor": {
-      "title": "Labor Law & Employment Relations"
+      "title": "Labor Law & Employment Relations",
+      "description": "Comprehensive employment law advisory including contracts, disputes, and regulatory compliance."
     },
     "property": {
       "title": "Real Estate Law"

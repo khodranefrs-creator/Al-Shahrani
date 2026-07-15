@@ -3,12 +3,12 @@ import { setRequestLocale } from 'next-intl/server';
 import type { Locale } from '@/types';
 
 const reasons = [
-  { num: "01", key: "expertise" },
-  { num: "02", key: "corporate" },
-  { num: "03", key: "comprehensive" },
-  { num: "04", key: "discretion" },
-  { num: "05", key: "local" },
-  { num: "06", key: "results" },
+  { key: 'expertise' },
+  { key: 'corporate' },
+  { key: 'comprehensive' },
+  { key: 'discretion' },
+  { key: 'local' },
+  { key: 'results' },
 ] as const;
 
 export default function WhyUs({ locale }: { locale: Locale }) {
@@ -16,50 +16,68 @@ export default function WhyUs({ locale }: { locale: Locale }) {
   const t = useTranslations('whyUs');
 
   return (
-    <section className="bg-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 md:py-32 lg:py-40">
-        {/* Editorial layout — statement left, reasons right */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
-          {/* Left — statement */}
-          <div className="lg:col-span-5">
-            <p className="text-sm font-semibold tracking-[0.2em] uppercase text-gold-600 mb-6">
-              {locale === 'ar' ? 'لماذا نحن' : 'Why Us'}
-            </p>
-            <h2
-              className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-navy-900 tracking-tight leading-[1.15]"
-              style={{ fontFamily: 'var(--font-heading-ar)' }}
-            >
-              {t('title')}
-            </h2>
-            <div className="mt-8 h-[2px] w-16 bg-gradient-to-r from-gold-500 to-gold-300" />
-          </div>
+    <section className="bg-navy-950 section-padding relative overflow-hidden">
+      {/* Subtle ambient glows */}
+      <div className="absolute top-1/2 -start-20 w-80 h-80 rounded-full bg-gold-400/[0.03] blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 end-0 w-96 h-96 rounded-full bg-gold-400/[0.02] blur-[100px] pointer-events-none" />
 
-          {/* Right — reasons as clean list */}
-          <div className="lg:col-span-7">
-            <div className="space-y-8">
-              {reasons.map((reason) => (
-                <div key={reason.key} className="group flex items-start gap-5">
+      {/* Top gold accent line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400/20 to-transparent" />
+
+      <div className="container-custom relative z-10">
+        {/* Section header — centered */}
+        <div className="text-center mb-10 md:mb-12">
+          <h2
+            className="text-3xl md:text-4xl font-bold text-white leading-[1.15] mb-4 text-balance"
+            style={{ fontFamily: 'var(--font-heading-ar)' }}
+          >
+            {t('title')}
+          </h2>
+          <p className="text-warm-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+            {locale === 'ar' ? 'التميز في كل تفصيل، والاحترافية في كل خطوة' : 'Excellence in every detail, professionalism in every step'}
+          </p>
+        </div>
+
+        {/* 2-col grid of numbered reason cards */}
+        <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
+          {reasons.map((reason, i) => (
+            <div
+              key={reason.key}
+              className="group relative pt-4 md:pt-5 pb-5 md:pb-6 px-6 md:px-7 rounded-[var(--radius-surface)] bg-navy-900/60 border border-white/[0.06] hover:border-gold-400/25 transition-[border-color,box-shadow] duration-500 hover:shadow-[0_0_35px_rgba(184,149,60,0.06)] overflow-hidden"
+            >
+              {/* Left gold accent bar */}
+              <div
+                className="absolute start-0 top-2 bottom-2 w-px bg-gradient-to-b from-gold-400/30 via-gold-400/10 to-transparent rounded-full group-hover:from-gold-400/50 transition-opacity duration-500"
+                aria-hidden="true"
+              />
+
+              {/* Top gold accent line */}
+              <div
+                className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-400/25 to-transparent"
+                aria-hidden="true"
+              />
+
+              {/* Number badge */}
+              <div className="relative z-10 mb-1 md:mb-1.5">
+                <div className="inline-flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-full bg-gold-400/[0.10] ring-1 ring-gold-400/25 group-hover:bg-gold-400/[0.18] group-hover:ring-gold-400/40 shadow-[0_0_20px_rgba(184,149,60,0.06)] group-hover:shadow-[0_0_30px_rgba(184,149,60,0.12)] transition-[background-color,box-shadow] duration-500">
                   <span
-                    className="text-xs font-bold text-gold-600 tracking-wider pt-1.5 shrink-0 w-7"
+                    className="text-gold-400 font-bold text-base md:text-lg leading-none"
                     style={{ fontFamily: 'var(--font-heading-en)' }}
                   >
-                    {reason.num}
+                    {String(i + 1).padStart(2, '0')}
                   </span>
-                  <div>
-                    <h3
-                      className="text-lg font-semibold text-navy-900 mb-1.5 leading-snug"
-                      style={{ fontFamily: 'var(--font-heading-ar)' }}
-                    >
-                      {t(`${reason.key}.title`)}
-                    </h3>
-                    <p className="text-warm-600 leading-[1.8] text-[15px]">
-                      {t(`${reason.key}.description`)}
-                    </p>
-                  </div>
                 </div>
-              ))}
+              </div>
+
+              {/* Text */}
+              <p className="text-warm-300 text-sm md:text-base font-medium leading-relaxed relative z-10">
+                {t(`${reason.key}.title`)}
+              </p>
+              <p className="text-warm-500 text-sm leading-relaxed mt-1 relative z-10">
+                {t(`${reason.key}.description`)}
+              </p>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

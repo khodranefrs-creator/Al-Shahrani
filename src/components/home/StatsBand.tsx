@@ -2,36 +2,13 @@
 
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
+import { BadgeCheck, Shield, Scale, ScrollText } from "lucide-react";
 
-const stats = [
-  {
-    key: "years",
-    value: 20,
-    suffix: "+",
-    descAr: "عاماً من الخبرة القانونية المتميزة",
-    descEn: "Years of distinguished legal experience",
-  },
-  {
-    key: "cases",
-    value: 150,
-    suffix: "+",
-    descAr: "قضية تعاملنا معها بنجاح",
-    descEn: "Cases handled successfully",
-  },
-  {
-    key: "clients",
-    value: 100,
-    suffix: "+",
-    descAr: "عميل مؤسسي يثق بخدماتنا",
-    descEn: "Corporate clients trust our services",
-  },
-  {
-    key: "practiceAreas",
-    value: 6,
-    suffix: "",
-    descAr: "مجالات تخصص قانوني",
-    descEn: "Legal practice areas",
-  },
+const credentials = [
+  { icon: BadgeCheck, key: "years" },
+  { icon: Shield, key: "cases" },
+  { icon: Scale, key: "clients" },
+  { icon: ScrollText, key: "practiceAreas" },
 ] as const;
 
 function useCountUp(target: number, duration = 2000) {
@@ -68,43 +45,46 @@ function useCountUp(target: number, duration = 2000) {
   return { count, ref };
 }
 
-function StatItem({ stat, locale }: { stat: (typeof stats)[number]; locale: string }) {
-  const { count, ref } = useCountUp(stat.value);
+const statValues: Record<string, { value: number; suffix: string }> = {
+  years: { value: 20, suffix: "+" },
+  cases: { value: 150, suffix: "+" },
+  clients: { value: 100, suffix: "+" },
+  practiceAreas: { value: 6, suffix: "" },
+};
+
+function StatItem({ credential, locale }: { credential: (typeof credentials)[number]; locale: string }) {
+  const { count, ref } = useCountUp(statValues[credential.key].value);
   const t = useTranslations("stats");
+  const Icon = credential.icon;
 
   return (
-    <div ref={ref} className="relative text-center py-4">
-      {/* Large gold number */}
-      <span
-        className="block text-4xl sm:text-5xl md:text-6xl font-bold text-gold-400 tracking-tight leading-none"
-        style={{ fontFamily: "var(--font-heading-en)" }}
-      >
-        {count}
-        {stat.suffix}
-      </span>
-      {/* Label */}
-      <span className="block mt-4 text-sm font-semibold text-warm-200 uppercase tracking-widest">
-        {t(stat.key)}
-      </span>
-      {/* Description */}
-      <span className="block mt-2 text-xs text-warm-400/80 leading-relaxed max-w-[200px] mx-auto">
-        {locale === "ar" ? stat.descAr : stat.descEn}
-      </span>
+    <div
+      ref={ref}
+      className="flex items-center gap-4 px-5 py-5 rounded-[var(--radius-panel)] bg-navy-900/40 border border-white/[0.06] hover:border-gold-400/20 transition-all duration-500"
+    >
+      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gold-400/10 flex items-center justify-center shrink-0">
+        <Icon aria-hidden="true" className="w-5 h-5 text-gold-400" />
+      </div>
+      <div>
+        <span
+          className="block text-2xl md:text-3xl font-bold text-gold-400 leading-none"
+          style={{ fontFamily: "var(--font-heading-en)" }}
+        >
+          {count}{statValues[credential.key].suffix}
+        </span>
+        <span className="block text-sm text-warm-400 mt-1 leading-snug">{t(credential.key)}</span>
+      </div>
     </div>
   );
 }
 
 export function StatsBand({ locale = "ar" }: { locale?: string }) {
   return (
-    <section className="relative bg-navy-900 overflow-hidden">
-      {/* Subtle top/bottom border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-500/20 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-500/20 to-transparent" />
-
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-24">
-        <div className="grid grid-cols-2 gap-10 md:gap-12 lg:grid-cols-4 lg:gap-8">
-          {stats.map((stat) => (
-            <StatItem key={stat.key} stat={stat} locale={locale} />
+    <section className="bg-navy-950 border-y border-gold-400/15">
+      <div className="container-custom py-12 md:py-14">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+          {credentials.map((credential) => (
+            <StatItem key={credential.key} credential={credential} locale={locale} />
           ))}
         </div>
       </div>

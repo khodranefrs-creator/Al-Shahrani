@@ -1,6 +1,8 @@
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
+import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
+import { EyebrowTag } from '@/components/ui/EyebrowTag';
 import type { Locale } from '@/types';
 
 const highlights = [
@@ -13,84 +15,78 @@ const highlights = [
 export default function CorporateSpotlight({ locale }: { locale: Locale }) {
   setRequestLocale(locale);
   const t = useTranslations('corporateSpotlight');
-  const Arrow = locale === 'ar' ? '\u2190' : '\u2192';
+  const isRtl = locale === 'ar';
 
   return (
-    <section className="bg-navy-900 text-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 md:py-32 lg:py-40">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start">
-          {/* Left — Content */}
-          <div className="lg:col-span-6 space-y-8">
-            <div>
-              <p className="text-sm font-semibold tracking-[0.2em] uppercase text-gold-400 mb-6">
-                {locale === 'ar' ? 'القانون المؤسسي' : 'Institutional Practice'}
-              </p>
-              <h2
-                className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-white tracking-tight leading-[1.15]"
-                style={{ fontFamily: 'var(--font-heading-ar)' }}
-              >
-                {t('title')}
-              </h2>
-              <div className="mt-8 h-[2px] w-16 bg-gradient-to-r from-gold-400 to-gold-300" />
-            </div>
+    <section className="bg-navy-950 section-padding relative overflow-hidden">
+      {/* Subtle glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gold-400/[0.03] blur-[120px] pointer-events-none" />
 
-            <p className="text-warm-300 leading-[1.8] text-[15px]">
+      {/* Top gold accent */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400/25 to-transparent" />
+
+      <div className="container-custom relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Left — Content */}
+          <div>
+            <div className="flex justify-center lg:justify-start mb-4">
+              <EyebrowTag label={locale === 'ar' ? 'القانون المؤسسي' : 'Institutional Practice'} />
+            </div>
+            <h2
+              className="text-3xl md:text-4xl font-bold text-white leading-[1.15] mb-6 text-balance text-center lg:text-start"
+              style={{ fontFamily: 'var(--font-heading-ar)' }}
+            >
+              {t('title')}
+            </h2>
+            <p className="text-warm-400 leading-[1.9] mb-8 max-w-xl text-base md:text-[1.0625rem]">
               {t('description')}
             </p>
 
-            <ul className="space-y-4">
+            {/* Highlights — check list */}
+            <div className="space-y-3 mb-8">
               {highlights.map((item, i) => (
-                <li key={i} className="flex items-center gap-4">
-                  <span className="w-8 h-px bg-gold-400/40 flex-shrink-0" />
-                  <span className="text-warm-200 font-medium text-[15px]">
+                <div key={i} className="flex items-center gap-3">
+                  <Check aria-hidden="true" className="w-3.5 h-3.5 text-gold-400 shrink-0" />
+                  <span className="text-warm-300 text-sm md:text-base">
                     {locale === 'ar' ? item.ar : item.en}
                   </span>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
 
             <Link
               href="/services/corporate-law"
-              className="inline-flex items-center gap-3 bg-gold-500 px-10 py-5 text-base font-bold text-white hover:bg-gold-400 transition-smooth shadow-lg shadow-gold-500/20"
+              className="inline-flex items-center gap-2 text-gold-400 font-medium hover:text-gold-300 transition-colors duration-200 group"
             >
               {t('cta')}
-              <span className="rtl:rotate-180 transition-transform duration-200">{Arrow}</span>
+              {isRtl ? (
+                <ArrowLeft aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
+              ) : (
+                <ArrowRight aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              )}
             </Link>
           </div>
 
-          {/* Right — Premium legal visual */}
-          <div className="lg:col-span-6">
-            <div className="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-[#0a0f1e] via-[#121c33] to-[#1a2744]">
-              {/* Large scale of justice — bold, centered, meaningful */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <svg viewBox="0 0 120 120" className="w-32 h-32 md:w-40 md:h-40 text-gold-400 fill-none stroke-current" aria-hidden="true" style={{ strokeOpacity: 0.18 }}>
-                  {/* Pillar */}
+          {/* Right — Premium legal visual (scale of justice) */}
+          <div className="relative max-lg:max-w-[320px] max-lg:mx-auto">
+            <div className="aspect-square relative">
+              {/* Front panel — scale of justice on dark surface */}
+              <div className="absolute inset-0 z-10 rounded-[var(--radius-surface)] overflow-hidden border border-white/[0.06] bg-navy-900/60 flex items-center justify-center">
+                <svg viewBox="0 0 120 120" className="w-24 h-24 md:w-32 md:h-32 text-gold-400 fill-none stroke-current" aria-hidden="true" style={{ strokeOpacity: 0.2 }}>
                   <line x1="60" y1="20" x2="60" y2="100" strokeWidth="1.5" />
-                  {/* Base */}
                   <line x1="40" y1="100" x2="80" y2="100" strokeWidth="1.5" strokeLinecap="round" />
                   <line x1="48" y1="96" x2="72" y2="96" strokeWidth="1.2" strokeLinecap="round" />
-                  {/* Top beam */}
                   <line x1="28" y1="28" x2="92" y2="28" strokeWidth="1.5" strokeLinecap="round" />
-                  {/* Left pan */}
                   <path d="M28 28 L20 52 Q20 58 32 58 Q44 58 44 52 L36 28" strokeWidth="1" />
-                  <line x1="32" y1="58" x2="40" y2="58" strokeWidth="1" strokeLinecap="round" />
-                  {/* Right pan */}
                   <path d="M84 28 L76 48 Q76 54 88 54 Q100 54 100 48 L92 28" strokeWidth="1" />
-                  <line x1="88" y1="54" x2="96" y2="54" strokeWidth="1" strokeLinecap="round" />
-                  {/* Crown */}
                   <circle cx="60" cy="20" r="4" strokeWidth="1.2" />
                 </svg>
               </div>
 
-              {/* Subtle accent line */}
-              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400/20 to-transparent" />
-
-              {/* Bottom label */}
-              <div className="absolute bottom-6 start-0 end-0 text-center">
-                <p className="text-gold-400/20 text-[10px] tracking-[0.4em] uppercase font-semibold">
-                  {locale === 'ar' ? 'قانون مؤسسي' : 'Institutional Law'}
-                </p>
-              </div>
+              {/* Back panel — offset for depth */}
+              <div
+                className={`absolute inset-0 z-0 rounded-[var(--radius-surface)] overflow-hidden bg-navy-900/40 border border-white/[0.04] ${isRtl ? 'translate-x-5' : '-translate-x-5'} max-lg:translate-x-0`}
+              />
             </div>
           </div>
         </div>
