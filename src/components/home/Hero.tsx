@@ -47,7 +47,7 @@ export function Hero({ locale }: HeroProps) {
       {/* Top gold accent line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent" />
 
-      <div className="relative z-10 container-custom pt-20 md:pt-28 pb-16 md:pb-20">
+      <div className="relative z-10 container-custom pt-28 md:pt-36 pb-16 md:pb-20">
         <div className="max-w-4xl mx-auto text-center">
           {/* Eyebrow */}
           <div className="flex justify-center mb-3">

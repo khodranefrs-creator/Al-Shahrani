@@ -57,7 +57,7 @@ export function Header({ locale }: HeaderProps) {
         className={cn(
           "fixed top-0 inset-x-0 z-50 transition-all duration-500",
           showDark
-            ? "header-scrolled-dark"
+            ? "header-scrolled-dark border-b border-white/[0.06]"
             : isScrolled
               ? "header-scrolled"
               : "bg-transparent"

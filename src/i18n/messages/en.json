@@ -13,123 +13,170 @@
     "cta_primary": "Request a Consultation",
     "cta_secondary": "Contact the Firm"
   },
-  "whyUs": {
+  "stats": {
+    "years": "Years of Experience",
+    "cases": "Cases Handled",
+    "clients": "Corporate Clients",
+    "practiceAreas": "Practice Areas"
+  },
+  "why_us": {
+    "eyebrow": "Why Us",
     "title": "Why Choose Us",
-    "subtitle": "We combine deep legal expertise with an understanding of the Saudi business environment",
-    "expertise": {
-      "title": "Distinguished Legal Expertise",
-      "description": "A team of lawyers with extensive experience and advanced academic qualifications across multiple legal disciplines"
+    "description": "We combine deep legal expertise with an understanding of the Saudi business environment to deliver exceptional results.",
+    "reasons": {
+      "0": "Distinguished Legal Expertise",
+      "1": "Institutional & Corporate Focus",
+      "2": "Comprehensive Legal Coverage",
+      "3": "Discretion & Professionalism"
     },
-    "corporate": {
-      "title": "Institutional & Corporate Focus",
-      "description": "A dedicated team serving major companies, institutions, business leaders, and investors"
+    "features": {
+      "0": {
+        "0": "Team of lawyers with extensive experience",
+        "1": "Advanced academic qualifications across disciplines",
+        "2": "Deep knowledge of Saudi legal framework"
+      },
+      "1": {
+        "0": "Serving major companies and institutions",
+        "1": "Dedicated to business leaders and investors",
+        "2": "Specialized in corporate restructuring"
+      },
+      "2": {
+        "0": "Full-spectrum legal services",
+        "1": "Consultancy, litigation, and documentation",
+        "2": "Contract drafting and dispute management"
+      },
+      "3": {
+        "0": "Highest standards of confidentiality",
+        "1": "Professional conduct in all matters",
+        "2": "Ethical practice and client trust"
+      }
     },
-    "comprehensive": {
-      "title": "Comprehensive Legal Ecosystem",
-      "description": "Full-spectrum legal services including consultancy, litigation, documentation, contracts, and dispute management"
-    },
-    "discretion": {
-      "title": "Absolute Discretion & Professionalism",
-      "description": "We uphold the highest standards of confidentiality and professionalism in all client matters"
-    },
-    "local": {
-      "title": "Deep Local Expertise",
-      "description": "Thorough understanding of Saudi laws, regulations, and the local business environment"
-    },
-    "results": {
-      "title": "Proven Track Record",
-      "description": "We deliver exceptional results for our clients through well-planned legal strategies"
+    "links": {
+      "governance": "Learn more about governance"
     }
   },
-  "practiceAreas": {
-    "title": "Practice Areas",
-    "subtitle": "Comprehensive legal coverage across all areas to serve our clients with the best solutions",
-    "viewAll": "View All Services",
-    "learnMore": "Learn More",
+  "services": {
+    "eyebrow": "Practice Areas",
+    "title": "Our Services",
+    "description": "Comprehensive legal coverage across all areas to serve our clients with the best solutions.",
+    "view_all": "View All Services",
     "corporate": {
-      "label": "Corporate Law",
-      "title": "Incorporation & Acquisitions",
+      "title": "Corporate Law",
       "description": "Comprehensive support across every stage of a company's lifecycle — from formation to mergers, acquisitions, and major structural transformations."
     },
-    "contracts": {
-      "label": "Contracts",
-      "title": "Contract Drafting & Analysis",
-      "description": "Specialized contract drafting, legal risk analysis, and ensuring complete protection of client interests."
-    },
     "litigation": {
-      "label": "Litigation",
       "title": "Dispute Resolution & Litigation",
       "description": "Professional litigation representation before all judicial bodies, applying strategic approaches to ensure the best outcomes."
     },
-    "governance": {
-      "title": "Corporate Governance",
-      "description": "Establishing effective governance frameworks to ensure transparency, accountability, and sustainable growth."
-    },
-    "ma": {
-      "title": "Mergers & Acquisitions",
-      "description": "Strategic guidance through complex transactions, from due diligence to deal completion."
+    "contracts": {
+      "title": "Contract Drafting & Analysis",
+      "description": "Specialized contract drafting, legal risk analysis, and ensuring complete protection of client interests."
     },
     "labor": {
       "title": "Labor Law & Employment Relations",
       "description": "Comprehensive employment law advisory including contracts, disputes, and regulatory compliance."
     },
-    "property": {
-      "title": "Real Estate Law"
-    },
-    "medical": {
-      "title": "Medical Law"
-    },
-    "debt": {
-      "title": "Debt Collection"
-    },
     "debtCollection": {
-      "title": "Debt Collection"
+      "title": "Debt Collection",
+      "description": "Professional debt recovery services with legal enforcement and structured collection strategies."
     },
     "notarization": {
-      "title": "Notarization Services"
+      "title": "Notarization Services",
+      "description": "Official notarization and documentation services for legal transactions, contracts, and corporate filings."
     }
   },
-  "corporateSpotlight": {
+  "corporate_spotlight": {
+    "eyebrow": "Specialization",
     "title": "Corporate & Commercial Law",
     "description": "Specialized legal services for companies and institutions including incorporation, M&A, governance, and corporate contracts.",
-    "cta": "Corporate Consultation"
+    "highlights": {
+      "0": "Company formation and restructuring",
+      "1": "Mergers and acquisitions advisory",
+      "2": "Corporate governance frameworks"
+    },
+    "cta": "Corporate Consultation",
+    "badge": "Legal Excellence"
   },
   "process": {
+    "eyebrow": "How We Work",
     "title": "Our Methodology",
-    "subtitle": "We follow a structured and calculated approach to ensure the best outcomes for our clients",
+    "description": "We follow a structured and calculated approach to ensure the best outcomes for our clients.",
     "steps": {
-      "consultation": {
-        "title": "Initial Consultation",
-        "description": "We listen to the client and thoroughly understand their objectives and legal requirements"
+      "0": "Initial Consultation",
+      "1": "Analysis & Assessment",
+      "2": "Strategy Development",
+      "3": "Execution & Follow-up"
+    },
+    "features": {
+      "0": {
+        "0": "Listen to the client's objectives",
+        "1": "Understand legal requirements",
+        "2": "Identify key priorities"
       },
-      "analysis": {
-        "title": "Analysis & Assessment",
-        "description": "We analyze the legal situation, evaluate available options, and identify potential risks"
+      "1": {
+        "0": "Analyze the legal situation",
+        "1": "Evaluate available options",
+        "2": "Identify potential risks"
       },
-      "strategy": {
-        "title": "Strategy Development",
-        "description": "We develop a clear, detailed legal plan to achieve the client's objectives"
+      "2": {
+        "0": "Develop a clear legal plan",
+        "1": "Outline strategic steps",
+        "2": "Define measurable milestones"
       },
-      "execution": {
-        "title": "Execution & Follow-up",
-        "description": "We execute the strategy with skill, monitor progress, and adjust as needed"
+      "3": {
+        "0": "Execute the legal strategy",
+        "1": "Monitor progress closely",
+        "2": "Adjust as needed"
       }
     }
   },
   "testimonials": {
     "title": "Client Testimonials",
-    "subtitle": "We are proud of our clients' trust and satisfaction with our services"
+    "description": "We are proud of our clients' trust and satisfaction with our services.",
+    "items": {
+      "0": "The firm provided exceptional legal counsel during our corporate restructuring. Their expertise and professionalism were evident throughout the entire process.",
+      "1": "We have relied on Al-Shahrani for all our contract needs. Their attention to detail and thorough understanding of commercial law is outstanding.",
+      "2": "The litigation team delivered outstanding results in a complex dispute. Their strategic approach and dedication exceeded our expectations."
+    }
   },
   "blog": {
+    "eyebrow": "Legal Insights",
     "title": "Legal Insights",
-    "subtitle": "Articles and legal perspectives from our expert team",
+    "subtitle": "Articles and legal perspectives from our expert team.",
+    "description": "Articles and legal perspectives from our expert team.",
     "readMore": "Read More",
+    "read_more": "Read More",
     "backToList": "Back to Insights",
     "backToBlog": "Back to Insights",
     "relatedArticles": "Related Articles",
     "viewAll": "View All",
     "publishedOn": "Published on",
-    "noPosts": "No articles available at this time"
+    "noPosts": "No articles available at this time",
+    "read_times": {
+      "0": "5 min read",
+      "1": "7 min read",
+      "2": "4 min read"
+    },
+    "tags": {
+      "news": "Legal News"
+    },
+    "posts": {
+      "0": "Corporate Governance Reforms in Saudi Arabia 2026",
+      "1": "Key Updates to Saudi Labor Law",
+      "2": "Debt Collection Strategies for Businesses"
+    },
+    "excerpts": {
+      "0": "An overview of the latest corporate governance reforms and their impact on businesses operating in the Kingdom.",
+      "1": "Important changes to labor regulations that employers and employees should be aware of in the current year.",
+      "2": "Effective strategies and legal frameworks for recovering outstanding debts in the Saudi commercial environment."
+    }
+  },
+  "ctaBand": {
+    "headline": "Need Legal Counsel?",
+    "subtext": "Our team is ready to help. Contact us today for specialized legal consultation.",
+    "ctaConsultation": "Talk to Our Team Now",
+    "ctaWhatsApp": "Contact via WhatsApp",
+    "whatsappMessage": "Hello, I would like to request a legal consultation."
   },
   "contact": {
     "title": "Contact Us",
@@ -230,7 +277,7 @@
       }
     }
   },
-  "services": {
+  "services_page": {
     "title": "Legal Services",
     "subtitle": "Comprehensive legal services tailored to your needs",
     "requestService": "Request This Service",
@@ -248,19 +295,6 @@
     "close": "Close",
     "phone": "Phone",
     "email": "Email"
-  },
-  "ctaBand": {
-    "headline": "Need Legal Counsel?",
-    "subtext": "Our team is ready to help. Contact us today for specialized legal consultation.",
-    "ctaConsultation": "Talk to Our Team Now",
-    "ctaWhatsApp": "Contact via WhatsApp",
-    "whatsappMessage": "Hello, I would like to request a legal consultation."
-  },
-  "stats": {
-    "years": "Years of Experience",
-    "cases": "Cases Handled",
-    "clients": "Corporate Clients",
-    "practiceAreas": "Practice Areas"
   },
   "blogCategories": {
     "corporate": "Corporate Law",
