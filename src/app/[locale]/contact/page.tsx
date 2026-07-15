@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 
@@ -57,6 +58,24 @@ export default async function ContactPage({
           </p>
         </div>
       </section>
+
+      {/* Office photo — TODO: Replace with official firm photography supplied by client */}
+      <div className="relative mx-auto -mt-8 max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div className="relative aspect-[21/9] w-full overflow-hidden rounded-2xl shadow-2xl">
+          <Image
+            src="/images/office/reception.jpg"
+            alt={
+              typed === "ar"
+                ? "مكتب الاستقبال في مكتب الشهراني للمحاماة"
+                : "Reception area at Al-Shahrani Law Firm"
+            }
+            fill
+            sizes="(max-width: 768px) 100vw, 768px"
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-navy-900/20 via-transparent to-transparent" aria-hidden="true" />
+        </div>
+      </div>
 
       <ConsultationForm locale={typed} />
     </main>

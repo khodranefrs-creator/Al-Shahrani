@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -144,8 +145,22 @@ export default async function ServicesPage({
 
   return (
     <main>
-      <section className="bg-navy-gradient py-28 md:py-36">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-navy-gradient py-28 md:py-36 overflow-hidden">
+        {/* Services hero image — TODO: Replace with official firm photography supplied by client */}
+        <div className="absolute inset-0 opacity-15">
+          <Image
+            src="/images/hero/law-firm-office.jpg"
+            alt={
+              locale === "ar"
+                ? "مكتب الشهراني للمحاماة - خدمات قانونية متخصصة"
+                : "Al-Shahrani Law Firm - specialized legal services"
+            }
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title={locale === "ar" ? "خدماتنا" : "Our Services"}
             subtitle={

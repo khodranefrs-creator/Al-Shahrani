@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { Heart, Award, Eye, Target } from "lucide-react";
@@ -54,8 +55,22 @@ export default async function AboutPage({
 
   return (
     <main>
-      <section className="bg-navy-gradient py-28 md:py-36">
-        <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+      <section className="relative bg-navy-gradient py-28 md:py-36 overflow-hidden">
+        {/* About hero image — TODO: Replace with official firm photography supplied by client */}
+        <div className="absolute inset-0 opacity-15">
+          <Image
+            src="/images/office/reception.jpg"
+            alt={
+              typed === "ar"
+                ? "مكتب الاستقبال في مكتب الشهراني للمحاماة"
+                : "Reception area at Al-Shahrani Law Firm"
+            }
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl tracking-tight">
             {t("title")}
           </h1>
@@ -64,10 +79,27 @@ export default async function AboutPage({
 
       <section className="bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            title={t("whoWeAre.title")}
-            subtitle={t("whoWeAre.content")}
-          />
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            <SectionHeading
+              title={t("whoWeAre.title")}
+              subtitle={t("whoWeAre.content")}
+            />
+            {/* Founder portrait — TODO: Replace with official firm photography supplied by client */}
+            <div className="relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden rounded-2xl shadow-xl">
+              <Image
+                src="/images/team/founder.jpg"
+                alt={
+                  typed === "ar"
+                    ? "المحامي محمد حمود الشهراني، مؤسس المكتب"
+                    : "Attorney Mohammed Hamad Al-Shahrani, Firm Founder"
+                }
+                fill
+                sizes="(max-width: 1024px) 100vw, 384px"
+                className="object-cover object-top"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-900/30 via-transparent to-transparent" aria-hidden="true" />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -86,6 +118,32 @@ export default async function AboutPage({
             title={t("mission.title")}
             subtitle={t("mission.content")}
           />
+        </div>
+      </section>
+
+      {/* Team photo — TODO: Replace with official firm photography supplied by client */}
+      <section className="relative h-72 md:h-96 overflow-hidden">
+        <Image
+          src="/images/office/team-meeting.jpg"
+          alt={
+            typed === "ar"
+              ? "فريق مكتب الشهراني للمحاماة في اجتماع عمل"
+              : "Al-Shahrani Law Firm team in a work meeting"
+          }
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-navy-900/60" aria-hidden="true" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <p
+            className="text-center text-2xl md:text-3xl font-bold text-white/90 max-w-2xl px-4"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            {typed === "ar"
+              ? "فريق متكامل من المحامين المتخصصين"
+              : "A Complete Team of Specialized Lawyers"}
+          </p>
         </div>
       </section>
 

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
@@ -61,52 +62,22 @@ export default function CorporateSpotlight({ locale }: { locale: Locale }) {
             </Link>
           </div>
 
-          {/* Visual — refined SVG */}
+          {/* Visual — TODO: Replace with official firm photography supplied by client */}
           <div className="relative hidden lg:block">
-            <div className="relative mx-auto aspect-[4/3] max-w-lg overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-navy-900 shadow-2xl">
-              <svg viewBox="0 0 500 375" className="absolute inset-0 h-full w-full" aria-hidden="true">
-                <defs>
-                  <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="rgba(201,168,76,0.4)" />
-                    <stop offset="100%" stopColor="rgba(201,168,76,0.1)" />
-                  </linearGradient>
-                </defs>
-
-                {/* Scales of justice — prominent */}
-                <g transform="translate(250, 80)">
-                  {/* Pillar */}
-                  <rect x="-3" y="0" width="6" height="160" rx="3" fill="rgba(201,168,76,0.2)" />
-                  {/* Base */}
-                  <rect x="-40" y="155" width="80" height="6" rx="3" fill="rgba(201,168,76,0.25)" />
-                  {/* Beam */}
-                  <rect x="-100" y="18" width="200" height="3" rx="1.5" fill="rgba(201,168,76,0.35)" />
-                  {/* Top ornament */}
-                  <circle cx="0" cy="0" r="8" fill="rgba(201,168,76,0.3)" stroke="rgba(201,168,76,0.5)" strokeWidth="1" />
-                  {/* Left chain */}
-                  <line x1="-95" y1="20" x2="-95" y2="65" stroke="rgba(201,168,76,0.3)" strokeWidth="1" />
-                  <path d="M -115,65 Q -95,80 -75,65" fill="none" stroke="rgba(201,168,76,0.35)" strokeWidth="1.5" />
-                  {/* Right chain */}
-                  <line x1="95" y1="20" x2="95" y2="65" stroke="rgba(201,168,76,0.3)" strokeWidth="1" />
-                  <path d="M 75,65 Q 95,80 115,65" fill="none" stroke="rgba(201,168,76,0.35)" strokeWidth="1.5" />
-                </g>
-
-                {/* Building silhouettes */}
-                <rect x="50" y="220" width="60" height="130" rx="2" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.12)" strokeWidth="0.5" />
-                <rect x="60" y="235" width="15" height="18" rx="1" fill="rgba(201,168,76,0.1)" />
-                <rect x="85" y="235" width="15" height="18" rx="1" fill="rgba(201,168,76,0.1)" />
-                <rect x="60" y="265" width="15" height="18" rx="1" fill="rgba(201,168,76,0.1)" />
-                <rect x="85" y="265" width="15" height="18" rx="1" fill="rgba(201,168,76,0.1)" />
-
-                <rect x="390" y="200" width="60" height="150" rx="2" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.12)" strokeWidth="0.5" />
-                <rect x="400" y="215" width="15" height="18" rx="1" fill="rgba(201,168,76,0.1)" />
-                <rect x="425" y="215" width="15" height="18" rx="1" fill="rgba(201,168,76,0.1)" />
-                <rect x="400" y="245" width="15" height="18" rx="1" fill="rgba(201,168,76,0.1)" />
-                <rect x="425" y="245" width="15" height="18" rx="1" fill="rgba(201,168,76,0.1)" />
-
-                {/* Ground line */}
-                <line x1="30" y1="350" x2="470" y2="350" stroke="rgba(201,168,76,0.15)" strokeWidth="0.5" />
-              </svg>
-
+            <div className="relative mx-auto aspect-[4/3] max-w-lg overflow-hidden rounded-2xl shadow-2xl">
+              <Image
+                src="/images/services/corporate-law.jpg"
+                alt={
+                  locale === "ar"
+                    ? "اجتماع قانوني مؤسسي في مكتب الشهراني"
+                    : "Corporate legal meeting at Al-Shahrani Law Firm"
+                }
+                fill
+                sizes="(max-width: 1024px) 0px, 512px"
+                className="object-cover object-center"
+              />
+              {/* Subtle dark overlay for depth */}
+              <div className="absolute inset-0 bg-gradient-to-br from-navy-900/20 via-transparent to-navy-900/30" aria-hidden="true" />
               {/* Gold border accents */}
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-400/40 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gold-400/40 to-transparent" />

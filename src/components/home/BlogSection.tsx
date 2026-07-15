@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
@@ -12,6 +13,8 @@ const articles = [
     excerptEn: 'An analytical look at the latest changes in Saudi company law and their impact on business and investment.',
     date: '2025-01-15', slug: 'latest-amendments-saudi-company-law',
     icon: Building2, categoryAr: 'قانون الشركات', categoryEn: 'Corporate Law',
+    imageAr: 'مقال عن التعديلات على نظام الشركات السعودي',
+    imageEn: 'Article about amendments to Saudi company law',
   },
   {
     titleAr: 'أهمية الحوكمة المؤسسية في الشركات الناشئة',
@@ -20,6 +23,8 @@ const articles = [
     excerptEn: 'Why startups need to implement governance principles from the earliest stages of formation.',
     date: '2025-01-08', slug: 'corporate-governance-startups',
     icon: Shield, categoryAr: 'الحوكمة', categoryEn: 'Governance',
+    imageAr: 'مقال عن أهمية الحوكمة المؤسسية',
+    imageEn: 'Article about importance of corporate governance',
   },
   {
     titleAr: 'دليل شامل لعقود الامتثال التجاري',
@@ -28,6 +33,8 @@ const articles = [
     excerptEn: 'A detailed overview of key commercial contract types and regulatory compliance requirements in the Saudi market.',
     date: '2024-12-20', slug: 'guide-commercial-compliance-contracts',
     icon: FileText, categoryAr: 'الامتثال', categoryEn: 'Compliance',
+    imageAr: 'مقال عن عقود الامتثال التجاري',
+    imageEn: 'Article about commercial compliance contracts',
   },
 ] as const;
 
@@ -74,6 +81,17 @@ export default function BlogSection({ locale }: { locale: Locale }) {
                 href={`/blog/${article.slug}`}
                 className="group py-10 px-6 lg:px-10 transition-colors duration-300 hover:bg-white/60"
               >
+                {/* Article image — TODO: Replace with official firm photography supplied by client */}
+                <div className="relative mb-6 aspect-[16/9] w-full overflow-hidden rounded-xl">
+                  <Image
+                    src={`/images/blog/${article.slug}.jpg`}
+                    alt={locale === 'ar' ? article.imageAr : article.imageEn}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 33vw"
+                    className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+
                 <div className="flex items-center gap-3 mb-5">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-navy-900 text-gold-400 transition-all duration-300 group-hover:bg-gold-500 group-hover:text-navy-900">
                     <Icon className="h-5 w-5" />

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -58,6 +59,8 @@ const services = [
       en: "We provide comprehensive legal services for companies at the formation stage and beyond. We assist in selecting the appropriate legal structure, preparing incorporation documents, and ensuring compliance with Saudi Company Law requirements. We also offer strategic advisory on corporate structuring and internal policy development.",
     },
     Icon: Building2,
+    imageAr: "قانون تجاري - اجتماع مؤسسي",
+    imageEn: "Corporate law - institutional meeting",
   },
   {
     slug: "governance",
@@ -67,6 +70,8 @@ const services = [
       en: "Corporate governance is the cornerstone of modern institutional success. We design and implement corporate governance frameworks aligned with global best practices and Saudi market requirements.",
     },
     Icon: Shield,
+    imageAr: "حوكمة مؤسسية - وثائق رسمية",
+    imageEn: "Corporate governance - official documents",
   },
   {
     slug: "contracts",
@@ -76,6 +81,8 @@ const services = [
       en: "We draft and review all types of commercial and legal contracts. Our team ensures every contract protects the client's interests and complies with applicable regulations.",
     },
     Icon: FileText,
+    imageAr: "عقود قانونية - توقيع مستندات",
+    imageEn: "Legal contracts - document signing",
   },
   {
     slug: "ma",
@@ -85,6 +92,8 @@ const services = [
       en: "We provide specialized legal advisory for M&A transactions including due diligence studies, term negotiation, document preparation, and regulatory compliance.",
     },
     Icon: GitMerge,
+    imageAr: "اندماج واستحواذ - صفقة مؤسسية",
+    imageEn: "Mergers and acquisitions - corporate deal",
   },
   {
     slug: "litigation",
@@ -94,15 +103,19 @@ const services = [
       en: "Our team has extensive experience in litigation representation across all court levels. We offer full delegation or partial representation in civil, commercial, and administrative cases.",
     },
     Icon: Scale,
+    imageAr: "تقاضي ومنازعات - قاعة المحكمة",
+    imageEn: "Litigation and disputes - courtroom",
   },
   {
     slug: "debt-collection",
     title: { ar: "تحصيل الديون", en: "Debt Collection" },
     description: {
-      ar: "نوفر للشركات والأفراد خدمات تحصيل الديون بكفاءة عالية، سواء через التفاوض والتسويات الودية أو عبر الإجراءات القضائية والتنفيذية.",
+      ar: "نوفر للشركات والأفراد خدمات تحصيل الديون بكفاءة عالية، سواء عبر التفاوض والتسويات الودية أو عبر الإجراءات القضائية والتنفيذية.",
       en: "We provide efficient debt recovery services for companies and individuals, whether through negotiation and amicable settlements or through judicial and enforcement proceedings.",
     },
     Icon: Banknote,
+    imageAr: "تحصيل الديون - معاملات مالية",
+    imageEn: "Debt collection - financial transactions",
   },
   {
     slug: "notarization",
@@ -112,6 +125,8 @@ const services = [
       en: "The firm provides legal documentation services in collaboration with licensed notary partners, including contract authentication, agreements, and official certifications.",
     },
     Icon: Stamp,
+    imageAr: "توثيق قانوني - مستندات رسمية",
+    imageEn: "Legal notarization - official documents",
   },
   {
     slug: "labor",
@@ -121,6 +136,8 @@ const services = [
       en: "We provide comprehensive advisory on labor law and employment relations, including drafting internal labor regulations, reviewing employment contracts, and representing clients in labor disputes.",
     },
     Icon: Briefcase,
+    imageAr: "قانون العمل - علاقات عمالية",
+    imageEn: "Labor law - employment relations",
   },
   {
     slug: "personal-status",
@@ -130,6 +147,8 @@ const services = [
       en: "We provide legal services in personal status and inheritance matters, including estate settlements, wills, and family disputes in accordance with Islamic law.",
     },
     Icon: Heart,
+    imageAr: "أحوال شخصية - ترات وإرث",
+    imageEn: "Personal status - estate and inheritance",
   },
   {
     slug: "property",
@@ -139,6 +158,8 @@ const services = [
       en: "We provide legal advisory on property and real estate law, including sale, purchase, lease, and ownership contracts, property registration, and ownership dispute resolution.",
     },
     Icon: Home,
+    imageAr: "قانون العقارات - ممتلكات وعقارات",
+    imageEn: "Property law - real estate",
   },
   {
     slug: "medical",
@@ -148,6 +169,8 @@ const services = [
       en: "We provide specialized legal representation in medical cases and malpractice compensation claims, in collaboration with expert medical consultants.",
     },
     Icon: Stethoscope,
+    imageAr: "قضايا طبية - استشارات قانونية",
+    imageEn: "Medical cases - legal consultation",
   },
 ];
 
@@ -175,8 +198,18 @@ export default async function ServicePage({
 
   return (
     <main>
-      <section className="bg-navy-gradient py-28 md:py-36">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-navy-gradient py-28 md:py-36 overflow-hidden">
+        {/* Service hero image — TODO: Replace with official firm photography supplied by client */}
+        <div className="absolute inset-0 opacity-15">
+          <Image
+            src={`/images/services/${slug}.jpg`}
+            alt={locale === "ar" ? service.imageAr : service.imageEn}
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Link
             href="/services"
             className="inline-flex items-center gap-2 text-gold-300 hover:text-gold-200 transition-colors mb-8"

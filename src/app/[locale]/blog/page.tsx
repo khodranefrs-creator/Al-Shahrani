@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -36,6 +37,7 @@ interface BlogPost {
   excerpt: string;
   date: string;
   category: string;
+  imageAlt: string;
 }
 
 const blogPosts: Record<Locale, BlogPost[]> = {
@@ -47,6 +49,7 @@ const blogPosts: Record<Locale, BlogPost[]> = {
         "نظرة معمقة على متطلبات حوكمة الشركات وفقاً للنظام السعودي الجديد، وكيف يمكن للمؤسسات الامتثال للمعايير الدولية.",
       date: "٢٠٢٦/٠٧/١٠",
       category: "القانون التجاري",
+      imageAlt: "صورة مقال حوكمة الشركات في المملكة العربية السعودية",
     },
     {
       slug: "labor-rights-2026",
@@ -55,6 +58,7 @@ const blogPosts: Record<Locale, BlogPost[]> = {
         "مراجعة شاملة لأحدث التعديلات على نظام العمل السعودي وتأثيرها على حقوق العمال وأصحاب العمل.",
       date: "٢٠٢٦/٠٦/٢٥",
       category: "قانون العمل",
+      imageAlt: "صورة مقال حقوق العمال في نظام العمل السعودي",
     },
     {
       slug: "medical-liability",
@@ -63,6 +67,7 @@ const blogPosts: Record<Locale, BlogPost[]> = {
         "شرح تفصيلي للمسؤولية الطبية وفقاً للنظام السعودي، وحقوق المرضى في حالات الأخطاء الطبية.",
       date: "٢٠٢٦/٠٥/١٨",
       category: "القانون الطبي",
+      imageAlt: "صورة مقال المسؤولية الطبية في القانون السعودي",
     },
     {
       slug: "real-estate-disputes",
@@ -71,6 +76,7 @@ const blogPosts: Record<Locale, BlogPost[]> = {
         "استكشاف الطرق القانونية المختلفة لحل النزاعات العقارية في السعودية، من التفاوض إلى التحكيم.",
       date: "٢٠٢٦/٠٤/٣٠",
       category: "القانون العقاري",
+      imageAlt: "صورة مقال حل النزاعات العقارية في المملكة",
     },
   ],
   en: [
@@ -81,6 +87,7 @@ const blogPosts: Record<Locale, BlogPost[]> = {
         "An in-depth look at corporate governance requirements under the new Saudi regulations and how institutions can comply with international standards.",
       date: "Jul 10, 2026",
       category: "Corporate Law",
+      imageAlt: "Image for corporate governance in Saudi Arabia article",
     },
     {
       slug: "labor-rights-2026",
@@ -89,6 +96,7 @@ const blogPosts: Record<Locale, BlogPost[]> = {
         "A comprehensive review of the latest amendments to the Saudi Labor Law and their impact on employee and employer rights.",
       date: "Jun 25, 2026",
       category: "Labor Law",
+      imageAlt: "Image for worker rights under Saudi labor law article",
     },
     {
       slug: "medical-liability",
@@ -97,6 +105,7 @@ const blogPosts: Record<Locale, BlogPost[]> = {
         "A detailed explanation of medical liability under Saudi law, including patient rights in cases of medical malpractice.",
       date: "May 18, 2026",
       category: "Medical Law",
+      imageAlt: "Image for medical liability in Saudi law article",
     },
     {
       slug: "real-estate-disputes",
@@ -105,6 +114,7 @@ const blogPosts: Record<Locale, BlogPost[]> = {
         "Exploring the various legal avenues for resolving real estate disputes in Saudi Arabia, from negotiation to arbitration.",
       date: "Apr 30, 2026",
       category: "Real Estate Law",
+      imageAlt: "Image for resolving real estate disputes article",
     },
   ],
 };
@@ -141,8 +151,20 @@ export default async function BlogPage({
             {posts.map((post) => (
               <article
                 key={post.slug}
-                className="group rounded-2xl border border-warm-200 bg-white p-6 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="group rounded-2xl border border-warm-200 bg-white overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
+                {/* Blog thumbnail — TODO: Replace with official firm photography supplied by client */}
+                <div className="relative aspect-[16/9] w-full overflow-hidden">
+                  <Image
+                    src={`/images/blog/${post.slug}.jpg`}
+                    alt={post.imageAlt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+
+                <div className="p-6 md:p-8">
                 <div className="mb-4 flex items-center gap-3">
                   <span className="rounded-full bg-gold-100 px-3 py-1 text-xs font-semibold text-gold-700">
                     {post.category}
@@ -165,6 +187,7 @@ export default async function BlogPage({
                   {t("readMore")}
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>
+                </div>
               </article>
             ))}
           </div>

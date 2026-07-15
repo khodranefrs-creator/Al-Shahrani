@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { cn, getWhatsAppUrl } from "@/lib/utils";
@@ -31,9 +32,30 @@ export function Hero({ locale }: HeroProps) {
 
   return (
     <section
-      className="relative min-h-screen flex items-center bg-hero-premium overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden"
       aria-label={t("title")}
     >
+      {/* Background image — TODO: Replace with official firm photography supplied by client */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/hero/law-firm-office.jpg"
+          alt={
+            locale === "ar"
+              ? "مبنى مكتب الشهراني للمحاماة والاستشارات القانونية في خميس مشيط"
+              : "Al-Shahrani Law Firm office building in Khamis Mushait"
+          }
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-navy-900/80" aria-hidden="true" />
+      </div>
+
+      {/* Premium gradient overlay */}
+      <div className="absolute inset-0 bg-hero-premium opacity-60" aria-hidden="true" />
+
       {/* Subtle architectural grid */}
       <div className="absolute inset-0 opacity-[0.03]" aria-hidden="true">
         <div className="h-full w-full" style={{
