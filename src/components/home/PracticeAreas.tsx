@@ -95,9 +95,9 @@ export default function PracticeAreas({ locale }: { locale: Locale }) {
                 href={`/services/${service.slug}`}
                 className="group relative overflow-hidden rounded-2xl border border-navy-100 bg-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
               >
-                <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-gold-400 to-gold-600" />
+                <div className="absolute start-0 top-0 h-full w-1 bg-gradient-to-b from-gold-400 to-gold-600" />
 
-                <div className="p-8 pl-10">
+                <div className="p-8 ps-10">
                   <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-xl bg-navy-900 text-gold-400 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:bg-gold-500 group-hover:text-navy-900">
                     <Icon className="h-7 w-7" />
                   </div>

@@ -43,7 +43,7 @@ const services = [
   },
   {
     slug: "governance",
-    title: { ar: "الحوكمةorporate Governance", en: "Corporate Governance" },
+    title: { ar: "الحوكمة المؤسسية", en: "Corporate Governance" },
     description: {
       ar: "تصميم وتطبيق أنظمة الحوكمة المؤسسية بأفضل الممارسات العالمية.",
       en: "Design and implementation of corporate governance systems aligned with global best practices.",

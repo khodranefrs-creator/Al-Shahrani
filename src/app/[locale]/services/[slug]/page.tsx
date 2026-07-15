@@ -60,9 +60,9 @@ const services = [
   },
   {
     slug: "governance",
-    title: { ar: "الحوكمةorporate Governance", en: "Corporate Governance" },
+    title: { ar: "الحوكمة المؤسسية", en: "Corporate Governance" },
     description: {
-      ar: "الحوكمةorporate Governance هي حجر الأساس في نجاح المؤسسات الحديثة. نقدم خدمات تصميم وتطبيق أنظمة الحوكمة المؤسسية بما يتوافق مع أفضل الممارسات العالمية ومتطلبات السوق السعودي.",
+      ar: "الحوكمة المؤسسية هي حجر الأساس في نجاح المؤسسات الحديثة. نقدم خدمات تصميم وتطبيق أنظمة الحوكمة المؤسسية بما يتوافق مع أفضل الممارسات العالمية ومتطلبات السوق السعودي.",
       en: "Corporate governance is the cornerstone of modern institutional success. We design and implement corporate governance frameworks aligned with global best practices and Saudi market requirements.",
     },
     Icon: Shield,
@@ -80,7 +80,7 @@ const services = [
     slug: "ma",
     title: { ar: "الاندماج والاستحواذ", en: "Mergers & Acquisitions" },
     description: {
-      ar: "نقدم استشارات قانونية متخصصة في عمليات الاندماج والاستحواذ،شمل دراسات العرض Due Diligence، وتفاوض الشروط، وإعداد المستندات اللازمة، وضمان الامتثال التنظيمي.",
+      ar: "نقدم استشارات قانونية متخصصة في عمليات الاندماج والاستحواذ، بما في ذلك دراسات العرضDue Diligence، وتفاوض الشروط، وإعداد المستندات اللازمة، وضمان الامتثال التنظيمي.",
       en: "We provide specialized legal advisory for M&A transactions including due diligence studies, term negotiation, document preparation, and regulatory compliance.",
     },
     Icon: GitMerge,
@@ -98,7 +98,7 @@ const services = [
     slug: "debt-collection",
     title: { ar: "تحصيل الديون", en: "Debt Collection" },
     description: {
-      ar: "نوفر للشركات والأفراد خدمات تحصيل الديون بكفاءة عالية، سواء通过 التفاوض والتسويات الودية أو عبر الإجراءات القضائية والتنفيذية.",
+      ar: "نوفر للشركات والأفراد خدمات تحصيل الديون بكفاءة عالية، سواء через التفاوض والتسويات الودية أو عبر الإجراءات القضائية والتنفيذية.",
       en: "We provide efficient debt recovery services for companies and individuals, whether through negotiation and amicable settlements or through judicial and enforcement proceedings.",
     },
     Icon: Banknote,
@@ -107,7 +107,7 @@ const services = [
     slug: "notarization",
     title: { ar: "التوثيق", en: "Notarization & Documentation" },
     description: {
-      ar: "يقدم المكتب خدمات التوثيق القانوني بالتعاون معشركاء موثقين مرخصين، بما في ذلك توثيق العقود والاتفاقيات والتصديقات الرسمية.",
+      ar: "يقدم المكتب خدمات التوثيق القانوني بالتعاون مع شركاء موثقين مرخصين، بما في ذلك توثيق العقود والاتفاقيات والتصديقات الرسمية.",
       en: "The firm provides legal documentation services in collaboration with licensed notary partners, including contract authentication, agreements, and official certifications.",
     },
     Icon: Stamp,

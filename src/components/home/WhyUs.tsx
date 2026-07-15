@@ -33,7 +33,7 @@ export default function WhyUs({ locale }: { locale: Locale }) {
                 key={key}
                 className="group relative overflow-hidden rounded-2xl border border-navy-100 bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
               >
-                <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-gold-400 to-gold-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="absolute start-0 top-0 h-full w-1 bg-gradient-to-b from-gold-400 to-gold-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                 <div className="p-8">
                   <div className="mb-5 flex items-center gap-4">

@@ -31,9 +31,9 @@
   --color-warm-300: #d5d2c6;
 
   /* ─── Typography ─── */
-  --font-heading: "Noto Naskh Arabic", "Playfair Display", Georgia, serif;
-  --font-body: "IBM Plex Sans Arabic", "Inter", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", "Geist Mono", monospace;
+  --font-heading: "Noto Naskh Arabic", Georgia, serif;
+  --font-body: "Inter", "Noto Naskh Arabic", system-ui, sans-serif;
+  --font-mono: "Geist Mono", monospace;
 
   /* ─── Spacing Scale ─── */
   --spacing-section: 5rem;
@@ -95,6 +95,37 @@ h1, h2, h3, h4, h5, h6 {
 
 [dir="ltr"] {
   text-align: left;
+}
+
+/* ─── Arabic Typography Improvements ─── */
+[dir="rtl"] body {
+  line-height: 1.8;
+  letter-spacing: 0;
+  word-spacing: 0.05em;
+}
+
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6 {
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+[dir="rtl"] p,
+[dir="rtl"] li {
+  line-height: 1.9;
+}
+
+/* ─── RTL Overflow Protection ─── */
+html[dir="rtl"] {
+  overflow-x: hidden;
+}
+
+[dir="rtl"] .rtl\:rotate-180 {
+  transform: rotate(180deg);
 }
 
 /* ─── Gold Accent Utilities ─── */
