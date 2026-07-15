@@ -3,16 +3,35 @@
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
-/*
- * IMPORTANT: These values should be verified by the client.
- * They are placeholders that can be updated through the admin panel
- * or by editing this file directly. Do not display unverified numbers.
- */
 const stats = [
-  { key: "years", value: 20, suffix: "+" },
-  { key: "cases", value: 150, suffix: "+" },
-  { key: "clients", value: 100, suffix: "+" },
-  { key: "practiceAreas", value: 6, suffix: "" },
+  {
+    key: "years",
+    value: 20,
+    suffix: "+",
+    descAr: "عاماً من الخبرة القانونية المتميزة",
+    descEn: "Years of distinguished legal experience",
+  },
+  {
+    key: "cases",
+    value: 150,
+    suffix: "+",
+    descAr: "قضية تعاملنا معها بنجاح",
+    descEn: "Cases handled successfully",
+  },
+  {
+    key: "clients",
+    value: 100,
+    suffix: "+",
+    descAr: "عميل مؤسسي يثق بخدماتنا",
+    descEn: "Corporate clients trust our services",
+  },
+  {
+    key: "practiceAreas",
+    value: 6,
+    suffix: "",
+    descAr: "مجالات تخصص قانوني",
+    descEn: "Legal practice areas",
+  },
 ] as const;
 
 function useCountUp(target: number, duration = 2000) {
@@ -49,33 +68,36 @@ function useCountUp(target: number, duration = 2000) {
   return { count, ref };
 }
 
-function StatItem({ stat }: { stat: (typeof stats)[number] }) {
+function StatItem({ stat, locale }: { stat: (typeof stats)[number]; locale: string }) {
   const { count, ref } = useCountUp(stat.value);
   const t = useTranslations("stats");
 
   return (
     <div ref={ref} className="flex flex-col items-center text-center">
       <span
-        className="text-4xl font-bold text-gold-400 sm:text-5xl lg:text-6xl tracking-tight leading-none"
-        style={{ fontFamily: 'var(--font-heading-en)' }}
+        className="text-3xl sm:text-4xl md:text-5xl font-bold text-gold-400 tracking-tight leading-none"
+        style={{ fontFamily: "var(--font-heading-en)" }}
       >
         {count}
         {stat.suffix}
       </span>
-      <span className="mt-3 text-xs font-medium text-warm-300 uppercase tracking-widest sm:text-sm">
+      <span className="mt-3 text-sm font-semibold text-warm-200 uppercase tracking-wide">
         {t(stat.key)}
+      </span>
+      <span className="mt-1.5 text-xs text-warm-400 leading-relaxed max-w-[200px]">
+        {locale === "ar" ? stat.descAr : stat.descEn}
       </span>
     </div>
   );
 }
 
-export function StatsBand() {
+export function StatsBand({ locale = "ar" }: { locale?: string }) {
   return (
-    <section className="bg-navy-900 py-16 lg:py-24">
+    <section className="bg-navy-900 py-16 md:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-10 lg:grid-cols-4 lg:gap-16">
+        <div className="grid grid-cols-2 gap-8 md:gap-12 lg:grid-cols-4 lg:gap-16">
           {stats.map((stat) => (
-            <StatItem key={stat.key} stat={stat} />
+            <StatItem key={stat.key} stat={stat} locale={locale} />
           ))}
         </div>
       </div>

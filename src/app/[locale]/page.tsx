@@ -26,7 +26,7 @@ export async function generateMetadata({
   const typed = locale as Locale;
 
   return {
-    title: typed === "ar" ? "الرئيسية" : "Home",
+    title: typed === "ar" ? "\u0627\u0644\u0631\u0626\u064a\u0633\u064a\u0629" : "Home",
     description: siteConfig.description[typed],
   };
 }
@@ -44,7 +44,7 @@ export default async function HomePage({
   return (
     <>
       <Hero locale={typed} />
-      <StatsBand />
+      <StatsBand locale={typed} />
       <WhyUs locale={typed} />
       <PracticeAreas locale={typed} />
       <CorporateSpotlight locale={typed} />

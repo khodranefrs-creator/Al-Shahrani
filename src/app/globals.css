@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* ─── Navy Palette — Deeper, warmer, more institutional ─── */
+  /* ─── Navy Palette ─── */
   --color-navy-50: #f0f2f6;
   --color-navy-100: #d8dde7;
   --color-navy-200: #b1bad0;
@@ -14,7 +14,7 @@
   --color-navy-900: #0c1222;
   --color-navy-950: #070b15;
 
-  /* ─── Gold Palette — Warmer, more sophisticated ─── */
+  /* ─── Gold Palette ─── */
   --color-gold-50: #faf6ed;
   --color-gold-100: #f3ebd3;
   --color-gold-200: #e8d9a8;
@@ -26,7 +26,7 @@
   --color-gold-800: #5a441b;
   --color-gold-900: #3a2c12;
 
-  /* ─── Warm Neutrals — Elegant, not sterile ─── */
+  /* ─── Warm Neutrals ─── */
   --color-warm-50: #faf9f7;
   --color-warm-100: #f5f4f0;
   --color-warm-200: #edece7;
@@ -39,7 +39,7 @@
   --color-warm-900: #2e2d2a;
   --color-warm-950: #1a1918;
 
-  /* ─── Typography — Editorial hierarchy ─── */
+  /* ─── Typography ─── */
   --font-heading-ar: "Noto Naskh Arabic", "Amiri", serif;
   --font-heading-en: "Playfair Display", "Georgia", serif;
   --font-body-ar: "Noto Sans Arabic", "Tajawal", sans-serif;
@@ -55,18 +55,11 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+  html { scroll-behavior: auto; }
   .transition-smooth,
   .hover-lift,
-  .link-underline::after {
-    transition: none !important;
-  }
-  .hover-lift:hover {
-    transform: none;
-    box-shadow: none;
-  }
+  .link-underline::after { transition: none !important; }
+  .hover-lift:hover { transform: none; box-shadow: none; }
 }
 
 body {
@@ -126,41 +119,6 @@ h1 {
 
 html[dir="rtl"] { overflow-x: hidden; }
 
-/* ─── Gold Accent Utilities ─── */
-.gold-divider {
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--color-gold-400),
-    transparent
-  );
-}
-
-.section-divider {
-  width: 3rem;
-  height: 2px;
-  background: linear-gradient(90deg, var(--color-gold-500), var(--color-gold-300));
-}
-
-/* ─── Gradients ─── */
-.bg-navy-gradient {
-  background: linear-gradient(135deg, var(--color-navy-950) 0%, var(--color-navy-900) 50%, var(--color-navy-800) 100%);
-}
-
-.bg-navy-gradient-subtle {
-  background: linear-gradient(180deg, var(--color-warm-50) 0%, var(--color-navy-50) 100%);
-}
-
-/* ─── Hero Ambient Glow ─── */
-.hero-glow {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.04;
-  pointer-events: none;
-}
-
 /* ─── Section Spacing ─── */
 .section-premium {
   padding-top: 6rem;
@@ -176,20 +134,20 @@ html[dir="rtl"] { overflow-x: hidden; }
 
 /* ─── Glass Header ─── */
 .header-scrolled {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  box-shadow: 0 1px 3px rgba(12, 18, 34, 0.08), 0 4px 24px rgba(12, 18, 34, 0.04);
+  box-shadow: 0 1px 0 var(--color-warm-200), 0 4px 24px rgba(12, 18, 34, 0.06);
 }
 
 .header-scrolled-dark {
-  background: rgba(12, 18, 34, 0.92);
+  background: rgba(7, 11, 21, 0.92);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 24px rgba(0, 0, 0, 0.2);
 }
 
-/* ─── Card Hover Lift ─── */
+/* ─── Hover Lift ─── */
 .hover-lift {
   transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
               box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
@@ -202,7 +160,7 @@ html[dir="rtl"] { overflow-x: hidden; }
               0 4px 10px -6px rgba(0, 0, 0, 0.05);
 }
 
-/* ─── Link Underline Animation ─── */
+/* ─── Link Underline ─── */
 .link-underline {
   position: relative;
   text-decoration: none;
@@ -228,22 +186,24 @@ html[dir="rtl"] { overflow-x: hidden; }
   right: 0;
 }
 
-/* ─── Smooth Transitions ─── */
+/* ─── Smooth Transition ─── */
 .transition-smooth {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ─── Editorial Number ─── */
-.editorial-number {
-  font-family: var(--font-heading-en);
-  font-weight: 700;
-  font-size: 4rem;
-  line-height: 1;
-  color: var(--color-navy-100);
-  transition: color 0.3s ease;
+/* ─── Hero Ambient Glow ─── */
+.hero-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.04;
+  pointer-events: none;
 }
-.group:hover .editorial-number {
-  color: var(--color-gold-400);
+
+/* ─── Gold Divider ─── */
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-gold-400), transparent);
 }
 
 /* ─── Quote Mark ─── */
@@ -289,31 +249,11 @@ input, textarea, select { font-family: var(--font-body); }
 }
 .skip-link:focus { top: 0; }
 
-/* ─── Mobile Menu Slide ─── */
+/* ─── Mobile Menu ─── */
 @keyframes slide-down {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
 .animate-slide-down {
   animation: slide-down 0.2s ease-out;
-}
-
-/* ─── Editorial Section Separator ─── */
-.editorial-separator {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--color-warm-200) 20%,
-    var(--color-warm-200) 80%,
-    transparent
-  );
 }

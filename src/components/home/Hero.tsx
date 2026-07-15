@@ -18,13 +18,13 @@ export function Hero({ locale }: HeroProps) {
       className="relative min-h-screen flex items-center overflow-hidden bg-navy-950"
       aria-label={t("title")}
     >
-      {/* Background image — TODO: Replace with official firm photography supplied by client */}
+      {/* Background image */}
       <div className="absolute inset-0">
         <Image
           src="/images/hero/law-firm-office.jpg"
           alt={
             locale === "ar"
-              ? "مبنى مكتب الشهراني للمحاماة والاستشارات القانونية في خميس مشيط"
+              ? "\u0645\u0628\u0646\u0649 \u0645\u0643\u062a\u0628 \u0627\u0644\u0634\u0647\u0631\u0627\u0646\u064a \u0644\u0644\u0645\u062d\u0627\u0645\u0627\u0629 \u0641\u064a \u062e\u0645\u064a\u0633 \u0645\u0634\u064a\u0637"
               : "Al-Shahrani Law Firm office building in Khamis Mushait"
           }
           fill
@@ -32,32 +32,32 @@ export function Hero({ locale }: HeroProps) {
           sizes="100vw"
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-navy-950/75" aria-hidden="true" />
+        <div className="absolute inset-0 bg-navy-950/70" aria-hidden="true" />
       </div>
 
-      {/* Luxury ambient glow — gold radial, ~4% opacity */}
+      {/* Luxury ambient glow */}
       <div
         className="hero-glow"
         style={{
-          width: "800px",
-          height: "800px",
-          top: "-20%",
-          right: "-10%",
+          width: "900px",
+          height: "900px",
+          top: "-25%",
+          right: "-15%",
           background: "radial-gradient(circle, var(--color-gold-400) 0%, transparent 70%)",
         }}
       />
       <div
         className="hero-glow"
         style={{
-          width: "600px",
-          height: "600px",
-          bottom: "-30%",
-          left: "-5%",
+          width: "700px",
+          height: "700px",
+          bottom: "-35%",
+          left: "-10%",
           background: "radial-gradient(circle, var(--color-gold-300) 0%, transparent 70%)",
         }}
       />
 
-      {/* Subtle noise texture overlay */}
+      {/* Noise texture */}
       <div
         className="absolute inset-0 opacity-[0.015] pointer-events-none"
         style={{
@@ -72,30 +72,30 @@ export function Hero({ locale }: HeroProps) {
         <div className="max-w-3xl">
           {/* Tagline */}
           <p className="text-gold-400 font-medium tracking-wide text-sm uppercase mb-6">
-            {locale === "ar" ? "خميس مشيط، المملكة العربية السعودية" : "Khamis Mushait, Saudi Arabia"}
+            {locale === "ar" ? "\u062e\u0645\u064a\u0633 \u0645\u0634\u064a\u0637\u060c \u0627\u0644\u0645\u0645\u0644\u0643\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 \u0627\u0644\u0633\u0639\u0648\u062f\u064a\u0629" : "Khamis Mushait, Saudi Arabia"}
           </p>
 
           {/* Headline */}
           <h1
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-[1.15]"
+            className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-white mb-8 leading-[1.15]"
             style={{ fontFamily: "var(--font-heading-ar)" }}
           >
             {t("title")}
           </h1>
 
           {/* Subtitle */}
-          <p className="text-lg md:text-xl text-warm-300 leading-relaxed mb-12 max-w-2xl">
+          <p className="text-lg md:text-xl text-warm-300 leading-relaxed mb-14 max-w-2xl">
             {t("subtitle")}
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row gap-4 mb-8">
             <Link
               href="/contact"
               className={cn(
-                "inline-flex items-center justify-center px-6 py-3.5 sm:px-8 sm:py-4 bg-gold-500 text-navy-950 font-semibold",
+                "inline-flex items-center justify-center px-8 py-4 bg-gold-500 text-white font-semibold",
                 "hover:bg-gold-400 active:bg-gold-600 focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2",
-                "transition-smooth text-base sm:text-lg"
+                "transition-smooth text-base sm:text-lg shadow-sm hover:shadow-md"
               )}
             >
               {t("cta_primary")}
@@ -103,12 +103,12 @@ export function Hero({ locale }: HeroProps) {
             <a
               href={getWhatsAppUrl(
                 siteConfig.whatsapp,
-                locale === "ar" ? "مرحباً، أريد التواصل مع المكتب" : "Hello, I would like to contact the firm"
+                locale === "ar" ? "\u0645\u0631\u062d\u0628\u0627\u060c \u0623\u0631\u064a\u062f \u0627\u0644\u062a\u0648\u0627\u0635\u0644 \u0645\u0639 \u0627\u0644\u0645\u0643\u062a\u0628" : "Hello, I would like to contact the firm"
               )}
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
-                "inline-flex items-center justify-center px-6 py-3.5 sm:px-8 sm:py-4 border-2 border-warm-400/30 text-white font-semibold",
+                "inline-flex items-center justify-center px-8 py-4 border-2 border-warm-400/30 text-white font-semibold",
                 "hover:border-gold-400 hover:text-gold-400 focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2",
                 "transition-smooth text-base sm:text-lg"
               )}
@@ -122,7 +122,7 @@ export function Hero({ locale }: HeroProps) {
 
           {/* Trust micro-copy */}
           <p className="text-warm-400 text-sm">
-            {locale === "ar" ? "الاستشارة الأولى مجانية" : "Initial consultation free of charge"}
+            {locale === "ar" ? "\u0627\u0644\u0627\u0633\u062a\u0634\u0627\u0631\u0629 \u0627\u0644\u0623\u0648\u0644\u0649 \u0645\u062c\u0627\u0646\u064a\u0629" : "Initial consultation free of charge"}
           </p>
         </div>
       </div>

@@ -8,20 +8,20 @@ interface FooterProps {
 }
 
 const serviceLinks = [
-  { key: "corporate-law", ar: "القانون التجاري", en: "Corporate Law" },
-  { key: "governance", ar: "الحوكمة المؤسسية", en: "Corporate Governance" },
-  { key: "contracts", ar: "العقود", en: "Contracts" },
-  { key: "ma", ar: "الاندماج والاستحواذ", en: "Mergers & Acquisitions" },
-  { key: "litigation", ar: "التقاضي وتسوية المنازعات", en: "Dispute Resolution" },
-  { key: "debt-collection", ar: "تحصيل الديون", en: "Debt Collection" },
+  { key: "corporate-law", ar: "\u0627\u0644\u0642\u0627\u0646\u0648\u0646 \u0627\u0644\u062a\u062c\u0627\u0631\u064a", en: "Corporate Law" },
+  { key: "governance", ar: "\u0627\u0644\u062d\u0648\u0643\u0645\u0629 \u0627\u0644\u0645\u0624\u0633\u0633\u064a\u0629", en: "Corporate Governance" },
+  { key: "contracts", ar: "\u0627\u0644\u0639\u0642\u0648\u062f", en: "Contracts" },
+  { key: "ma", ar: "\u0627\u0644\u0627\u0646\u062f\u0645\u0627\u062c \u0648\u0627\u0644\u0627\u0633\u062a\u062d\u0648\u0627\u062b", en: "Mergers & Acquisitions" },
+  { key: "litigation", ar: "\u0627\u0644\u062a\u0642\u0627\u0636\u064a \u0648\u062a\u0633\u0648\u064a\u0629 \u0627\u0644\u0645\u0646\u0627\u0639\u0638\u0627\u062a", en: "Dispute Resolution" },
+  { key: "debt-collection", ar: "\u062a\u062d\u0635\u064a\u0644 \u0627\u0644\u062f\u064a\u0648\u0646", en: "Debt Collection" },
 ];
 
 const pageLinks = [
-  { key: "home", ar: "الرئيسية", en: "Home", href: "/" },
-  { key: "about", ar: "من نحن", en: "About", href: "/about" },
-  { key: "services", ar: "الخدمات", en: "Services", href: "/services" },
-  { key: "blog", ar: "المدونة", en: "Insights", href: "/blog" },
-  { key: "contact", ar: "تواصل معنا", en: "Contact", href: "/contact" },
+  { key: "home", ar: "\u0627\u0644\u0631\u0626\u064a\u0633\u064a\u0629", en: "Home", href: "/" },
+  { key: "about", ar: "\u0645\u0646 \u0646\u062d\u0646", en: "About", href: "/about" },
+  { key: "services", ar: "\u0627\u0644\u062e\u062f\u0645\u0627\u062a", en: "Services", href: "/services" },
+  { key: "blog", ar: "\u0627\u0644\u0645\u062f\u0648\u0646\u0629", en: "Insights", href: "/blog" },
+  { key: "contact", ar: "\u062a\u0648\u0627\u0635\u0644 \u0645\u0639\u0646\u0627", en: "Contact", href: "/contact" },
 ];
 
 export function Footer({ locale }: FooterProps) {
@@ -29,34 +29,34 @@ export function Footer({ locale }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-navy-950 text-white" role="contentinfo">
-      {/* Top gold accent */}
+    <footer className="bg-navy-900 text-warm-300" role="contentinfo">
+      {/* Gold divider at top */}
       <div className="h-px bg-gradient-to-r from-transparent via-gold-500/30 to-transparent" />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-10">
           {/* Firm Info */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-5">
               <div
                 className="flex h-10 w-10 items-center justify-center bg-gold-500/15 text-gold-400 border border-gold-400/20 text-lg font-bold"
                 style={{ fontFamily: "var(--font-heading-ar)" }}
               >
-                {locale === "ar" ? "ش" : "AS"}
+                {locale === "ar" ? "\u0634" : "AS"}
               </div>
               <div>
                 <h3
                   className="text-lg font-bold text-white"
                   style={{ fontFamily: "var(--font-heading-ar)" }}
                 >
-                  {locale === "ar" ? "مكتب الشهراني" : "Al-Shahrani"}
+                  {locale === "ar" ? "\u0645\u0643\u062a\u0628 \u0627\u0644\u0634\u0647\u0631\u0627\u0646\u064a" : "Al-Shahrani"}
                 </h3>
                 <p className="text-[10px] font-medium tracking-wider uppercase text-gold-400/60">
-                  {locale === "ar" ? "للمحاماة والاستشارات القانونية" : "Law Firm & Legal Consultations"}
+                  {locale === "ar" ? "\u0644\u0644\u0645\u062d\u0627\u0645\u0627\u0629 \u0648\u0627\u0644\u0627\u0633\u062a\u0634\u0627\u0631\u0627\u062a \u0627\u0644\u0642\u0627\u0646\u0648\u0646\u064a\u0629" : "Law Firm & Legal Consultations"}
                 </p>
               </div>
             </div>
-            <p className="text-sm text-warm-400 leading-relaxed mb-6 max-w-sm">
+            <p className="text-sm text-warm-400 leading-relaxed mb-6">
               {t("description")}
             </p>
             <a
@@ -74,14 +74,14 @@ export function Footer({ locale }: FooterProps) {
           </div>
 
           {/* Quick Links */}
-          <div className="lg:col-span-2">
-            <h4 className="text-xs font-semibold uppercase tracking-widest text-gold-400 mb-4">
+          <div>
+            <h4 className="text-white font-semibold mb-6 text-sm uppercase tracking-wider">
               {t("quickLinks")}
             </h4>
-            <ul className="space-y-2.5" role="list">
+            <ul className="space-y-3" role="list">
               {pageLinks.map((link) => (
                 <li key={link.key}>
-                  <Link href={link.href} className="text-sm text-warm-400 hover:text-white transition-colors duration-200">
+                  <Link href={link.href} className="text-sm text-warm-400 hover:text-gold-400 transition-smooth link-underline">
                     {locale === "ar" ? link.ar : link.en}
                   </Link>
                 </li>
@@ -90,14 +90,14 @@ export function Footer({ locale }: FooterProps) {
           </div>
 
           {/* Services */}
-          <div className="lg:col-span-2">
-            <h4 className="text-xs font-semibold uppercase tracking-widest text-gold-400 mb-4">
+          <div>
+            <h4 className="text-white font-semibold mb-6 text-sm uppercase tracking-wider">
               {t("services")}
             </h4>
-            <ul className="space-y-2.5" role="list">
+            <ul className="space-y-3" role="list">
               {serviceLinks.map((service) => (
                 <li key={service.key}>
-                  <Link href={`/services/${service.key}`} className="text-sm text-warm-400 hover:text-white transition-colors duration-200">
+                  <Link href={`/services/${service.key}`} className="text-sm text-warm-400 hover:text-gold-400 transition-smooth link-underline">
                     {locale === "ar" ? service.ar : service.en}
                   </Link>
                 </li>
@@ -106,13 +106,13 @@ export function Footer({ locale }: FooterProps) {
           </div>
 
           {/* Contact */}
-          <div className="lg:col-span-3">
-            <h4 className="text-xs font-semibold uppercase tracking-widest text-gold-400 mb-4">
+          <div>
+            <h4 className="text-white font-semibold mb-6 text-sm uppercase tracking-wider">
               {t("contactUs")}
             </h4>
-            <ul className="space-y-3" role="list">
+            <ul className="space-y-4" role="list">
               <li className="flex items-start gap-3">
-                <svg viewBox="0 0 24 24" className="w-4 h-4 text-gold-400/70 mt-0.5 shrink-0 fill-none stroke-current stroke-[1.5]" aria-hidden="true">
+                <svg viewBox="0 0 24 24" className="w-4 h-4 text-gold-500 mt-0.5 shrink-0 fill-none stroke-current stroke-[1.5]" aria-hidden="true">
                   <path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" strokeLinecap="round" strokeLinejoin="round" />
                   <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -121,35 +121,27 @@ export function Footer({ locale }: FooterProps) {
                 </span>
               </li>
               <li>
-                <a href={getPhoneUrl(siteConfig.phone[0])} className="flex items-center gap-3 text-sm text-warm-400 hover:text-white transition-colors">
-                  <svg viewBox="0 0 24 24" className="w-4 h-4 text-gold-400/70 shrink-0 fill-none stroke-current stroke-[1.5]" aria-hidden="true">
+                <a href={getPhoneUrl(siteConfig.phone[0])} className="flex items-center gap-3 text-sm text-warm-400 hover:text-white transition-smooth">
+                  <svg viewBox="0 0 24 24" className="w-4 h-4 text-gold-500 shrink-0 fill-none stroke-current stroke-[1.5]" aria-hidden="true">
                     <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                   {siteConfig.phone[0]}
                 </a>
               </li>
               <li>
-                <a href={getPhoneUrl(siteConfig.phone[1])} className="flex items-center gap-3 text-sm text-warm-400 hover:text-white transition-colors">
-                  <svg viewBox="0 0 24 24" className="w-4 h-4 text-gold-400/70 shrink-0 fill-none stroke-current stroke-[1.5]" aria-hidden="true">
-                    <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  {siteConfig.phone[1]}
-                </a>
-              </li>
-              <li>
-                <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-3 text-sm text-warm-400 hover:text-white transition-colors">
-                  <svg viewBox="0 0 24 24" className="w-4 h-4 text-gold-400/70 shrink-0 fill-none stroke-current stroke-[1.5]" aria-hidden="true">
+                <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-3 text-sm text-warm-400 hover:text-white transition-smooth">
+                  <svg viewBox="0 0 24 24" className="w-4 h-4 text-gold-500 shrink-0 fill-none stroke-current stroke-[1.5]" aria-hidden="true">
                     <path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                   {siteConfig.email}
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <svg viewBox="0 0 24 24" className="w-4 h-4 text-gold-400/70 mt-0.5 shrink-0 fill-none stroke-current stroke-[1.5]" aria-hidden="true">
+                <svg viewBox="0 0 24 24" className="w-4 h-4 text-gold-500 mt-0.5 shrink-0 fill-none stroke-current stroke-[1.5]" aria-hidden="true">
                   <path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <span className="text-sm text-warm-400">
-                  {locale === "ar" ? "الأحد - الخميس: 9 صباحاً - 5 مساءً" : "Sun - Thu: 9:00 AM - 5:00 PM"}
+                  {locale === "ar" ? "\u0627\u0644\u0623\u062d\u062f - \u0627\u0644\u062e\u0645\u064a\u0633: 9 \u0635\u0628\u0627\u062d\u0627\u064b - 5 \u0645\u0633\u0627\u0621\u064b" : "Sun - Thu: 9:00 AM - 5:00 PM"}
                 </span>
               </li>
             </ul>
@@ -158,16 +150,14 @@ export function Footer({ locale }: FooterProps) {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/5">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-warm-500">
-              © {currentYear} {siteConfig.shortName[locale]}. {t("rights")}.
-            </p>
-            <a href={`mailto:${siteConfig.email}`} className="text-xs text-warm-500 hover:text-white transition-colors">
-              {siteConfig.email}
-            </a>
-          </div>
+      <div className="border-t border-warm-800">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-warm-500">
+            &copy; {currentYear} {siteConfig.shortName[locale]}. {t("rights")}.
+          </p>
+          <a href={`mailto:${siteConfig.email}`} className="text-xs text-warm-500 hover:text-white transition-smooth">
+            {siteConfig.email}
+          </a>
         </div>
       </div>
     </footer>

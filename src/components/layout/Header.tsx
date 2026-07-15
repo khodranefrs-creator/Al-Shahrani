@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { cn, getWhatsAppUrl } from "@/lib/utils";
 import { siteConfig, type Locale } from "@/types";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 
 interface HeaderProps {
   locale: Locale;
@@ -19,11 +19,21 @@ const navItems = [
   { key: "contact", href: "/contact" },
 ] as const;
 
+const serviceLinks = [
+  { href: "/services/corporate-law", ar: "القانون التجاري", en: "Corporate Law" },
+  { href: "/services/governance", ar: "الحوكمة المؤسسية", en: "Corporate Governance" },
+  { href: "/services/contracts", ar: "العقود", en: "Contracts" },
+  { href: "/services/ma", ar: "الاندماج والاستحواذ", en: "M&A" },
+  { href: "/services/litigation", ar: "التقاضي وتسوية المنازعات", en: "Dispute Resolution" },
+  { href: "/services/debt-collection", ar: "تحصيل الديون", en: "Debt Collection" },
+];
+
 export function Header({ locale }: HeaderProps) {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const otherLocale = locale === "ar" ? "en" : "ar";
 
   useEffect(() => {
@@ -54,28 +64,25 @@ export function Header({ locale }: HeaderProps) {
         )}
         role="banner"
       >
-        {/* Top accent line */}
-        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold-400/30 to-transparent" aria-hidden="true" />
-
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 md:h-[4.5rem] items-center justify-between">
-            {/* Logo — refined monogram */}
+          <div className="flex h-20 md:h-24 items-center justify-between">
+            {/* Logo */}
             <Link
               href="/"
               className="flex items-center gap-3 group"
               aria-label={siteConfig.name[locale]}
             >
-              <div className={cn(
-                "flex h-10 w-10 items-center justify-center rounded-lg font-bold text-lg transition-all duration-300",
-                showDark
-                  ? "bg-gold-500/15 text-gold-400 border border-gold-400/20 group-hover:bg-gold-500/25"
-                  : "bg-navy-900 text-gold-400 group-hover:bg-navy-800"
-              )}
-              style={{ fontFamily: "var(--font-heading-ar)" }}
+              <div
+                className={cn(
+                  "flex h-11 w-11 items-center justify-center rounded-lg font-bold text-lg transition-all duration-300",
+                  showDark
+                    ? "bg-gold-500/15 text-gold-400 border border-gold-400/20 group-hover:bg-gold-500/25"
+                    : "bg-navy-900 text-gold-400 group-hover:bg-navy-800"
+                )}
+                style={{ fontFamily: "var(--font-heading-ar)" }}
               >
-                {locale === "ar" ? "ش" : "AS"}
+                {locale === "ar" ? "\u0634" : "AS"}
               </div>
-
               <div className="flex flex-col">
                 <span
                   className={cn(
@@ -84,7 +91,7 @@ export function Header({ locale }: HeaderProps) {
                   )}
                   style={{ fontFamily: "var(--font-heading-ar)" }}
                 >
-                  {locale === "ar" ? "مكتب الشهراني" : "Al-Shahrani"}
+                  {locale === "ar" ? "\u0645\u0643\u062a\u0628 \u0627\u0644\u0634\u0647\u0631\u0627\u0646\u064a" : "Al-Shahrani"}
                 </span>
                 <span
                   className={cn(
@@ -93,16 +100,16 @@ export function Header({ locale }: HeaderProps) {
                   )}
                 >
                   {locale === "ar"
-                    ? "للمحاماة والاستشارات القانونية"
+                    ? "\u0644\u0644\u0645\u062d\u0627\u0645\u0627\u0629 \u0648\u0627\u0644\u0627\u0633\u062a\u0634\u0627\u0631\u0627\u062a \u0627\u0644\u0642\u0627\u0646\u0648\u0646\u064a\u0629"
                     : "Law Firm & Legal Consultations"}
                 </span>
               </div>
             </Link>
 
-            {/* Desktop Nav — refined spacing */}
+            {/* Desktop Nav */}
             <nav
               className="hidden lg:flex items-center gap-1"
-              aria-label={locale === "ar" ? "التنقل الرئيسي" : "Main navigation"}
+              aria-label={locale === "ar" ? "\u0627\u0644\u062a\u0646\u0642\u0644 \u0627\u0644\u0631\u0626\u064a\u0633\u064a" : "Main navigation"}
             >
               {navItems.map((item) => {
                 const isActive =
@@ -110,59 +117,98 @@ export function Header({ locale }: HeaderProps) {
                     ? pathname === `/${locale}` || pathname === `/${locale}/`
                     : pathname.includes(`/${locale}${item.href}`);
 
+                const isServices = item.key === "services";
+
                 return (
-                  <Link
+                  <div
                     key={item.key}
-                    href={item.href}
-                    className={cn(
-                      "px-4 py-2 text-sm font-medium transition-all duration-200 relative",
-                      isActive
-                        ? showDark
-                          ? "text-gold-400"
-                          : "text-gold-700"
-                        : showDark
-                          ? "text-white/80 hover:text-white"
-                          : "text-navy-600 hover:text-navy-900"
-                    )}
-                    aria-current={isActive ? "page" : undefined}
+                    className="relative"
+                    onMouseEnter={() => isServices && setIsServicesOpen(true)}
+                    onMouseLeave={() => isServices && setIsServicesOpen(false)}
                   >
-                    {t(item.key)}
-                    {isActive && (
-                      <span
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "px-4 py-2 text-[15px] font-semibold transition-all duration-200 relative inline-flex items-center gap-1",
+                        isActive
+                          ? showDark
+                            ? "text-gold-400"
+                            : "text-gold-700"
+                          : showDark
+                            ? "text-white/80 hover:text-white"
+                            : "text-warm-700 hover:text-navy-900"
+                      )}
+                      aria-current={isActive ? "page" : undefined}
+                    >
+                      {t(item.key)}
+                      {isServices && (
+                        <ChevronDown className={cn("w-3.5 h-3.5 transition-transform duration-200", isServicesOpen && "rotate-180")} />
+                      )}
+                      {isActive && (
+                        <span
+                          className={cn(
+                            "absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-4 rounded-full",
+                            showDark ? "bg-gold-400" : "bg-gold-500"
+                          )}
+                          aria-hidden="true"
+                        />
+                      )}
+                    </Link>
+
+                    {/* Services Dropdown */}
+                    {isServices && (
+                      <div
                         className={cn(
-                          "absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-5 rounded-full",
-                          showDark ? "bg-gold-400" : "bg-gold-500"
+                          "absolute top-full left-0 pt-2 transition-all duration-200",
+                          isServicesOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-1"
                         )}
-                        aria-hidden="true"
-                      />
+                      >
+                        <div className="w-72 bg-white border border-warm-200 shadow-xl py-2">
+                          {serviceLinks.map((service) => (
+                            <Link
+                              key={service.href}
+                              href={service.href}
+                              className={cn(
+                                "block px-5 py-3 text-sm transition-colors duration-150",
+                                pathname.includes(service.href)
+                                  ? "text-gold-700 bg-gold-50"
+                                  : "text-warm-800 hover:text-gold-700 hover:bg-warm-50"
+                              )}
+                            >
+                              {locale === "ar" ? service.ar : service.en}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
                     )}
-                  </Link>
+                  </div>
                 );
               })}
             </nav>
 
-            {/* Actions — refined */}
+            {/* Actions */}
             <div className="flex items-center gap-2">
               <Link
                 href={otherLocalePath}
                 className={cn(
-                  "flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-all duration-200",
+                  "flex items-center gap-1.5 px-3 py-2 text-[13px] font-semibold transition-all duration-200 border",
                   showDark
-                    ? "text-white/70 hover:text-white"
-                    : "text-navy-600 hover:text-navy-900"
+                    ? "border-white/20 text-white/70 hover:text-white hover:border-white/40"
+                    : "border-warm-300 text-warm-700 hover:text-navy-900 hover:border-warm-400"
                 )}
-                aria-label={locale === "ar" ? "Switch to English" : "التبديل إلى العربية"}
+                aria-label={locale === "ar" ? "Switch to English" : "\u0627\u0644\u062a\u0628\u062f\u064a\u0644 \u0625\u0644\u0649 \u0627\u0644\u0639\u0631\u0628\u064a\u0629"}
               >
-                <span className="hidden sm:inline">{otherLocale === "ar" ? "عربي" : "EN"}</span>
+                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-none stroke-current stroke-[1.5]" aria-hidden="true">
+                  <path d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span className="hidden sm:inline">{otherLocale === "ar" ? "\u0639\u0631\u0628\u064a" : "EN"}</span>
               </Link>
 
               <Link
                 href="/contact"
                 className={cn(
-                  "hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold transition-all duration-200",
-                  showDark
-                    ? "bg-gold-500 text-navy-900 hover:bg-gold-400"
-                    : "bg-gold-500 text-navy-900 hover:bg-gold-400"
+                  "hidden md:inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold transition-all duration-200",
+                  "bg-gold-500 text-white hover:bg-gold-400 shadow-sm hover:shadow-md"
                 )}
               >
                 {t("contact")}
@@ -203,16 +249,16 @@ export function Header({ locale }: HeaderProps) {
           </div>
         </div>
 
-        {/* Mobile Menu — refined */}
+        {/* Mobile Menu */}
         <div
           id="mobile-menu"
           className={cn(
-            "lg:hidden fixed inset-x-0 top-16 md:top-[4.5rem] bottom-0 bg-white z-40 transition-all duration-300 overflow-y-auto",
+            "lg:hidden fixed inset-x-0 top-20 md:top-24 bottom-0 bg-white z-40 transition-all duration-300 overflow-y-auto border-t border-warm-200",
             isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           )}
           aria-hidden={!isOpen}
         >
-          <nav className="p-6 space-y-1" aria-label={locale === "ar" ? "التنقل في القائمة" : "Mobile navigation"}>
+          <nav className="p-6 space-y-1" aria-label={locale === "ar" ? "\u0627\u0644\u062a\u0646\u0642\u0644 \u0641\u064a \u0627\u0644\u0642\u0627\u0626\u0645\u0629" : "Mobile navigation"}>
             {navItems.map((item) => {
               const isActive =
                 item.href === "/"
@@ -241,7 +287,7 @@ export function Header({ locale }: HeaderProps) {
               <Link
                 href="/contact"
                 onClick={() => setIsOpen(false)}
-                className="block text-center px-6 py-4 text-lg font-semibold bg-gold-500 text-navy-900 hover:bg-gold-400 transition-all duration-200"
+                className="block text-center px-6 py-4 text-lg font-semibold bg-gold-500 text-white hover:bg-gold-400 transition-all duration-200"
               >
                 {t("contact")}
               </Link>
@@ -250,7 +296,7 @@ export function Header({ locale }: HeaderProps) {
                 onClick={() => setIsOpen(false)}
                 className="block text-center px-4 py-3 text-base font-medium text-navy-700 hover:text-navy-900 transition-colors"
               >
-                {locale === "ar" ? "English" : "العربية"}
+                {locale === "ar" ? "English" : "\u0627\u0644\u0639\u0631\u0628\u064a\u0629"}
               </Link>
             </div>
           </nav>
