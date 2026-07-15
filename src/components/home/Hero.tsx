@@ -114,8 +114,8 @@ export function Hero({ locale }: HeroProps) {
           >
             {trustItems.map((item, index) => (
               <div key={item.key} className="flex items-center gap-2.5" role="listitem">
-                <item.icon className="w-4 h-4 text-gold-400/70" aria-hidden="true" />
-                <span className="text-sm text-white/50 font-medium">
+                <item.icon className="w-4 h-4 text-gold-400" aria-hidden="true" />
+                <span className="text-sm text-white/70 font-medium">
                   {locale === "ar"
                     ? item.key === "expertise" ? "خبرة قانونية"
                       : item.key === "confidentiality" ? "سرية تامة"
