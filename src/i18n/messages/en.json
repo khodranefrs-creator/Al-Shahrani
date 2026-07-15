@@ -202,8 +202,20 @@
   "ctaBand": {
     "headline": "Need Legal Counsel?",
     "subtext": "Our team is ready to help. Contact us today for specialized legal consultation.",
-    "ctaConsultation": "Request Consultation",
+    "ctaConsultation": "Talk to Our Team Now",
     "ctaWhatsApp": "Contact via WhatsApp",
     "whatsappMessage": "Hello, I would like to request a legal consultation."
+  },
+  "stats": {
+    "years": "Years of Experience",
+    "cases": "Cases Handled",
+    "clients": "Corporate Clients",
+    "practiceAreas": "Practice Areas"
+  },
+  "blogCategories": {
+    "corporate": "Corporate Law",
+    "governance": "Governance",
+    "labor": "Labor Law",
+    "compliance": "Compliance"
   }
 }

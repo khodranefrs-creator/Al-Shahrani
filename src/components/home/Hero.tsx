@@ -119,21 +119,21 @@ export function Hero({ locale }: HeroProps) {
             </a>
           </div>
 
-          {/* Trust indicators */}
+          {/* Trust indicators — larger, with dividers */}
           <div
-            className="flex flex-col sm:flex-row gap-6 sm:gap-10 pt-8 border-t border-white/10 animate-[fade-in_0.6s_ease-out_0.5s_forwards] opacity-0"
+            className="flex flex-wrap items-center gap-y-5 pt-8 border-t border-white/15 animate-[fade-in_0.6s_ease-out_0.5s_forwards] opacity-0"
             role="list"
           >
-            {trustItems.map((item) => (
+            {trustItems.map((item, index) => (
               <div
                 key={item.key}
                 className="flex items-center gap-3"
                 role="listitem"
               >
-                <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-white/10 text-gold-400">
-                  <item.icon className="w-5 h-5" aria-hidden="true" />
+                <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-gold-500/15 border border-gold-400/20">
+                  <item.icon className="w-6 h-6 text-gold-400" aria-hidden="true" />
                 </div>
-                <span className="text-sm font-medium text-navy-100">
+                <span className="text-sm font-medium text-white/90">
                   {locale === "ar"
                     ? item.key === "expertise"
                       ? "خبرة قانونية"
@@ -150,6 +150,9 @@ export function Hero({ locale }: HeroProps) {
                           ? "Comprehensive Services"
                           : "Trusted Clients"}
                 </span>
+                {index < trustItems.length - 1 && (
+                  <div className="hidden sm:block w-px h-8 bg-white/15 ms-3" aria-hidden="true" />
+                )}
               </div>
             ))}
           </div>

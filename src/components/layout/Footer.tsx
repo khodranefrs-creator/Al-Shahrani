@@ -10,7 +10,7 @@ interface FooterProps {
 
 const serviceLinks = [
   { key: "corporate-law", ar: "القانون التجاري", en: "Corporate Law" },
-  { key: "governance", ar: "الحوكمةorporate Governance", en: "Corporate Governance" },
+  { key: "governance", ar: "الحوكمة المؤسسية", en: "Corporate Governance" },
   { key: "contracts", ar: "العقود", en: "Contracts" },
   { key: "ma", ar: "الاندماج والاستحواذ", en: "Mergers & Acquisitions" },
   { key: "litigation", ar: "التقاضي وتسوية المنازعات", en: "Dispute Resolution" },

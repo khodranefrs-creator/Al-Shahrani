@@ -39,23 +39,65 @@ export default function CorporateSpotlight({ locale }: { locale: Locale }) {
 
           <div className="relative hidden lg:block">
             <div className="relative mx-auto aspect-square max-w-md overflow-hidden rounded-2xl bg-navy-800 shadow-2xl">
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute left-8 top-8 h-32 w-32 border-2 border-gold-400" />
-                <div className="absolute bottom-12 right-8 h-24 w-24 rotate-45 border-2 border-gold-400" />
-                <div className="absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-gold-400" />
-              </div>
+              {/* Building silhouette SVG */}
+              <svg
+                viewBox="0 0 400 400"
+                className="absolute inset-0 h-full w-full"
+                aria-hidden="true"
+              >
+                {/* Background grid */}
+                <defs>
+                  <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(212,175,55,0.06)" strokeWidth="0.5" />
+                  </pattern>
+                </defs>
+                <rect width="400" height="400" fill="url(#grid)" />
 
+                {/* Main building */}
+                <rect x="140" y="100" width="120" height="250" rx="4" fill="rgba(212,175,55,0.08)" stroke="rgba(212,175,55,0.25)" strokeWidth="1" />
+                <rect x="155" y="120" width="25" height="30" rx="2" fill="rgba(212,175,55,0.15)" />
+                <rect x="190" y="120" width="25" height="30" rx="2" fill="rgba(212,175,55,0.15)" />
+                <rect x="155" y="170" width="25" height="30" rx="2" fill="rgba(212,175,55,0.15)" />
+                <rect x="190" y="170" width="25" height="30" rx="2" fill="rgba(212,175,55,0.15)" />
+                <rect x="155" y="220" width="25" height="30" rx="2" fill="rgba(212,175,55,0.15)" />
+                <rect x="190" y="220" width="25" height="30" rx="2" fill="rgba(212,175,55,0.15)" />
+                <rect x="155" y="270" width="25" height="30" rx="2" fill="rgba(212,175,55,0.15)" />
+                <rect x="190" y="270" width="25" height="30" rx="2" fill="rgba(212,175,55,0.15)" />
+
+                {/* Left wing */}
+                <rect x="60" y="200" width="80" height="150" rx="4" fill="rgba(212,175,55,0.06)" stroke="rgba(212,175,55,0.18)" strokeWidth="1" />
+                <rect x="75" y="220" width="20" height="25" rx="2" fill="rgba(212,175,55,0.12)" />
+                <rect x="105" y="220" width="20" height="25" rx="2" fill="rgba(212,175,55,0.12)" />
+                <rect x="75" y="265" width="20" height="25" rx="2" fill="rgba(212,175,55,0.12)" />
+                <rect x="105" y="265" width="20" height="25" rx="2" fill="rgba(212,175,55,0.12)" />
+
+                {/* Right wing */}
+                <rect x="260" y="180" width="80" height="170" rx="4" fill="rgba(212,175,55,0.06)" stroke="rgba(212,175,55,0.18)" strokeWidth="1" />
+                <rect x="275" y="200" width="20" height="25" rx="2" fill="rgba(212,175,55,0.12)" />
+                <rect x="305" y="200" width="20" height="25" rx="2" fill="rgba(212,175,55,0.12)" />
+                <rect x="275" y="245" width="20" height="25" rx="2" fill="rgba(212,175,55,0.12)" />
+                <rect x="305" y="245" width="20" height="25" rx="2" fill="rgba(212,175,55,0.12)" />
+
+                {/* Scales of justice at center */}
+                <g transform="translate(200, 80)">
+                  <line x1="0" y1="0" x2="0" y2="20" stroke="rgba(212,175,55,0.5)" strokeWidth="1.5" />
+                  <line x1="-25" y1="10" x2="25" y2="10" stroke="rgba(212,175,55,0.5)" strokeWidth="1.5" />
+                  <line x1="-25" y1="10" x2="-25" y2="30" stroke="rgba(212,175,55,0.4)" strokeWidth="1" />
+                  <line x1="25" y1="10" x2="25" y2="30" stroke="rgba(212,175,55,0.4)" strokeWidth="1" />
+                  <path d="M -35,30 Q -25,38 -15,30" fill="none" stroke="rgba(212,175,55,0.4)" strokeWidth="1" />
+                  <path d="M 15,30 Q 25,38 35,30" fill="none" stroke="rgba(212,175,55,0.4)" strokeWidth="1" />
+                  <circle cx="0" cy="0" r="3" fill="rgba(212,175,55,0.6)" />
+                </g>
+
+                {/* Ground line */}
+                <line x1="30" y1="350" x2="370" y2="350" stroke="rgba(212,175,55,0.2)" strokeWidth="1" />
+              </svg>
+
+              {/* Gradient overlay borders */}
               <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-gold-500 to-gold-300" />
               <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-gold-300 to-gold-500" />
               <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-gold-500 to-gold-300" />
               <div className="absolute right-0 top-0 h-full w-1 bg-gradient-to-b from-gold-300 to-gold-500" />
-
-              <div className="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-gold-400/30 bg-navy-700/50">
-                <span className="text-3xl font-bold text-gold-400">&#9878;</span>
-              </div>
-
-              <div className="absolute right-6 top-6 h-16 w-16 border border-gold-400/20 bg-gold-400/5" />
-              <div className="absolute bottom-6 left-6 h-20 w-12 border border-gold-400/20 bg-gold-400/5" />
             </div>
           </div>
         </div>

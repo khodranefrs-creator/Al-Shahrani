@@ -42,7 +42,7 @@ const testimonials = [
     roleEn: 'Chief Financial Officer',
     companyAr: 'مجموعة الاستثمارات',
     companyEn: 'Al-Invest Holdings',
-    rating: 4,
+      rating: 5,
   },
 ] as const;
 

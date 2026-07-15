@@ -11,6 +11,8 @@ import {
   Banknote,
   ArrowLeft,
   ArrowRight,
+  ChevronRight,
+  ChevronLeft,
 } from 'lucide-react';
 import type { Locale } from '@/types';
 
@@ -22,14 +24,16 @@ const services = [
     descAr: 'تأسيس الشركات والشركات ذات المسؤولية المحدودة والإشراف على الهياكل المؤسسية',
     descEn: 'Company formation, LLC structuring, and corporate oversight',
     icon: Building2,
+    accent: 'from-blue-500 to-blue-600',
   },
   {
     slug: 'governance',
-    ar: 'الحوكمةorporate Governance',
+    ar: 'الحوكمة المؤسسية',
     en: 'Corporate Governance',
     descAr: 'وضع الأنظمة والسياسات المؤسسية وضمان الامتثال',
     descEn: 'Corporate policies, compliance frameworks, and governance systems',
     icon: Shield,
+    accent: 'from-emerald-500 to-emerald-600',
   },
   {
     slug: 'contracts',
@@ -38,6 +42,7 @@ const services = [
     descAr: 'إعداد ومراجعة جميع العقود التجارية',
     descEn: 'Drafting, review, and management of all commercial contracts',
     icon: FileText,
+    accent: 'from-amber-500 to-amber-600',
   },
   {
     slug: 'ma',
@@ -46,6 +51,7 @@ const services = [
     descAr: 'الاستشارات القانونية لعمليات الاندماج والاستحواذ',
     descEn: 'Legal advisory for M&A transactions and due diligence',
     icon: GitMerge,
+    accent: 'from-violet-500 to-violet-600',
   },
   {
     slug: 'litigation',
@@ -54,6 +60,7 @@ const services = [
     descAr: 'التمثيل القضائي وتسوية المنازعات التجارية',
     descEn: 'Litigation representation and commercial dispute resolution',
     icon: Scale,
+    accent: 'from-rose-500 to-rose-600',
   },
   {
     slug: 'debt-collection',
@@ -62,12 +69,14 @@ const services = [
     descAr: 'تحصيل الديون بالطرق القانونية والقضائية',
     descEn: 'Legal and judicial debt recovery services',
     icon: Banknote,
+    accent: 'from-teal-500 to-teal-600',
   },
 ] as const;
 
 export default function PracticeAreas({ locale }: { locale: Locale }) {
   setRequestLocale(locale);
   const t = useTranslations('practiceAreas');
+  const ChevronIcon = locale === 'ar' ? ChevronLeft : ChevronRight;
 
   return (
     <section className="bg-navy-gradient-subtle py-20 lg:py-28">
@@ -84,19 +93,28 @@ export default function PracticeAreas({ locale }: { locale: Locale }) {
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="group block rounded-2xl border border-navy-100 bg-white p-8 transition-all duration-300 hover:-translate-y-2 hover:border-gold-400 hover:shadow-xl"
+                className="group relative overflow-hidden rounded-2xl border border-navy-100 bg-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
               >
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gold-100 transition-colors duration-300 group-hover:bg-gold-200">
-                  <Icon className="h-7 w-7 text-gold-600" />
+                <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-gold-400 to-gold-600" />
+
+                <div className="p-8 pl-10">
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-xl bg-navy-900 text-gold-400 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:bg-gold-500 group-hover:text-navy-900">
+                    <Icon className="h-7 w-7" />
+                  </div>
+
+                  <h3 className="mb-3 text-lg font-bold text-navy-900 transition-colors duration-200 group-hover:text-gold-600">
+                    {title}
+                  </h3>
+
+                  <p className="mb-5 leading-relaxed text-navy-600">
+                    {description}
+                  </p>
+
+                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold-600 transition-all duration-200 group-hover:gap-3">
+                    {locale === 'ar' ? 'المزيد' : 'Learn More'}
+                    <ChevronIcon className="h-4 w-4" />
+                  </span>
                 </div>
-
-                <h3 className="mb-3 text-lg font-bold text-navy-900">
-                  {title}
-                </h3>
-
-                <p className="leading-relaxed text-navy-600">
-                  {description}
-                </p>
               </Link>
             );
           })}

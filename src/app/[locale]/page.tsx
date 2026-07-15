@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 
 import { Hero } from "@/components/home/Hero";
+import { StatsBand } from "@/components/home/StatsBand";
 import WhyUs from "@/components/home/WhyUs";
 import PracticeAreas from "@/components/home/PracticeAreas";
 import CorporateSpotlight from "@/components/home/CorporateSpotlight";
@@ -43,6 +44,7 @@ export default async function HomePage({
   return (
     <>
       <Hero locale={typed} />
+      <StatsBand locale={typed} />
       <WhyUs locale={typed} />
       <PracticeAreas locale={typed} />
       <CorporateSpotlight locale={typed} />
