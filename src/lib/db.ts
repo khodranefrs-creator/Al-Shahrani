@@ -13,8 +13,25 @@ function createClient(): PrismaClient {
   });
 }
 
-export const db = globalForPrisma.prisma ?? createClient();
+let _client: PrismaClient | undefined;
 
-if (process.env.NODE_ENV !== "production") {
-  globalForPrisma.prisma = db;
+function getClient(): PrismaClient {
+  if (!_client) {
+    _client = globalForPrisma.prisma ?? createClient();
+    if (process.env.NODE_ENV !== "production") {
+      globalForPrisma.prisma = _client;
+    }
+  }
+  return _client;
 }
+
+export const db = new Proxy({} as PrismaClient, {
+  get(_, prop) {
+    const client = getClient();
+    const value = Reflect.get(client, prop);
+    if (typeof value === "function") {
+      return value.bind(client);
+    }
+    return value;
+  },
+});
