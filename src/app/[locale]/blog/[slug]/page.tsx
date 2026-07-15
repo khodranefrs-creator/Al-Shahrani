@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
-import { siteConfig, type Locale } from "@/types";
+import { type Locale } from "@/types";
 import { generatePageMetadata } from "@/lib/metadata";
 
 interface BlogArticle {

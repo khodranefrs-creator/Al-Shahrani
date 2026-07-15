@@ -2,11 +2,6 @@
 
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
-import type { Locale } from "@/types";
-
-interface StatsBandProps {
-  locale: Locale;
-}
 
 /*
  * IMPORTANT: These values should be verified by the client.
@@ -71,7 +66,7 @@ function StatItem({ stat }: { stat: (typeof stats)[number] }) {
   );
 }
 
-export function StatsBand({ locale }: StatsBandProps) {
+export function StatsBand() {
   return (
     <section className="relative bg-navy-900 py-16 lg:py-24">
       {/* Subtle gold divider at top */}

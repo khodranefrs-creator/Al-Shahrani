@@ -44,7 +44,7 @@ export default async function HomePage({
   return (
     <>
       <Hero locale={typed} />
-      <StatsBand locale={typed} />
+      <StatsBand />
       <WhyUs locale={typed} />
       <PracticeAreas locale={typed} />
       <CorporateSpotlight locale={typed} />

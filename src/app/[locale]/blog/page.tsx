@@ -2,8 +2,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { siteConfig, type Locale } from "@/types";
+import { type Locale } from "@/types";
 import { generatePageMetadata } from "@/lib/metadata";
 
 export function generateStaticParams() {

@@ -2,7 +2,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 
 import ConsultationForm from "@/components/forms/ConsultationForm";
-import { siteConfig, type Locale } from "@/types";
+import { type Locale } from "@/types";
 import { generatePageMetadata } from "@/lib/metadata";
 
 export function generateStaticParams() {

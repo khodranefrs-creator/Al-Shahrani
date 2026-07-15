@@ -3,7 +3,7 @@ export const dynamic = "force-dynamic";
 import { getAdminSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, FileText, MessageSquare, Star, Settings } from "lucide-react";
+import { LayoutDashboard, FileText, MessageSquare, Star } from "lucide-react";
 
 const sidebarLinks = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },

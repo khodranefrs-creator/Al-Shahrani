@@ -1,6 +1,4 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/types";
-
 const baseUrl = "https://alshahrani.com";
 
 const routes = [
@@ -21,8 +19,6 @@ const routes = [
   "/blog",
   "/contact",
 ];
-
-const servicePages = routes.filter((r) => r.startsWith("/services/"));
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];

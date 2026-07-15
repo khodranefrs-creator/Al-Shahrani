@@ -32,8 +32,6 @@ export function Header({ locale }: HeaderProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => { setIsOpen(false); }, [pathname]);
-
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -231,6 +229,7 @@ export function Header({ locale }: HeaderProps) {
                 <Link
                   key={item.key}
                   href={item.href}
+                  onClick={() => setIsOpen(false)}
                   className={cn(
                     "block px-4 py-3.5 rounded-xl text-base font-medium transition-colors",
                     isActive
@@ -247,12 +246,14 @@ export function Header({ locale }: HeaderProps) {
             <div className="pt-4 border-t border-warm-200 space-y-3">
               <Link
                 href="/contact"
+                onClick={() => setIsOpen(false)}
                 className="block text-center px-6 py-3.5 text-lg font-semibold rounded-xl bg-gold-500 text-navy-900 hover:bg-gold-400 active:bg-gold-600 shadow-sm transition-all duration-200"
               >
                 {t("contact")}
               </Link>
               <Link
                 href={otherLocalePath}
+                onClick={() => setIsOpen(false)}
                 className="block text-center px-4 py-3 rounded-xl text-base font-medium text-navy-700 hover:bg-navy-50 transition-colors"
               >
                 {locale === "ar" ? "English" : "العربية"}

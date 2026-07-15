@@ -1,7 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { siteConfig, type Locale } from "@/types";
+import { type Locale } from "@/types";
 import {
   Building2,
   Shield,

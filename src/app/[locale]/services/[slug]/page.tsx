@@ -1,7 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { siteConfig, type Locale } from "@/types";
+import { type Locale } from "@/types";
 import { notFound } from "next/navigation";
 import {
   Building2,
@@ -163,7 +163,11 @@ export default async function ServicePage({
 
   const relatedServices = services
     .filter((s) => s.slug !== slug)
-    .sort(() => Math.random() - 0.5)
+    .sort((a, b) => {
+      const hashA = a.slug.split("").reduce((h, c) => ((h << 5) - h + c.charCodeAt(0)) | 0, 0);
+      const hashB = b.slug.split("").reduce((h, c) => ((h << 5) - h + c.charCodeAt(0)) | 0, 0);
+      return hashA - hashB;
+    })
     .slice(0, 3);
 
   const ArrowIcon = locale === "ar" ? ArrowLeft : ArrowRight;
