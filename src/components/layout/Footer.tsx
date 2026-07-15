@@ -2,7 +2,6 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { siteConfig, type Locale } from "@/types";
 import { getWhatsAppUrl, getPhoneUrl } from "@/lib/utils";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 interface FooterProps {
   locale: Locale;
@@ -30,17 +29,26 @@ export function Footer({ locale }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-navy-gradient text-white" role="contentinfo">
+    <footer className="bg-navy-950 text-white" role="contentinfo">
+      {/* Top gold accent */}
+      <div className="h-px bg-gradient-to-r from-transparent via-gold-500/30 to-transparent" />
+
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
-          {/* Firm Info — wider */}
+          {/* Firm Info */}
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3 mb-5">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gold-500/15 text-gold-400 border border-gold-400/20 text-lg font-bold" style={{ fontFamily: "var(--font-heading)" }}>
+              <div
+                className="flex h-10 w-10 items-center justify-center bg-gold-500/15 text-gold-400 border border-gold-400/20 text-lg font-bold"
+                style={{ fontFamily: "var(--font-heading-ar)" }}
+              >
                 {locale === "ar" ? "ش" : "AS"}
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white" style={{ fontFamily: "var(--font-heading)" }}>
+                <h3
+                  className="text-lg font-bold text-white"
+                  style={{ fontFamily: "var(--font-heading-ar)" }}
+                >
                   {locale === "ar" ? "مكتب الشهراني" : "Al-Shahrani"}
                 </h3>
                 <p className="text-[10px] font-medium tracking-wider uppercase text-gold-400/60">
@@ -48,14 +56,14 @@ export function Footer({ locale }: FooterProps) {
                 </p>
               </div>
             </div>
-            <p className="text-sm text-navy-300 leading-relaxed mb-6 max-w-sm">
+            <p className="text-sm text-warm-400 leading-relaxed mb-6 max-w-sm">
               {t("description")}
             </p>
             <a
               href={getWhatsAppUrl(siteConfig.whatsapp)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-green-600/90 hover:bg-green-500 text-white text-sm font-medium rounded-lg transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-green-600/90 hover:bg-green-500 text-white text-sm font-medium transition-colors"
               aria-label="WhatsApp"
             >
               <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current" aria-hidden="true">
@@ -73,7 +81,7 @@ export function Footer({ locale }: FooterProps) {
             <ul className="space-y-2.5" role="list">
               {pageLinks.map((link) => (
                 <li key={link.key}>
-                  <Link href={link.href} className="text-sm text-navy-300 hover:text-white transition-colors duration-200">
+                  <Link href={link.href} className="text-sm text-warm-400 hover:text-white transition-colors duration-200">
                     {locale === "ar" ? link.ar : link.en}
                   </Link>
                 </li>
@@ -89,7 +97,7 @@ export function Footer({ locale }: FooterProps) {
             <ul className="space-y-2.5" role="list">
               {serviceLinks.map((service) => (
                 <li key={service.key}>
-                  <Link href={`/services/${service.key}`} className="text-sm text-navy-300 hover:text-white transition-colors duration-200">
+                  <Link href={`/services/${service.key}`} className="text-sm text-warm-400 hover:text-white transition-colors duration-200">
                     {locale === "ar" ? service.ar : service.en}
                   </Link>
                 </li>
@@ -104,32 +112,43 @@ export function Footer({ locale }: FooterProps) {
             </h4>
             <ul className="space-y-3" role="list">
               <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-gold-400/70 mt-0.5 shrink-0" aria-hidden="true" />
-                <span className="text-sm text-navy-300 leading-relaxed">
+                <svg viewBox="0 0 24 24" className="w-4 h-4 text-gold-400/70 mt-0.5 shrink-0 fill-none stroke-current stroke-[1.5]" aria-hidden="true">
+                  <path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span className="text-sm text-warm-400 leading-relaxed">
                   {locale === "ar" ? siteConfig.address.ar : siteConfig.address.en}
                 </span>
               </li>
               <li>
-                <a href={getPhoneUrl(siteConfig.phone[0])} className="flex items-center gap-3 text-sm text-navy-300 hover:text-white transition-colors">
-                  <Phone className="w-4 h-4 text-gold-400/70 shrink-0" aria-hidden="true" />
+                <a href={getPhoneUrl(siteConfig.phone[0])} className="flex items-center gap-3 text-sm text-warm-400 hover:text-white transition-colors">
+                  <svg viewBox="0 0 24 24" className="w-4 h-4 text-gold-400/70 shrink-0 fill-none stroke-current stroke-[1.5]" aria-hidden="true">
+                    <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                   {siteConfig.phone[0]}
                 </a>
               </li>
               <li>
-                <a href={getPhoneUrl(siteConfig.phone[1])} className="flex items-center gap-3 text-sm text-navy-300 hover:text-white transition-colors">
-                  <Phone className="w-4 h-4 text-gold-400/70 shrink-0" aria-hidden="true" />
+                <a href={getPhoneUrl(siteConfig.phone[1])} className="flex items-center gap-3 text-sm text-warm-400 hover:text-white transition-colors">
+                  <svg viewBox="0 0 24 24" className="w-4 h-4 text-gold-400/70 shrink-0 fill-none stroke-current stroke-[1.5]" aria-hidden="true">
+                    <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                   {siteConfig.phone[1]}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-3 text-sm text-navy-300 hover:text-white transition-colors">
-                  <Mail className="w-4 h-4 text-gold-400/70 shrink-0" aria-hidden="true" />
+                <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-3 text-sm text-warm-400 hover:text-white transition-colors">
+                  <svg viewBox="0 0 24 24" className="w-4 h-4 text-gold-400/70 shrink-0 fill-none stroke-current stroke-[1.5]" aria-hidden="true">
+                    <path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                   {siteConfig.email}
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <Clock className="w-4 h-4 text-gold-400/70 mt-0.5 shrink-0" aria-hidden="true" />
-                <span className="text-sm text-navy-300">
+                <svg viewBox="0 0 24 24" className="w-4 h-4 text-gold-400/70 mt-0.5 shrink-0 fill-none stroke-current stroke-[1.5]" aria-hidden="true">
+                  <path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span className="text-sm text-warm-400">
                   {locale === "ar" ? "الأحد - الخميس: 9 صباحاً - 5 مساءً" : "Sun - Thu: 9:00 AM - 5:00 PM"}
                 </span>
               </li>
@@ -142,10 +161,10 @@ export function Footer({ locale }: FooterProps) {
       <div className="border-t border-white/5">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-navy-400">
+            <p className="text-xs text-warm-500">
               © {currentYear} {siteConfig.shortName[locale]}. {t("rights")}.
             </p>
-            <a href={`mailto:${siteConfig.email}`} className="text-xs text-navy-400 hover:text-white transition-colors">
+            <a href={`mailto:${siteConfig.email}`} className="text-xs text-warm-500 hover:text-white transition-colors">
               {siteConfig.email}
             </a>
           </div>

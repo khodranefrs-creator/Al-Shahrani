@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { cn, getWhatsAppUrl } from "@/lib/utils";
 import { siteConfig, type Locale } from "@/types";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 interface HeaderProps {
   locale: Locale;
@@ -54,22 +54,24 @@ export function Header({ locale }: HeaderProps) {
         )}
         role="banner"
       >
+        {/* Top accent line */}
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold-400/30 to-transparent" aria-hidden="true" />
+
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 md:h-[4.5rem] items-center justify-between">
-            {/* Logo */}
+            {/* Logo — refined monogram */}
             <Link
               href="/"
               className="flex items-center gap-3 group"
               aria-label={siteConfig.name[locale]}
             >
-              {/* Gold monogram mark */}
               <div className={cn(
                 "flex h-10 w-10 items-center justify-center rounded-lg font-bold text-lg transition-all duration-300",
                 showDark
                   ? "bg-gold-500/15 text-gold-400 border border-gold-400/20 group-hover:bg-gold-500/25"
                   : "bg-navy-900 text-gold-400 group-hover:bg-navy-800"
               )}
-              style={{ fontFamily: "var(--font-heading)" }}
+              style={{ fontFamily: "var(--font-heading-ar)" }}
               >
                 {locale === "ar" ? "ش" : "AS"}
               </div>
@@ -80,7 +82,7 @@ export function Header({ locale }: HeaderProps) {
                     "text-lg md:text-xl font-bold leading-tight transition-colors duration-300",
                     showDark ? "text-white" : "text-navy-900"
                   )}
-                  style={{ fontFamily: "var(--font-heading)" }}
+                  style={{ fontFamily: "var(--font-heading-ar)" }}
                 >
                   {locale === "ar" ? "مكتب الشهراني" : "Al-Shahrani"}
                 </span>
@@ -97,7 +99,7 @@ export function Header({ locale }: HeaderProps) {
               </div>
             </Link>
 
-            {/* Desktop Nav */}
+            {/* Desktop Nav — refined spacing */}
             <nav
               className="hidden lg:flex items-center gap-1"
               aria-label={locale === "ar" ? "التنقل الرئيسي" : "Main navigation"}
@@ -113,14 +115,14 @@ export function Header({ locale }: HeaderProps) {
                     key={item.key}
                     href={item.href}
                     className={cn(
-                      "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 relative",
+                      "px-4 py-2 text-sm font-medium transition-all duration-200 relative",
                       isActive
                         ? showDark
-                          ? "text-gold-400 bg-white/10"
-                          : "text-gold-700 bg-gold-50"
+                          ? "text-gold-400"
+                          : "text-gold-700"
                         : showDark
-                          ? "text-white/80 hover:text-white hover:bg-white/10"
-                          : "text-navy-600 hover:text-navy-900 hover:bg-navy-50"
+                          ? "text-white/80 hover:text-white"
+                          : "text-navy-600 hover:text-navy-900"
                     )}
                     aria-current={isActive ? "page" : undefined}
                   >
@@ -139,29 +141,28 @@ export function Header({ locale }: HeaderProps) {
               })}
             </nav>
 
-            {/* Actions */}
+            {/* Actions — refined */}
             <div className="flex items-center gap-2">
               <Link
                 href={otherLocalePath}
                 className={cn(
-                  "flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+                  "flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-all duration-200",
                   showDark
-                    ? "text-white/70 hover:text-white hover:bg-white/10"
-                    : "text-navy-600 hover:text-navy-900 hover:bg-navy-50"
+                    ? "text-white/70 hover:text-white"
+                    : "text-navy-600 hover:text-navy-900"
                 )}
                 aria-label={locale === "ar" ? "Switch to English" : "التبديل إلى العربية"}
               >
-                <Globe className="w-4 h-4" aria-hidden="true" />
                 <span className="hidden sm:inline">{otherLocale === "ar" ? "عربي" : "EN"}</span>
               </Link>
 
               <Link
                 href="/contact"
                 className={cn(
-                  "hidden md:inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-lg transition-all duration-200",
+                  "hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold transition-all duration-200",
                   showDark
-                    ? "bg-gold-500 text-navy-900 hover:bg-gold-400 shadow-lg shadow-gold-500/20"
-                    : "bg-gold-500 text-navy-900 hover:bg-gold-400 shadow-sm"
+                    ? "bg-gold-500 text-navy-900 hover:bg-gold-400"
+                    : "bg-gold-500 text-navy-900 hover:bg-gold-400"
                 )}
               >
                 {t("contact")}
@@ -172,10 +173,10 @@ export function Header({ locale }: HeaderProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
-                  "hidden sm:inline-flex items-center justify-center p-2.5 rounded-lg transition-all duration-200",
+                  "hidden sm:inline-flex items-center justify-center p-2.5 transition-all duration-200",
                   showDark
-                    ? "text-green-400 hover:bg-white/10"
-                    : "text-green-600 hover:bg-green-50"
+                    ? "text-green-400 hover:text-green-300"
+                    : "text-green-600 hover:text-green-500"
                 )}
                 aria-label="WhatsApp"
               >
@@ -187,10 +188,10 @@ export function Header({ locale }: HeaderProps) {
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className={cn(
-                  "lg:hidden p-2 rounded-lg transition-all duration-200",
+                  "lg:hidden p-2 transition-all duration-200",
                   showDark
-                    ? "text-white hover:bg-white/10"
-                    : "text-navy-700 hover:bg-navy-50"
+                    ? "text-white hover:text-gold-400"
+                    : "text-navy-700 hover:text-navy-900"
                 )}
                 aria-expanded={isOpen}
                 aria-controls="mobile-menu"
@@ -202,7 +203,7 @@ export function Header({ locale }: HeaderProps) {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu — refined */}
         <div
           id="mobile-menu"
           className={cn(
@@ -211,7 +212,7 @@ export function Header({ locale }: HeaderProps) {
           )}
           aria-hidden={!isOpen}
         >
-          <nav className="p-4 space-y-1" aria-label={locale === "ar" ? "التنقل في القائمة" : "Mobile navigation"}>
+          <nav className="p-6 space-y-1" aria-label={locale === "ar" ? "التنقل في القائمة" : "Mobile navigation"}>
             {navItems.map((item) => {
               const isActive =
                 item.href === "/"
@@ -224,10 +225,10 @@ export function Header({ locale }: HeaderProps) {
                   href={item.href}
                   onClick={() => setIsOpen(false)}
                   className={cn(
-                    "block px-4 py-3.5 rounded-xl text-base font-medium transition-colors",
+                    "block px-4 py-4 text-lg font-medium transition-colors border-b border-warm-100",
                     isActive
-                      ? "text-gold-700 bg-gold-50"
-                      : "text-navy-700 hover:bg-navy-50"
+                      ? "text-gold-700"
+                      : "text-navy-700 hover:text-navy-900"
                   )}
                   aria-current={isActive ? "page" : undefined}
                 >
@@ -236,18 +237,18 @@ export function Header({ locale }: HeaderProps) {
               );
             })}
 
-            <div className="pt-4 border-t border-warm-200 space-y-3">
+            <div className="pt-6 space-y-4">
               <Link
                 href="/contact"
                 onClick={() => setIsOpen(false)}
-                className="block text-center px-6 py-3.5 text-lg font-semibold rounded-xl bg-gold-500 text-navy-900 hover:bg-gold-400 active:bg-gold-600 shadow-sm transition-all duration-200"
+                className="block text-center px-6 py-4 text-lg font-semibold bg-gold-500 text-navy-900 hover:bg-gold-400 transition-all duration-200"
               >
                 {t("contact")}
               </Link>
               <Link
                 href={otherLocalePath}
                 onClick={() => setIsOpen(false)}
-                className="block text-center px-4 py-3 rounded-xl text-base font-medium text-navy-700 hover:bg-navy-50 transition-colors"
+                className="block text-center px-4 py-3 text-base font-medium text-navy-700 hover:text-navy-900 transition-colors"
               >
                 {locale === "ar" ? "English" : "العربية"}
               </Link>

@@ -3,48 +3,48 @@ import { cn } from "@/lib/utils";
 interface SectionHeadingProps {
   title: string;
   subtitle?: string;
-  centered?: boolean;
+  align?: "center" | "left";
   light?: boolean;
-  className?: string;
+  level?: 1 | 2;
 }
 
 export function SectionHeading({
   title,
   subtitle,
-  centered = true,
+  align = "center",
   light = false,
-  className,
+  level = 2,
 }: SectionHeadingProps) {
+  const Tag = level === 1 ? "h1" : "h2";
+
   return (
     <div
       className={cn(
-        "mb-12 md:mb-16",
-        centered && "text-center",
-        className
+        "mb-14",
+        align === "center" ? "text-center" : "text-start"
       )}
     >
-      <div
+      <Tag
         className={cn(
-          "section-divider mx-auto mb-6",
-          !centered && "mx-0"
-        )}
-        aria-hidden="true"
-      />
-      <h2
-        className={cn(
-          "text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4",
+          "text-3xl md:text-4xl font-semibold tracking-tight leading-tight",
           light ? "text-white" : "text-navy-900"
         )}
-        style={{ fontFamily: "var(--font-heading)" }}
+        style={{ fontFamily: "var(--font-heading-ar)" }}
       >
         {title}
-      </h2>
+      </Tag>
+      <div
+        className={cn(
+          "mt-5 h-[2px] w-12 bg-gradient-to-r from-gold-500 to-gold-300",
+          align === "center" && "mx-auto"
+        )}
+      />
       {subtitle && (
         <p
           className={cn(
-            "text-lg md:text-xl max-w-3xl",
-            centered && "mx-auto",
-            light ? "text-navy-200" : "text-navy-600"
+            "mt-6 text-lg max-w-2xl leading-relaxed",
+            align === "center" && "mx-auto",
+            light ? "text-warm-300" : "text-warm-600"
           )}
         >
           {subtitle}

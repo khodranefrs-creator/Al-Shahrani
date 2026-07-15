@@ -1,90 +1,100 @@
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
-import { ArrowRight, ArrowLeft, ArrowUpRight } from 'lucide-react';
-import {
-  Building2,
-  Shield,
-  FileText,
-  GitMerge,
-  Scale,
-  Banknote,
-} from 'lucide-react';
 import type { Locale } from '@/types';
 
-const services = [
-  { slug: 'corporate-law', ar: 'القانون التجاري', en: 'Corporate Law', descAr: 'تأسيس الشركات والشركات ذات المسؤولية المحدودة والإشراف على الهياكل المؤسسية', descEn: 'Company formation, LLC structuring, and corporate oversight', icon: Building2 },
-  { slug: 'governance', ar: 'الحوكمة المؤسسية', en: 'Corporate Governance', descAr: 'وضع الأنظمة والسياسات المؤسسية وضمان الامتثال', descEn: 'Corporate policies, compliance frameworks, and governance systems', icon: Shield },
-  { slug: 'contracts', ar: 'العقود', en: 'Contracts', descAr: 'إعداد ومراجعة جميع العقود التجارية', descEn: 'Drafting, review, and management of all commercial contracts', icon: FileText },
-  { slug: 'ma', ar: 'الاندماج والاستحواذ', en: 'Mergers & Acquisitions', descAr: 'الاستشارات القانونية لعمليات الاندماج والاستحواذ', descEn: 'Legal advisory for M&A transactions and due diligence', icon: GitMerge },
-  { slug: 'litigation', ar: 'التقاضي وتسوية المنازعات', en: 'Dispute Resolution', descAr: 'التمثيل القضائي وتسوية المنازعات التجارية', descEn: 'Litigation representation and commercial dispute resolution', icon: Scale },
-  { slug: 'debt-collection', ar: 'تحصيل الديون', en: 'Debt Collection', descAr: 'تحصيل الديون بالطرق القانونية والقضائية', descEn: 'Legal and judicial debt recovery services', icon: Banknote },
+const primaryServices = [
+  { key: 'corporate', href: '/services/corporate-law' },
+  { key: 'contracts', href: '/services/contracts' },
+  { key: 'litigation', href: '/services/litigation' },
+] as const;
+
+const secondaryServices = [
+  { key: 'governance', href: '/services/governance' },
+  { key: 'ma', href: '/services/ma' },
+  { key: 'labor', href: '/services/labor' },
+  { key: 'property', href: '/services/property' },
+  { key: 'medical', href: '/services/medical' },
+  { key: 'debt', href: '/services/debt-collection' },
 ] as const;
 
 export default function PracticeAreas({ locale }: { locale: Locale }) {
   setRequestLocale(locale);
   const t = useTranslations('practiceAreas');
-  const ArrowIcon = locale === 'ar' ? ArrowLeft : ArrowRight;
+  const Arrow = locale === 'ar' ? '\u2190' : '\u2192';
 
   return (
-    <section className="bg-navy-gradient-subtle py-24 lg:py-32">
+    <section className="section-premium bg-navy-950 text-white overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Editorial header */}
-        <div className="max-w-2xl mb-16">
-          <p className="text-sm font-semibold tracking-widest uppercase text-gold-600 mb-4">
-            {locale === 'ar' ? 'خدماتنا' : 'Our Services'}
+        <div className="max-w-2xl mb-20">
+          <p className="text-sm font-semibold tracking-widest uppercase text-gold-400 mb-4">
+            {locale === 'ar' ? 'مجالاتنا' : 'Our Practice'}
           </p>
           <h2
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy-900 leading-tight"
-            style={{ fontFamily: 'var(--font-heading)' }}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight"
+            style={{ fontFamily: 'var(--font-heading-ar)' }}
           >
             {t('title')}
           </h2>
-          <div className="mt-6 h-px w-16 bg-gradient-to-r from-gold-500 to-gold-300" />
+          <div className="mt-6 h-[2px] w-12 bg-gradient-to-r from-gold-400 to-gold-300" />
         </div>
 
-        {/* Services grid — editorial list style */}
-        <div className="grid grid-cols-1 divide-y divide-navy-100 lg:grid-cols-2 lg:divide-x lg:divide-y-0">
-          {services.map((service) => {
-            const Icon = service.icon;
-            const title = locale === 'ar' ? service.ar : service.en;
-            const description = locale === 'ar' ? service.descAr : service.descEn;
-
-            return (
-              <Link
-                key={service.slug}
-                href={`/services/${service.slug}`}
-                className="group relative flex gap-5 py-10 px-6 lg:px-10 transition-colors duration-300 hover:bg-white/60"
+        {/* Primary services — large editorial items */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 divide-y lg:divide-y-0 lg:divide-x divide-white/10 mb-16">
+          {primaryServices.map((service) => (
+            <Link
+              key={service.key}
+              href={service.href}
+              className="group py-10 lg:py-0 lg:px-10 first:lg:ps-0 last:lg:pe-0"
+            >
+              <p className="text-gold-400 text-sm font-medium tracking-wider uppercase mb-3">
+                {t(`${service.key}.label`)}
+              </p>
+              <h3
+                className="text-2xl md:text-3xl font-bold text-white mb-4 leading-snug group-hover:text-gold-300 transition-smooth"
+                style={{ fontFamily: 'var(--font-heading-ar)' }}
               >
-                <div className="shrink-0 mt-1">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-900 text-gold-400 transition-all duration-300 group-hover:bg-gold-500 group-hover:text-navy-900 group-hover:scale-110">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                </div>
-
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-2">
-                    <h3 className="text-lg font-bold text-navy-900 transition-colors duration-200 group-hover:text-gold-700">
-                      {title}
-                    </h3>
-                    <ArrowUpRight className="h-4 w-4 text-navy-300 opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:text-gold-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </div>
-                  <p className="text-sm text-navy-500 leading-relaxed">
-                    {description}
-                  </p>
-                </div>
-              </Link>
-            );
-          })}
+                {t(`${service.key}.title`)}
+              </h3>
+              <p className="text-warm-400 leading-relaxed text-[15px] mb-6">
+                {t(`${service.key}.description`)}
+              </p>
+              <span className="inline-flex items-center gap-2 text-sm font-medium text-gold-400 group-hover:text-gold-300 transition-smooth">
+                <span className="link-underline">{Arrow}</span>
+              </span>
+            </Link>
+          ))}
         </div>
 
-        <div className="mt-14 text-center">
+        {/* Secondary services — compact list */}
+        <div className="border-t border-white/10 pt-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-4">
+            {secondaryServices.map((service) => (
+              <Link
+                key={service.key}
+                href={service.href}
+                className="group flex items-center gap-3 py-3"
+              >
+                <span className="w-1.5 h-1.5 bg-gold-500 rounded-full flex-shrink-0 group-hover:scale-150 transition-smooth" />
+                <span className="text-warm-300 text-sm font-medium group-hover:text-white transition-smooth">
+                  {t(`${service.key}.title`)}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* View all link */}
+        <div className="mt-12">
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 text-base font-semibold text-gold-600 transition-colors duration-300 hover:text-gold-700"
+            className="inline-flex items-center gap-2 text-gold-400 font-medium hover:text-gold-300 transition-smooth"
           >
-            {locale === 'ar' ? 'عرض جميع الخدمات' : 'View All Services'}
-            <ArrowIcon className="h-5 w-5 transition-transform duration-300" />
+            <span className="link-underline">
+              {locale === 'ar' ? 'عرض جميع الخدمات' : 'View All Services'}
+            </span>
+            <span className="rtl:rotate-180">{Arrow}</span>
           </Link>
         </div>
       </div>

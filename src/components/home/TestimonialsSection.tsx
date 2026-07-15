@@ -31,51 +31,47 @@ export default function TestimonialsSection({ locale }: { locale: Locale }) {
   const t = useTranslations('testimonials');
 
   return (
-    <section className="bg-white py-24 lg:py-32">
+    <section className="section-premium bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Editorial header */}
-        <div className="max-w-2xl mb-16">
+        <div className="max-w-2xl mb-20">
           <p className="text-sm font-semibold tracking-widest uppercase text-gold-600 mb-4">
             {locale === 'ar' ? 'عملاؤنا' : 'Client Voices'}
           </p>
           <h2
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy-900 leading-tight"
-            style={{ fontFamily: 'var(--font-heading)' }}
+            style={{ fontFamily: 'var(--font-heading-ar)' }}
           >
             {t('title')}
           </h2>
-          <div className="mt-6 h-px w-16 bg-gradient-to-r from-gold-500 to-gold-300" />
+          <div className="mt-6 h-[2px] w-12 bg-gradient-to-r from-gold-500 to-gold-300" />
         </div>
 
-        {/* Testimonials — editorial layout */}
-        <div className="grid grid-cols-1 gap-0 divide-y divide-navy-100 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+        {/* Testimonials — executive quotes */}
+        <div className="grid grid-cols-1 gap-0 divide-y divide-warm-200 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="py-10 px-6 lg:px-10 group transition-colors duration-300 hover:bg-white/60">
+            <div key={index} className="py-10 lg:py-0 lg:px-10 first:lg:ps-0 last:lg:pe-0 group">
               {/* Quote mark */}
-              <div className="quote-mark mb-2 select-none" aria-hidden="true">&ldquo;</div>
+              <div className="quote-mark mb-4 select-none" aria-hidden="true">&ldquo;</div>
 
-              <p className="text-navy-600 leading-relaxed mb-8 text-[15px]">
+              <p className="text-navy-700 leading-relaxed mb-10 text-[15px]">
                 {locale === 'ar' ? testimonial.quoteAr : testimonial.quoteEn}
               </p>
 
-              {/* Attribution */}
-              <div className="flex items-center gap-4">
-                {/* Avatar placeholder */}
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-navy-900 text-gold-400 text-sm font-bold">
-                  {(locale === 'ar' ? testimonial.nameAr : testimonial.nameEn).charAt(0)}
-                </div>
-                <div>
-                  <p className="font-semibold text-navy-900 text-sm">
-                    {locale === 'ar' ? testimonial.nameAr : testimonial.nameEn}
-                  </p>
-                  <p className="text-xs text-navy-400">
-                    {locale === 'ar' ? testimonial.roleAr : testimonial.roleEn}
-                    {' · '}
-                    <span className="text-gold-600 font-medium">
-                      {locale === 'ar' ? testimonial.companyAr : testimonial.companyEn}
-                    </span>
-                  </p>
-                </div>
+              {/* Attribution — clean */}
+              <div>
+                <p
+                  className="font-bold text-navy-900 text-sm mb-1"
+                  style={{ fontFamily: 'var(--font-heading-ar)' }}
+                >
+                  {locale === 'ar' ? testimonial.nameAr : testimonial.nameEn}
+                </p>
+                <p className="text-xs text-warm-500">
+                  {locale === 'ar' ? testimonial.roleAr : testimonial.roleEn}
+                </p>
+                <p className="text-xs text-gold-600 font-medium mt-1">
+                  {locale === 'ar' ? testimonial.companyAr : testimonial.companyEn}
+                </p>
               </div>
             </div>
           ))}

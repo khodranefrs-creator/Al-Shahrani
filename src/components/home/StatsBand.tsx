@@ -55,11 +55,14 @@ function StatItem({ stat }: { stat: (typeof stats)[number] }) {
 
   return (
     <div ref={ref} className="flex flex-col items-center text-center">
-      <span className="text-4xl font-bold text-gold-400 sm:text-5xl lg:text-6xl tracking-tight">
+      <span
+        className="text-4xl font-bold text-gold-400 sm:text-5xl lg:text-6xl tracking-tight leading-none"
+        style={{ fontFamily: 'var(--font-heading-en)' }}
+      >
         {count}
         {stat.suffix}
       </span>
-      <span className="mt-3 text-xs font-medium text-white/40 uppercase tracking-widest sm:text-sm">
+      <span className="mt-3 text-xs font-medium text-warm-300 uppercase tracking-widest sm:text-sm">
         {t(stat.key)}
       </span>
     </div>
@@ -68,11 +71,8 @@ function StatItem({ stat }: { stat: (typeof stats)[number] }) {
 
 export function StatsBand() {
   return (
-    <section className="relative bg-navy-900 py-16 lg:py-24">
-      {/* Subtle gold divider at top */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-400/30 to-transparent" aria-hidden="true" />
-
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="bg-navy-900 py-16 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-10 lg:grid-cols-4 lg:gap-16">
           {stats.map((stat) => (
             <StatItem key={stat.key} stat={stat} />

@@ -37,7 +37,40 @@
     "title": "Practice Areas",
     "subtitle": "Comprehensive legal coverage across all areas to serve our clients with the best solutions",
     "viewAll": "View All Services",
-    "learnMore": "Learn More"
+    "learnMore": "Learn More",
+    "corporate": {
+      "label": "Corporate Law",
+      "title": "Incorporation & Acquisitions",
+      "description": "Comprehensive support across every stage of a company's lifecycle — from formation to mergers, acquisitions, and major structural transformations."
+    },
+    "contracts": {
+      "label": "Contracts",
+      "title": "Contract Drafting & Analysis",
+      "description": "Specialized contract drafting, legal risk analysis, and ensuring complete protection of client interests."
+    },
+    "litigation": {
+      "label": "Litigation",
+      "title": "Dispute Resolution & Litigation",
+      "description": "Professional litigation representation before all judicial bodies, applying strategic approaches to ensure the best outcomes."
+    },
+    "governance": {
+      "title": "Corporate Governance"
+    },
+    "ma": {
+      "title": "Mergers & Acquisitions"
+    },
+    "labor": {
+      "title": "Labor Law & Employment Relations"
+    },
+    "property": {
+      "title": "Real Estate Law"
+    },
+    "medical": {
+      "title": "Medical Law"
+    },
+    "debt": {
+      "title": "Debt Collection"
+    }
   },
   "corporateSpotlight": {
     "title": "Corporate & Commercial Law",

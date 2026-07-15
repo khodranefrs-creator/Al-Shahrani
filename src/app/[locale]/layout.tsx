@@ -1,6 +1,6 @@
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
-import { Inter, Noto_Naskh_Arabic } from "next/font/google";
+import { Inter, Noto_Naskh_Arabic, Playfair_Display } from "next/font/google";
 import { getDirection, locales, type Locale } from "@/types";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -16,6 +16,12 @@ const notoNaskh = Noto_Naskh_Arabic({
   subsets: ["arabic"],
   variable: "--font-noto-naskh",
   weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -38,8 +44,8 @@ export default async function LocaleLayout({ children, params }: Props) {
   const direction = getDirection(locale as Locale);
   const fontVariables =
     locale === "ar"
-      ? `${notoNaskh.variable} ${inter.variable}`
-      : `${inter.variable} ${notoNaskh.variable}`;
+      ? `${notoNaskh.variable} ${inter.variable} ${playfair.variable}`
+      : `${inter.variable} ${notoNaskh.variable} ${playfair.variable}`;
 
   return (
     <html
