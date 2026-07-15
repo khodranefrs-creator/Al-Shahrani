@@ -25,45 +25,48 @@ export default function Process({ locale }: { locale: Locale }) {
           <div className="mt-8 h-[2px] w-16 bg-gradient-to-r from-gold-500 to-gold-300" />
         </div>
 
-        {/* Modern process — large numbered rows, stacked vertically */}
-        <div className="space-y-0 divide-y divide-warm-200">
-          {steps.map((key, index) => (
-            <div key={key} className="group grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-10 md:py-14 items-start">
-              {/* Large number */}
-              <div className="md:col-span-2 flex items-baseline gap-3">
-                <span
-                  className="text-5xl md:text-6xl font-bold text-navy-100 leading-none select-none group-hover:text-gold-200 transition-colors duration-300"
-                  style={{ fontFamily: 'var(--font-heading-en)' }}
-                >
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-              </div>
+        {/* Process steps — with visual progression */}
+        <div className="relative">
+          {/* Connecting line — desktop only */}
+          <div className="hidden md:block absolute top-[3.25rem] start-[4.25rem] end-[4.25rem] h-px bg-gradient-to-r from-warm-200 via-warm-200 to-warm-200" />
 
-              {/* Title */}
-              <div className="md:col-span-4">
-                <h3
-                  className="text-xl md:text-2xl font-semibold text-navy-900 leading-snug"
-                  style={{ fontFamily: 'var(--font-heading-ar)' }}
-                >
-                  {t(`steps.${key}.title`)}
-                </h3>
-              </div>
+          <div className="space-y-12 md:space-y-0">
+            {steps.map((key, index) => (
+              <div key={key} className="group relative md:grid md:grid-cols-12 md:gap-8 md:items-start md:py-10">
+                {/* Step indicator — number circle */}
+                <div className="md:col-span-2 flex items-center gap-4 md:flex-col md:items-center md:gap-0">
+                  <div className="relative z-10 flex items-center justify-center w-12 h-12 bg-white border-2 border-warm-200 group-hover:border-gold-500 transition-colors duration-300 rounded-full">
+                    <span
+                      className="text-sm font-bold text-warm-500 group-hover:text-gold-600 transition-colors duration-300"
+                      style={{ fontFamily: 'var(--font-heading-en)' }}
+                    >
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                  </div>
+                </div>
 
-              {/* Description */}
-              <div className="md:col-span-5">
-                <p className="text-warm-600 leading-[1.8] text-[15px]">
-                  {t(`steps.${key}.description`)}
-                </p>
-              </div>
+                {/* Title */}
+                <div className="md:col-span-4 mt-4 md:mt-3">
+                  <h3
+                    className="text-xl md:text-2xl font-semibold text-navy-900 leading-snug"
+                    style={{ fontFamily: 'var(--font-heading-ar)' }}
+                  >
+                    {t(`steps.${key}.title`)}
+                  </h3>
+                </div>
 
-              {/* Arrow */}
-              <div className="md:col-span-1 hidden md:flex items-center justify-end h-full">
-                <span className="text-warm-300 group-hover:text-gold-500 transition-colors text-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {locale === 'ar' ? '\u2190' : '\u2192'}
-                </span>
+                {/* Description */}
+                <div className="md:col-span-5 md:mt-3">
+                  <p className="text-warm-600 leading-[1.8] text-[15px]">
+                    {t(`steps.${key}.description`)}
+                  </p>
+                </div>
+
+                {/* Spacer */}
+                <div className="md:col-span-1 hidden md:block" />
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

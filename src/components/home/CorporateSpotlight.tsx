@@ -18,7 +18,6 @@ export default function CorporateSpotlight({ locale }: { locale: Locale }) {
   return (
     <section className="bg-navy-900 text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 md:py-32 lg:py-40">
-        {/* Full-width editorial layout — content top, visual below on mobile; side-by-side on desktop */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start">
           {/* Left — Content */}
           <div className="lg:col-span-6 space-y-8">
@@ -39,7 +38,6 @@ export default function CorporateSpotlight({ locale }: { locale: Locale }) {
               {t('description')}
             </p>
 
-            {/* Highlights as elegant list */}
             <ul className="space-y-4">
               {highlights.map((item, i) => (
                 <li key={i} className="flex items-center gap-4">
@@ -60,49 +58,36 @@ export default function CorporateSpotlight({ locale }: { locale: Locale }) {
             </Link>
           </div>
 
-          {/* Right — Architectural institutional visual */}
+          {/* Right — Premium legal visual */}
           <div className="lg:col-span-6">
-            <div className="relative aspect-[4/3] w-full overflow-hidden">
-              {/* Multi-layered architectural background */}
-              <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #0a0f1e 0%, #121c33 35%, #1a2744 65%, #121c33 100%)' }} />
-
-              {/* Architectural column lines */}
-              <div className="absolute inset-0" aria-hidden="true">
-                {/* Horizontal lines — like a classical building */}
-                <div className="absolute top-[15%] start-0 w-full h-px bg-gradient-to-r from-transparent via-gold-400/15 to-transparent" />
-                <div className="absolute top-[50%] start-0 w-full h-px bg-gradient-to-r from-transparent via-gold-400/10 to-transparent" />
-                <div className="absolute top-[85%] start-0 w-full h-px bg-gradient-to-r from-transparent via-gold-400/15 to-transparent" />
-                {/* Vertical columns */}
-                <div className="absolute top-0 start-[20%] h-full w-px bg-gradient-to-b from-gold-400/20 via-gold-400/8 to-gold-400/20" />
-                <div className="absolute top-0 start-[40%] h-full w-px bg-gradient-to-b from-gold-400/15 via-gold-400/6 to-gold-400/15" />
-                <div className="absolute top-0 start-[60%] h-full w-px bg-gradient-to-b from-gold-400/15 via-gold-400/6 to-gold-400/15" />
-                <div className="absolute top-0 start-[80%] h-full w-px bg-gradient-to-b from-gold-400/20 via-gold-400/8 to-gold-400/20" />
-                {/* Capital — top entablature */}
-                <div className="absolute top-[12%] start-[18%] w-[64%] h-px bg-gold-400/25" />
-                <div className="absolute top-[10%] start-[20%] w-[60%] h-px bg-gold-400/10" />
-              </div>
-
-              {/* Central institution symbol */}
+            <div className="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-[#0a0f1e] via-[#121c33] to-[#1a2744]">
+              {/* Large scale of justice — bold, centered, meaningful */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative">
-                  <svg viewBox="0 0 100 100" className="w-20 h-20 text-gold-400/[0.12] fill-none stroke-current stroke-[0.4]" aria-hidden="true">
-                    <path d="M50 10v50M25 30l25-12 25 12M15 65h70M25 65c0-10 0-18 6-25s6-15 6-25M75 65c0-10 0-18-6-25s-6-15-6-25" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  {/* Decorative ring */}
-                  <div className="absolute -inset-8 border border-gold-400/[0.06]" />
-                  <div className="absolute -inset-12 border border-gold-400/[0.03]" />
-                </div>
+                <svg viewBox="0 0 120 120" className="w-32 h-32 md:w-40 md:h-40 text-gold-400 fill-none stroke-current" aria-hidden="true" style={{ strokeOpacity: 0.18 }}>
+                  {/* Pillar */}
+                  <line x1="60" y1="20" x2="60" y2="100" strokeWidth="1.5" />
+                  {/* Base */}
+                  <line x1="40" y1="100" x2="80" y2="100" strokeWidth="1.5" strokeLinecap="round" />
+                  <line x1="48" y1="96" x2="72" y2="96" strokeWidth="1.2" strokeLinecap="round" />
+                  {/* Top beam */}
+                  <line x1="28" y1="28" x2="92" y2="28" strokeWidth="1.5" strokeLinecap="round" />
+                  {/* Left pan */}
+                  <path d="M28 28 L20 52 Q20 58 32 58 Q44 58 44 52 L36 28" strokeWidth="1" />
+                  <line x1="32" y1="58" x2="40" y2="58" strokeWidth="1" strokeLinecap="round" />
+                  {/* Right pan */}
+                  <path d="M84 28 L76 48 Q76 54 88 54 Q100 54 100 48 L92 28" strokeWidth="1" />
+                  <line x1="88" y1="54" x2="96" y2="54" strokeWidth="1" strokeLinecap="round" />
+                  {/* Crown */}
+                  <circle cx="60" cy="20" r="4" strokeWidth="1.2" />
+                </svg>
               </div>
 
-              {/* Corner frames */}
-              <div className="absolute top-4 start-4 w-16 h-16 border-t-2 border-s-2 border-gold-400/10" />
-              <div className="absolute bottom-4 end-4 w-16 h-16 border-b-2 border-e-2 border-gold-400/10" />
-              <div className="absolute top-4 end-4 w-16 h-16 border-t-2 border-e-2 border-gold-400/10" />
-              <div className="absolute bottom-4 start-4 w-16 h-16 border-b-2 border-s-2 border-gold-400/10" />
+              {/* Subtle accent line */}
+              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400/20 to-transparent" />
 
-              {/* Bottom institution text */}
+              {/* Bottom label */}
               <div className="absolute bottom-6 start-0 end-0 text-center">
-                <p className="text-gold-400/15 text-[10px] tracking-[0.4em] uppercase font-semibold">
+                <p className="text-gold-400/20 text-[10px] tracking-[0.4em] uppercase font-semibold">
                   {locale === 'ar' ? 'قانون مؤسسي' : 'Institutional Law'}
                 </p>
               </div>

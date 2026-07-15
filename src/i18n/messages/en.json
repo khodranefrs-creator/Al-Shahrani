@@ -78,6 +78,12 @@
     },
     "debt": {
       "title": "Debt Collection"
+    },
+    "debtCollection": {
+      "title": "Debt Collection"
+    },
+    "notarization": {
+      "title": "Notarization Services"
     }
   },
   "corporateSpotlight": {

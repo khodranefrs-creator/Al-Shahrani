@@ -78,6 +78,12 @@
     },
     "debt": {
       "title": "تحصيل الديون"
+    },
+    "debtCollection": {
+      "title": "تحصيل الديون"
+    },
+    "notarization": {
+      "title": "خدمات التوثيق"
     }
   },
   "corporateSpotlight": {

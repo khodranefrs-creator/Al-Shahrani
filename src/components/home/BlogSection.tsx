@@ -44,7 +44,7 @@ export default function BlogSection({ locale }: { locale: Locale }) {
     <section className="bg-warm-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 md:py-32 lg:py-40">
         {/* Section header */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-20">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-16">
           <div className="max-w-xl">
             <p className="text-sm font-semibold tracking-[0.2em] uppercase text-gold-600 mb-6">
               {locale === 'ar' ? 'المدونة' : 'Insights'}
@@ -66,27 +66,26 @@ export default function BlogSection({ locale }: { locale: Locale }) {
           </Link>
         </div>
 
-        {/* Editorial layout — featured article full width + 2 side by side */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Featured article — large, full height */}
+        {/* Editorial layout — 3-col with featured spanning 2 */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Featured article — spans 2 cols, editorial proportions */}
           <Link
             href={`/blog/${featured.slug}`}
-            className="group relative block bg-navy-900 text-white overflow-hidden transition-all duration-300 hover:shadow-2xl lg:row-span-1"
+            className="group relative block bg-navy-900 text-white overflow-hidden transition-all duration-300 hover:shadow-2xl lg:col-span-2"
           >
-            {/* Background */}
             <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #0c1222 0%, #1a2240 50%, #2a3556 100%)' }} />
             <div className="absolute inset-0 flex items-center justify-center opacity-[0.06]" aria-hidden="true">
-              <svg viewBox="0 0 24 24" className="w-32 h-32 text-gold-400 fill-none stroke-current stroke-[0.5]" aria-hidden="true">
+              <svg viewBox="0 0 24 24" className="w-28 h-28 text-gold-400 fill-none stroke-current stroke-[0.5]" aria-hidden="true">
                 <path d={featured.icon} strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
 
-            <div className="relative p-10 md:p-14 flex flex-col justify-end min-h-[360px]">
+            <div className="relative p-10 md:p-12 flex flex-col justify-end min-h-[320px]">
               <span className="inline-block px-3 py-1 text-xs font-medium bg-gold-500/20 text-gold-400 mb-5 self-start">
                 {locale === 'ar' ? featured.categoryAr : featured.categoryEn}
               </span>
               <h3
-                className="text-2xl md:text-3xl font-semibold mb-4 leading-tight group-hover:text-gold-300 transition-smooth"
+                className="text-2xl md:text-[1.75rem] font-semibold mb-3 leading-tight group-hover:text-gold-300 transition-smooth"
                 style={{ fontFamily: 'var(--font-heading-ar)' }}
               >
                 {locale === 'ar' ? featured.titleAr : featured.titleEn}
@@ -107,48 +106,36 @@ export default function BlogSection({ locale }: { locale: Locale }) {
             </div>
           </Link>
 
-          {/* Secondary articles — stacked */}
+          {/* Secondary articles — stacked in 1 col */}
           <div className="flex flex-col gap-8">
             {rest.map((article) => (
               <Link
                 key={article.slug}
                 href={`/blog/${article.slug}`}
-                className="group flex flex-col sm:flex-row gap-6 p-8 bg-white border border-warm-200 hover-lift hover:border-gold-400 transition-smooth overflow-hidden"
+                className="group flex flex-col gap-5 p-7 bg-white border border-warm-200 hover-lift hover:border-gold-400 transition-smooth flex-1"
               >
-                {/* Small visual */}
-                <div className="relative w-full sm:w-32 h-32 sm:h-auto shrink-0 overflow-hidden">
-                  <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #0c1222 0%, #1a2240 50%, #2a3556 100%)' }} />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <svg viewBox="0 0 24 24" className="w-8 h-8 text-gold-400/15 fill-none stroke-current stroke-[0.8]" aria-hidden="true">
-                      <path d={article.icon} strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                </div>
-
-                <div className="flex-1 min-w-0">
-                  <span className="inline-block px-3 py-1 text-[11px] font-medium bg-gold-50 text-gold-700 mb-3">
+                <div className="flex items-center justify-between">
+                  <span className="inline-block px-3 py-1 text-[11px] font-medium bg-gold-50 text-gold-700">
                     {locale === 'ar' ? article.categoryAr : article.categoryEn}
                   </span>
-                  <h3
-                    className="text-lg font-semibold text-navy-900 mb-2 leading-snug group-hover:text-gold-700 transition-smooth"
-                    style={{ fontFamily: 'var(--font-heading-ar)' }}
-                  >
-                    {locale === 'ar' ? article.titleAr : article.titleEn}
-                  </h3>
-                  <p className="text-warm-600 leading-[1.8] text-sm line-clamp-2 mb-4">
-                    {locale === 'ar' ? article.excerptAr : article.excerptEn}
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-1.5 text-xs text-warm-500">
-                      <Calendar className="h-3.5 w-3.5" />
-                      <time>{article.date}</time>
-                    </div>
-                    <span className="text-sm font-medium text-gold-700 inline-flex items-center gap-1">
-                      {t('readMore')}
-                      <span className="rtl:rotate-180 transition-transform duration-200 group-hover:translate-x-1">{Arrow}</span>
-                    </span>
+                  <div className="flex items-center gap-1.5 text-xs text-warm-500">
+                    <Calendar className="h-3.5 w-3.5" />
+                    <time>{article.date}</time>
                   </div>
                 </div>
+                <h3
+                  className="text-lg font-semibold text-navy-900 leading-snug group-hover:text-gold-700 transition-smooth"
+                  style={{ fontFamily: 'var(--font-heading-ar)' }}
+                >
+                  {locale === 'ar' ? article.titleAr : article.titleEn}
+                </h3>
+                <p className="text-warm-600 leading-[1.8] text-sm line-clamp-2">
+                  {locale === 'ar' ? article.excerptAr : article.excerptEn}
+                </p>
+                <span className="text-sm font-medium text-gold-700 inline-flex items-center gap-1 mt-auto">
+                  {t('readMore')}
+                  <span className="rtl:rotate-180 transition-transform duration-200 group-hover:translate-x-1">{Arrow}</span>
+                </span>
               </Link>
             ))}
           </div>
