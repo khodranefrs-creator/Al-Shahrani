@@ -1,57 +1,34 @@
-import { setRequestLocale } from "next-intl/server";
-import type { Metadata } from "next";
-
-import { Hero } from "@/components/home/Hero";
-import { StatsBand } from "@/components/home/StatsBand";
-import WhyUs from "@/components/home/WhyUs";
-import PracticeAreas from "@/components/home/PracticeAreas";
-import CorporateSpotlight from "@/components/home/CorporateSpotlight";
-import Process from "@/components/home/Process";
-import TestimonialsSection from "@/components/home/TestimonialsSection";
-import BlogSection from "@/components/home/BlogSection";
-import CtaBand from "@/components/home/CtaBand";
-
-import { siteConfig, type Locale } from "@/types";
-
-export function generateStaticParams() {
-  return [{ locale: "ar" }, { locale: "en" }];
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params;
-  const typed = locale as Locale;
-
-  return {
-    title: typed === "ar" ? "\u0627\u0644\u0631\u0626\u064a\u0633\u064a\u0629" : "Home",
-    description: siteConfig.description[typed],
-  };
-}
+import { setRequestLocale } from 'next-intl/server';
+import { Hero } from '@/components/home/Hero';
+import { StatsBand } from '@/components/home/StatsBand';
+import WhyUs from '@/components/home/WhyUs';
+import PracticeAreas from '@/components/home/PracticeAreas';
+import CorporateSpotlight from '@/components/home/CorporateSpotlight';
+import Process from '@/components/home/Process';
+import TestimonialsSection from '@/components/home/TestimonialsSection';
+import BlogSection from '@/components/home/BlogSection';
+import CtaBand from '@/components/home/CtaBand';
+import type { Locale } from '@/types';
 
 export default async function HomePage({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
-  const typed = locale as Locale;
-
-  setRequestLocale(typed);
+  setRequestLocale(locale);
 
   return (
     <>
-      <Hero locale={typed} />
-      <StatsBand locale={typed} />
-      <WhyUs locale={typed} />
-      <PracticeAreas locale={typed} />
-      <CorporateSpotlight locale={typed} />
-      <Process locale={typed} />
-      <TestimonialsSection locale={typed} />
-      <BlogSection locale={typed} />
-      <CtaBand locale={typed} />
+      <Hero locale={locale} />
+      <StatsBand locale={locale} />
+      <WhyUs locale={locale} />
+      <PracticeAreas locale={locale} />
+      <CorporateSpotlight locale={locale} />
+      <Process locale={locale} />
+      <TestimonialsSection locale={locale} />
+      <BlogSection locale={locale} />
+      <CtaBand locale={locale} />
     </>
   );
 }

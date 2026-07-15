@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
@@ -13,6 +12,7 @@ const articles = [
     excerptEn: 'An analytical look at the latest changes in Saudi company law and their impact on business and investment.',
     date: '2025-01-15', slug: 'latest-amendments-saudi-company-law',
     categoryAr: '\u0642\u0627\u0646\u0648\u0646 \u0627\u0644\u0634\u0631\u0643\u0627\u062a', categoryEn: 'Corporate Law',
+    icon: 'M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z',
   },
   {
     titleAr: '\u0623\u0647\u0645\u064a\u0629 \u0627\u0644\u062d\u0648\u0643\u0645\u0629 \u0627\u0644\u0645\u0624\u0633\u0633\u064a\u0629 \u0641\u064a \u0627\u0644\u0634\u0631\u0643\u0627\u062a \u0627\u0644\u0646\u0627\u0634\u0626\u0629',
@@ -21,6 +21,7 @@ const articles = [
     excerptEn: 'Why startups need to implement governance principles from the earliest stages of formation.',
     date: '2025-01-08', slug: 'corporate-governance-startups',
     categoryAr: '\u0627\u0644\u062d\u0648\u0643\u0645\u0629', categoryEn: 'Governance',
+    icon: 'M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21',
   },
   {
     titleAr: '\u062f\u0644\u064a\u0644 \u0634\u0627\u0645\u0644 \u0644\u0639\u0642\u0648\u062f \u0627\u0644\u0627\u0645\u062a\u062b\u0627\u0644 \u0627\u0644\u062a\u062c\u0627\u0631\u064a',
@@ -29,6 +30,7 @@ const articles = [
     excerptEn: 'A detailed overview of key commercial contract types and regulatory compliance requirements in the Saudi market.',
     date: '2024-12-20', slug: 'guide-commercial-compliance-contracts',
     categoryAr: '\u0627\u0644\u0627\u0645\u062a\u062b\u0627\u0644', categoryEn: 'Compliance',
+    icon: 'M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z',
   },
 ] as const;
 
@@ -59,11 +61,11 @@ export default function BlogSection({ locale }: { locale: Locale }) {
             className="inline-flex items-center gap-2 text-sm font-semibold text-gold-700 hover:text-gold-600 transition-smooth shrink-0"
           >
             <span className="link-underline">{t('viewAll')}</span>
-            <span className="rtl:rotate-180 transition-transform duration-200 group-hover:translate-x-1">{Arrow}</span>
+            <span className="rtl:rotate-180 transition-transform duration-200">{Arrow}</span>
           </Link>
         </div>
 
-        {/* Articles — card-based with hover lift */}
+        {/* Articles — card-based with CSS image placeholders */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {articles.map((article) => (
             <Link
@@ -71,15 +73,23 @@ export default function BlogSection({ locale }: { locale: Locale }) {
               href={`/blog/${article.slug}`}
               className="group block border border-warm-200 bg-white overflow-hidden hover-lift hover:border-gold-400 transition-smooth"
             >
-              {/* Article image */}
+              {/* Article image — elegant CSS placeholder */}
               <div className="relative aspect-[16/9] w-full overflow-hidden">
-                <Image
-                  src={`/images/blog/${article.slug}.jpg`}
-                  alt={locale === 'ar' ? `\u0635\u0648\u0631\u0629 \u0645\u0642\u0627\u0644: ${article.titleAr}` : `Article image: ${article.titleEn}`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: "linear-gradient(135deg, #0c1222 0%, #1a2240 50%, #2a3556 100%)",
+                  }}
+                  aria-hidden="true"
                 />
+                {/* Subtle document icon */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <svg viewBox="0 0 24 24" className="w-10 h-10 text-gold-400/20 fill-none stroke-current stroke-[1]" aria-hidden="true">
+                    <path d={article.icon} strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                {/* Gold accent line at bottom */}
+                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400/30 to-transparent" />
               </div>
 
               <div className="p-8">

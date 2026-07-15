@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { cn, getWhatsAppUrl } from "@/lib/utils";
@@ -18,22 +17,26 @@ export function Hero({ locale }: HeroProps) {
       className="relative min-h-screen flex items-center overflow-hidden bg-navy-950"
       aria-label={t("title")}
     >
-      {/* Background image */}
-      <div className="absolute inset-0">
-        <Image
-          src="/images/hero/law-firm-office.jpg"
-          alt={
-            locale === "ar"
-              ? "\u0645\u0628\u0646\u0649 \u0645\u0643\u062a\u0628 \u0627\u0644\u0634\u0647\u0631\u0627\u0646\u064a \u0644\u0644\u0645\u062d\u0627\u0645\u0627\u0629 \u0641\u064a \u062e\u0645\u064a\u0633 \u0645\u0634\u064a\u0637"
-              : "Al-Shahrani Law Firm office building in Khamis Mushait"
-          }
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-navy-950/70" aria-hidden="true" />
-      </div>
+      {/* Background — elegant navy gradient, no broken images */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(135deg, #070b15 0%, #0c1222 30%, #131d35 60%, #0c1222 100%)",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Subtle architectural grid pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(200,169,110,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(200,169,110,0.3) 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
+        }}
+        aria-hidden="true"
+      />
 
       {/* Luxury ambient glow */}
       <div
