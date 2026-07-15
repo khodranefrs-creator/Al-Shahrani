@@ -5,7 +5,7 @@ import { Heart, Award, Eye, Target } from "lucide-react";
 
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { siteConfig, type Locale } from "@/types";
-import CtaBand from "@/components/home/CtaBand";
+import { CtaBand } from "@/components/home/CtaBand";
 
 export function generateStaticParams() {
   return [{ locale: "ar" }, { locale: "en" }];

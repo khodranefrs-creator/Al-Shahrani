@@ -7,7 +7,7 @@ import { siteConfig } from '@/types';
 import { EyebrowTag } from '@/components/ui/EyebrowTag';
 import type { Locale } from '@/types';
 
-export default function CtaBand({ locale }: { locale: Locale }) {
+export function CtaBand({ locale }: { locale: Locale }) {
   setRequestLocale(locale);
   const t = useTranslations('ctaBand');
   const isRtl = locale === 'ar';

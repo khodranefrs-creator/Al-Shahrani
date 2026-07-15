@@ -1,95 +1,135 @@
-import { useTranslations } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
-import { Link } from '@/i18n/navigation';
-import { ArrowLeft, ArrowRight, Building2, Scale, Briefcase, Home, Shield, FileText } from 'lucide-react';
-import { EyebrowTag } from '@/components/ui/EyebrowTag';
-import type { Locale } from '@/types';
+"use client";
 
-const services = [
-  { key: 'corporate', href: '/services/corporate-law', icon: Building2, gradient: 'from-indigo-800/20 to-indigo-800/5' },
-  { key: 'contracts', href: '/services/contracts', icon: FileText, gradient: 'from-blue-800/20 to-blue-800/5' },
-  { key: 'litigation', href: '/services/litigation', icon: Scale, gradient: 'from-amber-800/20 to-amber-800/5' },
-  { key: 'governance', href: '/services/governance', icon: Shield, gradient: 'from-emerald-800/20 to-emerald-800/5' },
-  { key: 'ma', href: '/services/ma', icon: Briefcase, gradient: 'from-purple-800/20 to-purple-800/5' },
-  { key: 'labor', href: '/services/labor', icon: Home, gradient: 'from-rose-800/20 to-rose-800/5' },
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { Scale, Shield, BookOpen, Briefcase, ArrowRight } from "lucide-react";
+import { type Locale } from "@/types";
+import { EyebrowTag } from "@/components/ui/EyebrowTag";
+
+const mainServices = [
+  {
+    icon: Scale,
+    key: "corporate",
+    gradient: "from-gold-400/20 via-gold-400/[0.06] to-transparent",
+  },
+  {
+    icon: Shield,
+    key: "litigation",
+    gradient: "from-gold-400/20 via-gold-400/[0.06] to-transparent",
+  },
 ] as const;
 
-export default function PracticeAreas({ locale }: { locale: Locale }) {
-  setRequestLocale(locale);
-  const t = useTranslations('practiceAreas');
-  const isRtl = locale === 'ar';
+const secondaryServices = [
+  {
+    icon: BookOpen,
+    key: "contracts",
+    gradient: "from-gold-400/[0.12] via-gold-400/[0.03] to-transparent",
+  },
+  {
+    icon: Briefcase,
+    key: "labor",
+    gradient: "from-gold-400/[0.12] via-gold-400/[0.03] to-transparent",
+  },
+  {
+    icon: Shield,
+    key: "debtCollection",
+    gradient: "from-gold-400/[0.12] via-gold-400/[0.03] to-transparent",
+  },
+  {
+    icon: BookOpen,
+    key: "notarization",
+    gradient: "from-gold-400/[0.12] via-gold-400/[0.03] to-transparent",
+  },
+] as const;
+
+interface PracticeAreasProps {
+  locale: Locale;
+}
+
+export function PracticeAreas({ locale }: PracticeAreasProps) {
+  const t = useTranslations("services");
 
   return (
-    <section className="bg-warm-50 section-padding">
-      <div className="container-custom">
-        {/* Section header — centered */}
-        <div className="text-center mb-10 md:mb-12">
-          <div className="flex justify-center mb-4">
-            <EyebrowTag label={locale === 'ar' ? 'مجالاتنا' : 'Our Practice'} />
-          </div>
+    <section className="bg-warm-50 relative">
+      {/* Bottom section divider */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gold-400/[0.15]" />
+
+      <div className="section-padding container-custom">
+        <div className="max-w-4xl mx-auto text-center mb-14 md:mb-20">
+          <EyebrowTag label={t("eyebrow")} />
           <h2
-            className="text-3xl md:text-4xl font-bold text-navy-900 leading-[1.15] mb-4 text-balance"
-            style={{ fontFamily: 'var(--font-heading-ar)' }}
+            className="text-[clamp(1.25rem,3vw,2.25rem)] font-bold text-navy-900 mb-4"
+            style={{ fontFamily: "var(--font-heading-ar)" }}
           >
-            {t('title')}
+            {t("title")}
           </h2>
-          <p className="text-warm-600 max-w-2xl mx-auto">
-            {t('subtitle')}
-          </p>
+          <p className="text-warm-500 leading-[1.7] max-w-2xl mx-auto">{t("description")}</p>
         </div>
 
-        {/* Service cards — 3-col grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-          {services.map((service) => {
+        {/* Featured services — larger cards */}
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-6 md:mb-8">
+          {mainServices.map((service) => {
             const Icon = service.icon;
             return (
               <Link
                 key={service.key}
-                href={service.href}
-                className="group surface-card hover-lift overflow-hidden"
+                href={`/${locale}/services#${service.key}`}
+                className="group relative block rounded-[var(--radius-panel)] bg-white overflow-hidden border border-warm-100 hover:border-gold-400/30 transition-all duration-500 hover:shadow-[0_8px_30px_rgba(184,149,60,0.08)]"
               >
-                {/* Gradient top strip */}
-                <div className={`h-1.5 bg-gradient-to-r ${service.gradient}`} />
-
-                <div className="p-5 md:p-7 flex flex-col flex-1">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-[var(--radius-control)] bg-gold-500/10 flex items-center justify-center mb-5 group-hover:bg-gold-500/20 transition-colors duration-300">
-                    <Icon aria-hidden="true" className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-gold-500" />
+                <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} pointer-events-none`} />
+                <div className="relative p-8 md:p-10">
+                  <div className="w-14 h-14 rounded-xl bg-gold-400/10 flex items-center justify-center mb-6 ring-1 ring-gold-400/[0.12] group-hover:ring-gold-400/30 group-hover:bg-gold-400/[0.15] transition-all duration-500">
+                    <Icon aria-hidden="true" className="w-7 h-7 text-gold-400" />
                   </div>
                   <h3
-                    className="font-semibold text-navy-900 mb-3 text-xl group-hover:text-gold-700 transition-colors duration-300"
-                    style={{ fontFamily: 'var(--font-heading-ar)' }}
+                    className="text-lg md:text-xl font-bold text-navy-900 mb-3"
+                    style={{ fontFamily: "var(--font-heading-ar)" }}
                   >
                     {t(`${service.key}.title`)}
                   </h3>
-                  <p className="text-warm-600 text-sm leading-[1.8] grow">
+                  <p className="text-sm text-warm-500 leading-[1.7]">
                     {t(`${service.key}.description`)}
                   </p>
-                  <div className="mt-auto flex items-center gap-1.5 text-gold-600 text-xs font-medium pt-4">
-                    <span>{locale === 'ar' ? 'المزيد' : 'Learn more'}</span>
-                    {isRtl ? (
-                      <ArrowLeft aria-hidden="true" className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-x-1" />
-                    ) : (
-                      <ArrowRight aria-hidden="true" className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                    )}
-                  </div>
                 </div>
               </Link>
             );
           })}
         </div>
 
-        {/* View all link */}
-        <div className="text-center mt-10 md:mt-12">
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 text-gold-600 font-medium hover:text-gold-500 transition-colors duration-200 group"
-          >
-            {locale === 'ar' ? 'عرض جميع الخدمات' : 'View all services'}
-            {isRtl ? (
-              <ArrowLeft aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
-            ) : (
-              <ArrowRight aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            )}
+        {/* Secondary services — compact uniform grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+          {secondaryServices.map((service) => {
+            const Icon = service.icon;
+            return (
+              <Link
+                key={service.key}
+                href={`/${locale}/services#${service.key}`}
+                className="group relative block rounded-[var(--radius-surface)] bg-white overflow-hidden border border-warm-100 hover:border-gold-400/30 transition-all duration-500 hover:shadow-[0_6px_20px_rgba(184,149,60,0.06)]"
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} pointer-events-none`} />
+                <div className="relative p-6 md:p-7">
+                  <div className="w-11 h-11 rounded-lg bg-gold-400/10 flex items-center justify-center mb-4 ring-1 ring-gold-400/[0.10] group-hover:ring-gold-400/25 group-hover:bg-gold-400/[0.14] transition-all duration-500">
+                    <Icon aria-hidden="true" className="w-5 h-5 text-gold-400" />
+                  </div>
+                  <h3
+                    className="text-sm md:text-base font-bold text-navy-900 mb-1.5"
+                    style={{ fontFamily: "var(--font-heading-ar)" }}
+                  >
+                    {t(`${service.key}.title`)}
+                  </h3>
+                  <p className="text-xs text-warm-500 leading-[1.7]">
+                    {t(`${service.key}.description`)}
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+
+        <div className="text-center mt-12 md:mt-16">
+          <Link href={`/${locale}/services`} className="text-gold-400 font-semibold text-sm inline-flex items-center gap-2 group">
+            {t("view_all")}
+            <ArrowRight className="w-4 h-4 rtl:rotate-180 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
       </div>

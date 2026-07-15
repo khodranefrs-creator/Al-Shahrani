@@ -1,116 +1,88 @@
-import { useTranslations } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
-import { Link } from '@/i18n/navigation';
-import { ArrowLeft, ArrowRight, Clock } from 'lucide-react';
-import { EyebrowTag } from '@/components/ui/EyebrowTag';
-import type { Locale } from '@/types';
+"use client";
 
-const articles = [
-  {
-    titleAr: 'أحدث التعديلات على نظام الشركات السعودي',
-    titleEn: 'Latest Amendments to Saudi Company Law',
-    excerptAr: 'نظرة تحليلية على أحدث التغييرات في نظام الشركات السعودي وتأثيرها على الأعمال والاستثمار.',
-    excerptEn: 'An analytical look at the latest changes in Saudi company law and their impact on business.',
-    date: '2025-01-15', slug: 'latest-amendments-saudi-company-law',
-    categoryAr: 'قانون الشركات', categoryEn: 'Corporate Law',
-    readingTime: 5,
-  },
-  {
-    titleAr: 'أهمية الحوكمة المؤسسية للشركات الناشئة',
-    titleEn: 'The Importance of Corporate Governance for Startups',
-    excerptAr: 'لماذا تحتاج الشركات الناشئة إلى تطبيق مبادئ الحوكمة من أبكر مراحل التأسيس.',
-    excerptEn: 'Why startups need to implement governance principles from the earliest stages.',
-    date: '2025-01-08', slug: 'corporate-governance-startups',
-    categoryAr: 'الحوكمة', categoryEn: 'Governance',
-    readingTime: 4,
-  },
-  {
-    titleAr: 'دليل شامل لعقود الامتثال التجاري',
-    titleEn: 'A Comprehensive Guide to Commercial Compliance',
-    excerptAr: 'شرح مفصل لأهم أنواع العقود التجارية ومتطلبات الامتثال التنظيمي في السوق السعودي.',
-    excerptEn: 'A detailed overview of key commercial contract types and regulatory compliance requirements.',
-    date: '2024-12-20', slug: 'guide-commercial-compliance-contracts',
-    categoryAr: 'الامتثال', categoryEn: 'Compliance',
-    readingTime: 6,
-  },
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { ArrowRight } from "lucide-react";
+import { type Locale } from "@/types";
+import { EyebrowTag } from "@/components/ui/EyebrowTag";
+
+const posts = [
+  { key: "0", tag: "news" },
+  { key: "1", tag: "news" },
+  { key: "2", tag: "news" },
 ] as const;
 
-function formatDate(date: string, locale: string) {
-  return new Date(date).toLocaleDateString(locale === 'ar' ? 'ar-SA' : 'en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+const placeholderImages = ["/images/blog-1.jpg", "/images/blog-2.jpg", "/images/blog-3.jpg"];
+
+interface BlogSectionProps {
+  locale: Locale;
 }
 
-export default function BlogSection({ locale }: { locale: Locale }) {
-  setRequestLocale(locale);
-  const t = useTranslations('blog');
-  const isRtl = locale === 'ar';
+export function BlogSection({ locale }: BlogSectionProps) {
+  const t = useTranslations("blog");
 
   return (
-    <section className="bg-warm-50 section-padding">
-      <div className="container-custom">
-        {/* Section header */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10 md:mb-12">
-          <div className="max-w-xl">
-            <div className="flex mb-4">
-              <EyebrowTag label={locale === 'ar' ? 'المدونة' : 'Insights'} />
-            </div>
-            <h2
-              className="text-3xl md:text-4xl font-bold text-navy-900 leading-[1.15]"
-              style={{ fontFamily: 'var(--font-heading-ar)' }}
-            >
-              {t('title')}
-            </h2>
-          </div>
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-medium text-gold-600 hover:text-gold-500 transition-colors duration-200 group shrink-0"
+    <section className="bg-warm-50 relative">
+      {/* Top section divider */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gold-400/[0.15]" />
+
+      <div className="section-padding container-custom">
+        <div className="max-w-4xl mx-auto text-center mb-14 md:mb-20">
+          <EyebrowTag label={t("eyebrow")} />
+          <h2
+            className="text-[clamp(1.25rem,3vw,2.25rem)] font-bold text-navy-900 mb-4"
+            style={{ fontFamily: "var(--font-heading-ar)" }}
           >
-            <span className="link-underline">{t('viewAll')}</span>
-            {isRtl ? (
-              <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
-            ) : (
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            )}
-          </Link>
+            {t("title")}
+          </h2>
+          <p className="text-warm-500 leading-[1.7] max-w-2xl mx-auto">{t("description")}</p>
         </div>
 
-        {/* Blog cards — uniform 3-col grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {articles.map((article, idx) => (
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+          {posts.map((post, i) => (
             <Link
-              key={article.slug}
-              href={`/blog/${article.slug}`}
-              className="group surface-card hover-lift overflow-hidden"
+              key={post.key}
+              href={`/${locale}/news`}
+              className="group rounded-[var(--radius-panel)] overflow-hidden bg-white border border-warm-100 hover:border-gold-400/25 transition-all duration-500 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] flex flex-col"
             >
-              {/* Image placeholder */}
-              <div className="h-44 md:h-[200px] bg-gradient-to-br from-navy-800 to-navy-900 rounded-t-[var(--radius-surface)] flex items-center justify-center overflow-hidden relative">
-                <div className="absolute inset-0 flex items-center justify-center opacity-[0.08]">
-                  <svg viewBox="0 0 24 24" className="w-16 h-16 text-gold-400 fill-none stroke-current stroke-[0.5]" aria-hidden="true">
-                    <path d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+              {/* Taller image area for editorial feel */}
+              <div className="relative h-52 md:h-60 bg-warm-100 overflow-hidden">
+                {/* Gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 via-navy-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+                {/* Placeholder image */}
+                <div className="absolute inset-0 bg-gradient-to-br from-warm-200 via-warm-100 to-warm-50" />
+                {/* Read time badge */}
+                <div className="absolute top-4 end-4 z-20 px-3 py-1.5 rounded-full bg-navy-900/80 backdrop-blur-sm text-warm-400 text-[0.7rem] font-semibold">
+                  {t(`read_times.${post.key}`)}
                 </div>
               </div>
 
-              <div className="p-5">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-warm-500 text-xs">{formatDate(article.date, locale)}</span>
-                  <span className="inline-flex items-center gap-1.5 text-xs text-gold-600 bg-gold-50 px-2.5 py-0.5 rounded-full">
-                    <Clock className="w-3 h-3" />
-                    {article.readingTime} {locale === 'ar' ? 'دقيقة' : 'min'}
+              <div className="p-7 flex flex-col flex-1">
+                {/* Tag */}
+                <span className="text-xs font-semibold text-gold-400 mb-3 uppercase tracking-wider">
+                  {t(`tags.${post.tag}`)}
+                </span>
+
+                {/* Title */}
+                <h3
+                  className="text-base font-bold text-navy-900 mb-3 leading-[1.5] group-hover:text-gold-400 transition-colors duration-300"
+                  style={{ fontFamily: "var(--font-heading-ar)" }}
+                >
+                  {t(`posts.${post.key}`)}
+                </h3>
+
+                {/* Excerpt */}
+                <p className="text-sm text-warm-500 leading-[1.7] mb-5 line-clamp-2">
+                  {t(`excerpts.${post.key}`)}
+                </p>
+
+                {/* Read more */}
+                <div className="mt-auto pt-4 border-t border-warm-100">
+                  <span className="text-gold-400 text-xs font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all duration-300">
+                    {t("read_more")}
+                    <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180 transition-transform" />
                   </span>
                 </div>
-                <h3
-                  className="font-semibold text-navy-900 mb-2 group-hover:text-gold-700 transition-colors duration-300 line-clamp-2 text-lg"
-                  style={{ fontFamily: 'var(--font-heading-ar)' }}
-                >
-                  {locale === 'ar' ? article.titleAr : article.titleEn}
-                </h3>
-                <p className="text-warm-600 text-sm leading-relaxed line-clamp-2">
-                  {locale === 'ar' ? article.excerptAr : article.excerptEn}
-                </p>
               </div>
             </Link>
           ))}

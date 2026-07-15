@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Scale, Shield, Award, BadgeCheck } from "lucide-react";
-import { cn, getWhatsAppUrl } from "@/lib/utils";
+import { getWhatsAppUrl } from "@/lib/utils";
 import { siteConfig, type Locale } from "@/types";
 import { EyebrowTag } from "@/components/ui/EyebrowTag";
 
@@ -24,22 +24,30 @@ export function Hero({ locale }: HeroProps) {
 
   return (
     <section className="relative min-h-screen bg-navy-950 flex items-center overflow-hidden">
-      {/* Background — subtle pattern + glow */}
+      {/* Background — premium depth layers */}
       <div className="absolute inset-0 pointer-events-none">
+        {/* Subtle grid pattern */}
         <div
-          className="absolute inset-0 opacity-[0.03] max-md:hidden"
+          className="absolute inset-0 opacity-[0.025] max-md:hidden"
           style={{
             backgroundImage: `linear-gradient(30deg, var(--color-gold-400) 10%, transparent 10.5%, transparent 90%, var(--color-gold-400) 90.5%)`,
             backgroundSize: "100px 100px",
           }}
         />
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-gold-400/[0.04] blur-[150px] max-md:blur-[80px] max-md:opacity-40" />
+        {/* Central ambient glow */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-gold-400/[0.04] blur-[180px] max-md:blur-[100px] max-md:opacity-40" />
+        {/* Bottom-right glow for depth */}
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-gold-400/[0.02] blur-[150px]" />
+        {/* Left vertical accent line */}
+        <div className="absolute top-0 bottom-0 left-[15%] w-px bg-gradient-to-b from-transparent via-gold-400/[0.08] to-transparent hidden lg:block" />
+        {/* Right vertical accent line */}
+        <div className="absolute top-0 bottom-0 right-[15%] w-px bg-gradient-to-b from-transparent via-gold-400/[0.08] to-transparent hidden lg:block" />
       </div>
 
       {/* Top gold accent line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent" />
 
-      <div className="relative z-10 container-custom pt-24 md:pt-36 pb-16 md:pb-20">
+      <div className="relative z-10 container-custom pt-20 md:pt-28 pb-16 md:pb-20">
         <div className="max-w-4xl mx-auto text-center">
           {/* Eyebrow */}
           <div className="flex justify-center mb-3">
@@ -81,14 +89,19 @@ export function Hero({ locale }: HeroProps) {
           </div>
         </div>
 
-        {/* Trust cards — 4-col grid below hero */}
+        {/* Trust cards — 4-col grid with premium depth */}
         <div className="mt-10 sm:mt-12 md:mt-20">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
             {trustCards.map((card) => {
               const Icon = card.icon;
               return (
-                <div key={card.key} className="surface-card-dark p-5 sm:p-5 md:p-8 group hover:border-gold-400/20">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gold-400/[0.08] flex items-center justify-center mb-4 sm:mb-5 group-hover:bg-gold-400/[0.15] transition-colors duration-500 ring-1 ring-gold-400/[0.08] group-hover:ring-gold-400/20">
+                <div
+                  key={card.key}
+                  className="relative p-5 sm:p-5 md:p-8 rounded-[var(--radius-surface)] bg-navy-900/60 border border-white/[0.06] hover:border-gold-400/20 transition-colors duration-700 group"
+                >
+                  {/* Top gold accent line */}
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-400/25 to-transparent" aria-hidden="true" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gold-400/[0.08] flex items-center justify-center mb-4 sm:mb-5 group-hover:bg-gold-400/[0.15] transition-colors duration-500 ring-1 ring-gold-400/[0.08] group-hover:ring-gold-400/20 shadow-[0_0_20px_rgba(184,149,60,0.06)]">
                     <Icon aria-hidden="true" className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-gold-400" />
                   </div>
                   <h3

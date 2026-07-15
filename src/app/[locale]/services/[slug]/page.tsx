@@ -4,7 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { type Locale } from "@/types";
 import { notFound } from "next/navigation";
-import CtaBand from "@/components/home/CtaBand";
+import { CtaBand } from "@/components/home/CtaBand";
 import {
   Building2,
   Shield,

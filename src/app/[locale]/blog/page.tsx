@@ -6,7 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import { type Locale } from "@/types";
 import { generatePageMetadata } from "@/lib/metadata";
-import CtaBand from "@/components/home/CtaBand";
+import { CtaBand } from "@/components/home/CtaBand";
 
 export function generateStaticParams() {
   return [{ locale: "ar" }, { locale: "en" }];
