@@ -73,18 +73,21 @@ function StatItem({ stat, locale }: { stat: (typeof stats)[number]; locale: stri
   const t = useTranslations("stats");
 
   return (
-    <div ref={ref} className="flex flex-col items-center text-center">
+    <div ref={ref} className="relative text-center py-4">
+      {/* Large gold number */}
       <span
-        className="text-3xl sm:text-4xl md:text-5xl font-bold text-gold-400 tracking-tight leading-none"
+        className="block text-4xl sm:text-5xl md:text-6xl font-bold text-gold-400 tracking-tight leading-none"
         style={{ fontFamily: "var(--font-heading-en)" }}
       >
         {count}
         {stat.suffix}
       </span>
-      <span className="mt-3 text-sm font-semibold text-warm-200 uppercase tracking-wide">
+      {/* Label */}
+      <span className="block mt-4 text-sm font-semibold text-warm-200 uppercase tracking-widest">
         {t(stat.key)}
       </span>
-      <span className="mt-1.5 text-xs text-warm-400 leading-relaxed max-w-[200px]">
+      {/* Description */}
+      <span className="block mt-2 text-xs text-warm-400/80 leading-relaxed max-w-[200px] mx-auto">
         {locale === "ar" ? stat.descAr : stat.descEn}
       </span>
     </div>
@@ -93,9 +96,13 @@ function StatItem({ stat, locale }: { stat: (typeof stats)[number]; locale: stri
 
 export function StatsBand({ locale = "ar" }: { locale?: string }) {
   return (
-    <section className="bg-navy-900 py-16 md:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-8 md:gap-12 lg:grid-cols-4 lg:gap-16">
+    <section className="relative bg-navy-900 overflow-hidden">
+      {/* Subtle top/bottom border */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-500/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-500/20 to-transparent" />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-24">
+        <div className="grid grid-cols-2 gap-10 md:gap-12 lg:grid-cols-4 lg:gap-8">
           {stats.map((stat) => (
             <StatItem key={stat.key} stat={stat} locale={locale} />
           ))}
