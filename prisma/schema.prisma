@@ -1,0 +1,147 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Service ──────────────────────────────────────────────────────────────────
+
+model Service {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  locale      String   @default("ar")
+  title       String
+  titleEn     String?
+  summary     String?
+  summaryEn   String?
+  content     String?  @db.Text
+  contentEn   String?  @db.Text
+  icon        String?
+  sortOrder   Int      @default(0)
+  isPublished Boolean  @default(false)
+  isFeatured  Boolean  @default(false)
+  metaTitle   String?
+  metaDesc    String?
+  faqs        Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  consultations ConsultationRequest[]
+
+  @@unique([slug, locale])
+  @@index([isPublished])
+  @@index([locale])
+}
+
+// ─── Blog Post ────────────────────────────────────────────────────────────────
+
+model BlogPost {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  locale       String   @default("ar")
+  title        String
+  titleEn      String?
+  excerpt      String?
+  excerptEn    String?
+  content      String   @db.Text
+  contentEn    String?  @db.Text
+  coverImage   String?
+  author       String?
+  authorEn     String?
+  tags         String?
+  isPublished  Boolean  @default(false)
+  publishedAt  DateTime?
+  metaTitle    String?
+  metaDesc     String?
+  ogImage      String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([slug, locale])
+  @@index([isPublished, publishedAt])
+  @@index([locale])
+}
+
+// ─── Testimonial ──────────────────────────────────────────────────────────────
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  locale      String   @default("ar")
+  name        String
+  nameEn      String?
+  role        String?
+  roleEn      String?
+  company     String?
+  companyEn   String?
+  content     String   @db.Text
+  contentEn   String?  @db.Text
+  rating      Int?     @default(5)
+  isPublished Boolean  @default(false)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isPublished, locale])
+}
+
+// ─── Team Member ──────────────────────────────────────────────────────────────
+
+model TeamMember {
+  id          String   @id @default(cuid())
+  locale      String   @default("ar")
+  name        String
+  nameEn      String?
+  title       String
+  titleEn     String?
+  bio         String?  @db.Text
+  bioEn       String?  @db.Text
+  image       String?
+  email       String?
+  phone       String?
+  sortOrder   Int      @default(0)
+  isPublished Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isPublished, locale])
+}
+
+// ─── Consultation Request ─────────────────────────────────────────────────────
+
+model ConsultationRequest {
+  id              String   @id @default(cuid())
+  name            String
+  phone           String
+  email           String?
+  whatsapp        String?
+  serviceType     String?
+  serviceId       String?
+  subject         String?
+  description     String   @db.Text
+  urgency         String?  @default("normal")
+  status          String   @default("new")
+  notes           String?  @db.Text
+  attachmentUrl   String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  service   Service? @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+// ─── Admin User ───────────────────────────────────────────────────────────────
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  role         String   @default("admin")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

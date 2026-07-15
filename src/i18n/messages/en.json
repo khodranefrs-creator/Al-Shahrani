@@ -1,0 +1,209 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "blog": "Insights",
+    "contact": "Contact",
+    "admin": "Dashboard"
+  },
+  "hero": {
+    "title": "Your Legal Partner in Building and Protecting Business",
+    "subtitle": "A specialized law firm in commercial, corporate, and institutional law. We deliver expert legal counsel and litigation representation with the highest standards of competence and experience.",
+    "cta_primary": "Request a Consultation",
+    "cta_secondary": "Contact the Firm"
+  },
+  "whyUs": {
+    "title": "Why Choose Us",
+    "subtitle": "We combine deep legal expertise with an understanding of the Saudi business environment",
+    "expertise": {
+      "title": "Distinguished Legal Expertise",
+      "description": "A team of lawyers with extensive experience and advanced academic qualifications across multiple legal disciplines"
+    },
+    "corporate": {
+      "title": "Institutional & Corporate Focus",
+      "description": "A dedicated team serving major companies, institutions, business leaders, and investors"
+    },
+    "comprehensive": {
+      "title": "Comprehensive Legal Ecosystem",
+      "description": "Full-spectrum legal services including consultancy, litigation, documentation, contracts, and dispute management"
+    },
+    "discretion": {
+      "title": "Absolute Discretion & Professionalism",
+      "description": "We uphold the highest standards of confidentiality and professionalism in all client matters"
+    }
+  },
+  "practiceAreas": {
+    "title": "Practice Areas",
+    "subtitle": "Comprehensive legal coverage across all areas to serve our clients with the best solutions",
+    "viewAll": "View All Services",
+    "learnMore": "Learn More"
+  },
+  "corporateSpotlight": {
+    "title": "Corporate & Commercial Law",
+    "description": "Specialized legal services for companies and institutions including incorporation, M&A, governance, and corporate contracts.",
+    "cta": "Corporate Consultation"
+  },
+  "process": {
+    "title": "Our Methodology",
+    "subtitle": "We follow a structured and calculated approach to ensure the best outcomes for our clients",
+    "steps": {
+      "consultation": {
+        "title": "Initial Consultation",
+        "description": "We listen to the client and thoroughly understand their objectives and legal requirements"
+      },
+      "analysis": {
+        "title": "Analysis & Assessment",
+        "description": "We analyze the legal situation, evaluate available options, and identify potential risks"
+      },
+      "strategy": {
+        "title": "Strategy Development",
+        "description": "We develop a clear, detailed legal plan to achieve the client's objectives"
+      },
+      "execution": {
+        "title": "Execution & Follow-up",
+        "description": "We execute the strategy with skill, monitor progress, and adjust as needed"
+      }
+    }
+  },
+  "testimonials": {
+    "title": "Client Testimonials",
+    "subtitle": "We are proud of our clients' trust and satisfaction with our services"
+  },
+  "blog": {
+    "title": "Legal Insights",
+    "subtitle": "Articles and legal perspectives from our expert team",
+    "readMore": "Read More",
+    "backToList": "Back to Insights",
+    "backToBlog": "Back to Insights",
+    "relatedArticles": "Related Articles",
+    "viewAll": "View All",
+    "publishedOn": "Published on",
+    "noPosts": "No articles available at this time"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We are here to help. Reach out for any legal consultation",
+    "form": {
+      "title": "Request a Legal Consultation",
+      "name": "Full Name",
+      "namePlaceholder": "Enter your full name",
+      "phone": "Phone Number",
+      "phonePlaceholder": "05XXXXXXXX",
+      "email": "Email (Optional)",
+      "emailPlaceholder": "email@example.com",
+      "serviceType": "Service Type",
+      "selectService": "Select a service",
+      "subject": "Subject",
+      "subjectPlaceholder": "Subject of consultation",
+      "description": "Details",
+      "descriptionPlaceholder": "Describe your legal request in detail...",
+      "urgency": "Priority Level",
+      "urgency_normal": "Normal",
+      "urgency_urgent": "Urgent",
+      "urgency_very_urgent": "Very Urgent",
+      "services": {
+        "corporate-law": "Corporate Law",
+        "governance": "Corporate Governance",
+        "contracts": "Contracts",
+        "ma": "Mergers & Acquisitions",
+        "litigation": "Dispute Resolution",
+        "debt-collection": "Debt Collection",
+        "notarization": "Notarization",
+        "labor": "Labor Law",
+        "personal-status": "Personal Status",
+        "property": "Property Law",
+        "medical": "Medical Law"
+      },
+      "urgencyLevels": {
+        "normal": "Normal",
+        "urgent": "Urgent",
+        "very-urgent": "Very Urgent"
+      },
+      "submit": "Submit Request",
+      "submitting": "Submitting...",
+      "success": "Your request has been submitted successfully. We will contact you shortly.",
+      "error": "An error occurred. Please try again."
+    },
+    "info": {
+      "title": "Contact Information",
+      "phone": "Phone",
+      "whatsapp": "WhatsApp",
+      "email": "Email",
+      "address": "Address",
+      "hours": "Office Hours",
+      "hoursValue": "Sunday - Thursday: 9:00 AM - 5:00 PM",
+      "map": "View on Map"
+    }
+  },
+  "footer": {
+    "description": "A specialized law firm in commercial, corporate, and institutional law. Expert legal counsel and litigation representation.",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "contactUs": "Contact Us",
+    "rights": "All rights reserved",
+    "address": "Khamis Mushait, Al-Hussam District, Al-Mahala Road"
+  },
+  "about": {
+    "title": "About Us",
+    "whoWeAre": {
+      "title": "Who We Are",
+      "content": "Our office is one of the leading professional firms in the Kingdom of Saudi Arabia, providing services through a team with extensive experience and advanced academic qualifications. We are distinguished by our ability to deliver a diverse range of legal services."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "content": "We aspire to be the nucleus of a Saudi-based firm built on honesty, integrity, and scientific rigor. We seek to develop and expand across the Kingdom, providing a distinctive legal system specialized in commercial, corporate, and institutional law — adapting to the demands of the time by attracting the finest expertise and talent."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "content": "To serve as the legal representatives for companies, commercial institutions, business leaders, and public figures — providing continuous, direct, and prompt legal support, consultation, and comprehensive contract management."
+    },
+    "values": {
+      "title": "Our Values",
+      "items": {
+        "integrity": {
+          "title": "Integrity",
+          "description": "We uphold the highest standards of integrity and honesty in all our legal dealings"
+        },
+        "excellence": {
+          "title": "Excellence",
+          "description": "We consistently strive to deliver the finest legal solutions and the highest level of service"
+        },
+        "confidentiality": {
+          "title": "Confidentiality",
+          "description": "We respect and protect our clients' information with the utmost standards of discretion"
+        },
+        "professionalism": {
+          "title": "Professionalism",
+          "description": "We operate with the highest professional standards in every aspect of our practice"
+        }
+      }
+    }
+  },
+  "services": {
+    "title": "Legal Services",
+    "subtitle": "Comprehensive legal services tailored to your needs",
+    "requestService": "Request This Service",
+    "relatedServices": "Related Services",
+    "faq": "Frequently Asked Questions",
+    "backToServices": "Back to Services"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "notFound": "Page not found",
+    "backToHome": "Back to Home",
+    "readMore": "Read More",
+    "viewAll": "View All",
+    "close": "Close",
+    "phone": "Phone",
+    "email": "Email"
+  },
+  "ctaBand": {
+    "headline": "Need Legal Counsel?",
+    "subtext": "Our team is ready to help. Contact us today for specialized legal consultation.",
+    "ctaConsultation": "Request Consultation",
+    "ctaWhatsApp": "Contact via WhatsApp",
+    "whatsappMessage": "Hello, I would like to request a legal consultation."
+  }
+}
