@@ -33,33 +33,6 @@
   /* ─── Typography ─── */
   --font-heading: "Noto Naskh Arabic", Georgia, serif;
   --font-body: "Inter", "Noto Naskh Arabic", system-ui, sans-serif;
-  --font-mono: "Geist Mono", monospace;
-
-  /* ─── Animations ─── */
-  --animate-fade-in: fade-in 0.6s ease-out forwards;
-  --animate-slide-up: slide-up 0.6s ease-out forwards;
-  --animate-slide-in-right: slide-in-right 0.6s ease-out forwards;
-  --animate-slide-in-left: slide-in-left 0.6s ease-out forwards;
-}
-
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slide-up {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slide-in-right {
-  from { opacity: 0; transform: translateX(24px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes slide-in-left {
-  from { opacity: 0; transform: translateX(-24px); }
-  to { opacity: 1; transform: translateX(0); }
 }
 
 /* ─── Base ─── */
@@ -103,7 +76,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 html[dir="rtl"] { overflow-x: hidden; }
-[dir="rtl"] .rtl\:rotate-180 { transform: rotate(180deg); }
 
 /* ─── Gold Accent ─── */
 .gold-accent { position: relative; }
@@ -157,17 +129,6 @@ html[dir="rtl"] { overflow-x: hidden; }
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 24px rgba(0, 0, 0, 0.1);
 }
 
-/* ─── Premium Card Hover ─── */
-.card-premium {
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.card-premium:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px -12px rgba(13, 21, 36, 0.15),
-              0 8px 24px -8px rgba(13, 21, 36, 0.1);
-}
-
 /* ─── Editorial Number ─── */
 .editorial-number {
   font-family: var(--font-heading);
@@ -181,11 +142,6 @@ html[dir="rtl"] { overflow-x: hidden; }
   color: var(--color-gold-400);
 }
 
-/* ─── Process Connector ─── */
-.process-connector {
-  background: linear-gradient(90deg, transparent, var(--color-gold-300), transparent);
-}
-
 /* ─── Quote Mark ─── */
 .quote-mark {
   font-family: Georgia, serif;
@@ -193,17 +149,6 @@ html[dir="rtl"] { overflow-x: hidden; }
   line-height: 1;
   color: var(--color-gold-300);
   opacity: 0.6;
-}
-
-/* ─── Scroll Animations ─── */
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-.animate-on-scroll.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* ─── Focus ─── */

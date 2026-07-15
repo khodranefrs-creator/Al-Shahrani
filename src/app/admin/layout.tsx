@@ -27,7 +27,7 @@ export default async function AdminLayout({
   return (
     <div className="min-h-screen bg-warm-50 flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-navy-900 text-white flex flex-col fixed inset-y-0 left-0 z-40">
+      <aside className="w-64 bg-navy-900 text-white flex flex-col fixed inset-y-0 start-0 z-40">
         <div className="p-6 border-b border-navy-700">
           <h1 className="text-lg font-bold" style={{ fontFamily: "var(--font-heading)" }}>
             Admin Dashboard
@@ -65,7 +65,7 @@ export default async function AdminLayout({
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 ml-64 p-8">
+      <main className="flex-1 ms-64 p-8">
         {children}
       </main>
     </div>

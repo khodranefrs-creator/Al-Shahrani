@@ -41,22 +41,24 @@ export default async function ContactPage({
   const t = await getTranslations("contact");
 
   return (
-    <>
+    <main>
       <section className="bg-navy-gradient py-28 md:py-36">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <h1
-            className="text-4xl font-bold text-white md:text-5xl lg:text-6xl"
-            style={{ fontFamily: "var(--font-heading)" }}
-          >
+          <h1 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl tracking-tight">
             {t("title")}
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-navy-200">
             {t("subtitle")}
           </p>
+          <p className="mx-auto mt-4 text-sm text-gold-400">
+            {typed === "ar"
+              ? "الاستشارة الأولى مجانية"
+              : "Initial consultation free of charge"}
+          </p>
         </div>
       </section>
 
       <ConsultationForm locale={typed} />
-    </>
+    </main>
   );
 }

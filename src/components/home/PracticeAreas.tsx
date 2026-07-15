@@ -54,7 +54,7 @@ export default function PracticeAreas({ locale }: { locale: Locale }) {
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="group relative flex gap-5 py-8 px-6 lg:px-10 transition-colors duration-300 hover:bg-white/60"
+                className="group relative flex gap-5 py-10 px-6 lg:px-10 transition-colors duration-300 hover:bg-white/60"
               >
                 <div className="shrink-0 mt-1">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-900 text-gold-400 transition-all duration-300 group-hover:bg-gold-500 group-hover:text-navy-900 group-hover:scale-110">
@@ -81,7 +81,7 @@ export default function PracticeAreas({ locale }: { locale: Locale }) {
         <div className="mt-14 text-center">
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 text-lg font-semibold text-gold-600 transition-colors duration-300 hover:text-gold-700"
+            className="inline-flex items-center gap-2 text-base font-semibold text-gold-600 transition-colors duration-300 hover:text-gold-700"
           >
             {locale === 'ar' ? 'عرض جميع الخدمات' : 'View All Services'}
             <ArrowIcon className="h-5 w-5 transition-transform duration-300" />

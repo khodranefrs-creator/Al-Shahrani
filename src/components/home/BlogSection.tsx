@@ -55,7 +55,7 @@ export default function BlogSection({ locale }: { locale: Locale }) {
           </div>
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-gold-600 hover:text-gold-700 transition-colors shrink-0"
+            className="inline-flex items-center gap-2 text-base font-semibold text-gold-600 hover:text-gold-700 transition-colors shrink-0"
           >
             {t('viewAll')}
             <ArrowIcon className="h-4 w-4" />
@@ -75,7 +75,7 @@ export default function BlogSection({ locale }: { locale: Locale }) {
                 className="group py-10 px-6 lg:px-10 transition-colors duration-300 hover:bg-white/60"
               >
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-navy-900 text-gold-400 transition-all duration-300 group-hover:bg-gold-500 group-hover:text-navy-900">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-navy-900 text-gold-400 transition-all duration-300 group-hover:bg-gold-500 group-hover:text-navy-900">
                     <Icon className="h-5 w-5" />
                   </div>
                   <span className="text-xs font-semibold tracking-wider uppercase text-gold-600">

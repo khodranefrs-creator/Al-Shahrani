@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { type Locale } from "@/types";
 import { notFound } from "next/navigation";
+import CtaBand from "@/components/home/CtaBand";
 import {
   Building2,
   Shield,
@@ -174,8 +175,8 @@ export default async function ServicePage({
 
   return (
     <main>
-      <section className="bg-navy-gradient py-20 md:py-28">
-        <div className="container mx-auto px-4">
+      <section className="bg-navy-gradient py-28 md:py-36">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Link
             href="/services"
             className="inline-flex items-center gap-2 text-gold-300 hover:text-gold-200 transition-colors mb-8"
@@ -184,58 +185,52 @@ export default async function ServicePage({
             {locale === "ar" ? "العودة إلى الخدمات" : "Back to Services"}
           </Link>
           <div className="flex items-center gap-5 mb-6">
-            <div className="w-16 h-16 rounded-full bg-gold-100/10 flex items-center justify-center">
-              <service.Icon className="w-8 h-8 text-gold-400" />
+            <div className="w-14 h-14 rounded-full bg-gold-100/10 flex items-center justify-center">
+              <service.Icon className="w-7 h-7 text-gold-400" />
             </div>
-            <h1
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white"
-              style={{ fontFamily: "var(--font-heading)" }}
-            >
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">
               {service.title[locale]}
             </h1>
           </div>
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="prose prose-lg max-w-none">
+      <section className="bg-white py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl">
             <p className="text-navy-700 leading-relaxed text-lg">
               {service.description[locale]}
             </p>
-          </div>
 
-          <div className="mt-12 p-8 bg-navy-50 rounded-xl border border-navy-100">
-            <h2
-              className="text-2xl font-bold text-navy-900 mb-4"
-              style={{ fontFamily: "var(--font-heading)" }}
-            >
-              {locale === "ar" ? "اطلب هذه الخدمة" : "Request This Service"}
-            </h2>
-            <p className="text-navy-600 mb-6">
-              {locale === "ar"
-                ? "تواصل معنا للحصول على استشارة قانونية متخصصة في هذا المجال."
-                : "Contact us to receive specialized legal consultation in this area."}
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 bg-gold-500 hover:bg-gold-600 text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-300"
-            >
-              {locale === "ar" ? "تواصل معنا" : "Contact Us"}
-              <ArrowIcon className="w-4 h-4" />
-            </Link>
+            <div className="mt-12 rounded-2xl border border-navy-100 bg-warm-50 p-8">
+              <h2 className="text-2xl font-bold text-navy-900 mb-4 tracking-tight">
+                {locale === "ar" ? "اطلب هذه الخدمة" : "Request This Service"}
+              </h2>
+              <p className="text-navy-600 mb-6 leading-relaxed">
+                {locale === "ar"
+                  ? "تواصل معنا للحصول على استشارة قانونية متخصصة في هذا المجال."
+                  : "Contact us to receive specialized legal consultation in this area."}
+              </p>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-lg bg-gold-500 px-8 py-3.5 text-base font-semibold text-navy-900 transition-all duration-300 hover:bg-gold-400 shadow-lg shadow-gold-500/20 hover:shadow-xl hover:shadow-gold-500/25"
+              >
+                {locale === "ar" ? "تواصل معنا" : "Contact Us"}
+                <ArrowIcon className="w-5 h-5" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-navy-50">
-        <div className="container mx-auto px-4">
+      <section className="bg-warm-50 py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title={
               locale === "ar" ? "خدمات ذات صلة" : "Related Services"
             }
           />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {relatedServices.map((related) => {
               const title = related.title[locale];
               const description = related.description[locale];
@@ -245,15 +240,12 @@ export default async function ServicePage({
                 <Link
                   key={related.slug}
                   href={`/services/${related.slug}`}
-                  className="group block bg-white border border-navy-100 rounded-xl p-6 md:p-8 transition-all duration-300 hover:border-gold-400 hover:shadow-lg"
+                  className="group rounded-2xl border border-navy-100 bg-white p-6 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                 >
-                  <div className="w-14 h-14 rounded-full bg-gold-100 flex items-center justify-center mb-5 group-hover:bg-gold-200 transition-colors duration-300">
-                    <Icon className="w-7 h-7 text-gold-600" />
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-gold-100 transition-colors duration-300 group-hover:bg-gold-200">
+                    <Icon className="h-5 w-5 text-gold-600" />
                   </div>
-                  <h3
-                    className="text-xl font-bold text-navy-900 mb-3"
-                    style={{ fontFamily: "var(--font-heading)" }}
-                  >
+                  <h3 className="mb-3 text-lg font-bold text-navy-900">
                     {title}
                   </h3>
                   <p className="text-navy-600 leading-relaxed">{description}</p>
@@ -263,6 +255,8 @@ export default async function ServicePage({
           </div>
         </div>
       </section>
+
+      <CtaBand locale={locale} />
     </main>
   );
 }

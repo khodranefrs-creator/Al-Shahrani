@@ -22,19 +22,19 @@ export default function CorporateSpotlight({ locale }: { locale: Locale }) {
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-24">
           {/* Content */}
           <div className="space-y-8">
-            <div>
+            <div className="max-w-2xl">
               <p className="text-sm font-semibold tracking-widest uppercase text-gold-600 mb-4">
                 {locale === 'ar' ? 'القانون المؤسسي' : 'Institutional Practice'}
               </p>
               <h2
-                className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-navy-900 leading-tight"
+                className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy-900 leading-tight"
                 style={{ fontFamily: 'var(--font-heading)' }}
               >
                 {t('title')}
               </h2>
             </div>
 
-            <p className="text-lg leading-relaxed text-navy-500">
+            <p className="text-navy-500 leading-relaxed">
               {t('description')}
             </p>
 
@@ -54,7 +54,7 @@ export default function CorporateSpotlight({ locale }: { locale: Locale }) {
 
             <Link
               href="/services/corporate-law"
-              className="inline-flex items-center gap-2 rounded-lg bg-gold-500 px-8 py-3.5 text-sm font-semibold text-navy-900 shadow-lg shadow-gold-500/20 transition-all duration-300 hover:bg-gold-400 hover:shadow-xl hover:shadow-gold-500/25"
+              className="inline-flex items-center gap-2 rounded-lg bg-gold-500 px-10 py-4 text-base font-semibold text-navy-900 shadow-xl shadow-gold-500/25 transition-all duration-300 hover:bg-gold-400 hover:shadow-2xl hover:shadow-gold-500/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500"
             >
               {t('cta')}
               <ArrowIcon className="h-5 w-5" />

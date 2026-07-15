@@ -50,7 +50,7 @@ export default function TestimonialsSection({ locale }: { locale: Locale }) {
         {/* Testimonials — editorial layout */}
         <div className="grid grid-cols-1 gap-0 divide-y divide-navy-100 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="py-10 px-6 lg:px-10 group">
+            <div key={index} className="py-10 px-6 lg:px-10 group transition-colors duration-300 hover:bg-white/60">
               {/* Quote mark */}
               <div className="quote-mark mb-2 select-none" aria-hidden="true">&ldquo;</div>
 

@@ -117,7 +117,7 @@ export function Footer({ locale }: FooterProps) {
               </li>
               <li>
                 <a href={getPhoneUrl(siteConfig.phone[1])} className="flex items-center gap-3 text-sm text-navy-300 hover:text-white transition-colors">
-                  <Phone className="w-4 h-4 text-gold-400/0 shrink-0" aria-hidden="true" />
+                  <Phone className="w-4 h-4 text-gold-400/70 shrink-0" aria-hidden="true" />
                   {siteConfig.phone[1]}
                 </a>
               </li>

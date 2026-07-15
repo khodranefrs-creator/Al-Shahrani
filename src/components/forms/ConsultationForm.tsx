@@ -319,8 +319,8 @@ export default function ConsultationForm({ locale }: ConsultationFormProps) {
                     </p>
                     <p className="text-sm text-navy-500">
                       {locale === "ar"
-                        ? "٨:٠٠ صباحاً - ٥:٠٠ مساءً"
-                        : "8:00 AM - 5:00 PM"}
+                        ? "٩:٠٠ صباحاً - ٥:٠٠ مساءً"
+                        : "9:00 AM - 5:00 PM"}
                     </p>
                   </div>
                 </div>

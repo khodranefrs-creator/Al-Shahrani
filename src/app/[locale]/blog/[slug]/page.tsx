@@ -2,9 +2,11 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 import { type Locale } from "@/types";
 import { generatePageMetadata } from "@/lib/metadata";
+import CtaBand from "@/components/home/CtaBand";
 
 interface BlogArticle {
   slug: string;
@@ -39,7 +41,7 @@ const blogArticles: Record<Locale, BlogArticle[]> = {
       date: "٢٥ يونيو ٢٠٢٦",
       content: [
         "شهد نظام العمل السعودي تحديثات مهمة في عام 2026 تهدف إلى تعزيز حقوق العمال وتحسين بيئة العمل. تأتي هذه التعديلات في إطار رؤية المملكة 2030 لتطوير سوق العمل وزيادة تنافسية الشركات.",
-        "من أبرز التحديثات: زيادة الحد الأدنى للأجور، وتحسين ظروف العمل، وتعزيز حماية العمال من التعسف. كما شملت التعديلات تحديثات على نظام إجازات العمل وال UIStoryboardSegue.",
+        "من أبرز التحديثات: زيادة الحد الأدنى للأجور، وتحسين ظروف العمل، وتعزيز حماية العمال من التعسف. كما شملت التعديلات تحديثات على نظام إجازات العمل.",
         "يُنصح أصحاب العمل بمراجعة سياساتهم الداخلية والتأكد من امتثالها للتعديلات الجديدة. يمكن لفريقنا المتكامل تقديم الاستشارات اللازمة لضمان الامتثال الكامل.",
       ],
     },
@@ -52,7 +54,7 @@ const blogArticles: Record<Locale, BlogArticle[]> = {
       date: "١٨ مايو ٢٠٢٦",
       content: [
         "تُمثل المسؤولية الطبية من أكثر المجالات القانونية تعقيداً في المملكة العربية السعودية. يُنظم هذا المجال مجموعة من الأنظمة واللوائح التي تحدد حقوق ومسؤوليات كل من المريض والطبيب والمؤسسة الصحية.",
-        "من أبرز المبادئ التي ي确立 النظام السعودي: مبدأ رضا المريض知情明，مبدأ العناية الواجبة، و Duty of Care، و مبدأ التعويض عن الأضرار. كما يُحدد النظام حالات الإعفاء من المسؤولية وأسبابها.",
+        "من أبرز المبادئ التي ي确立 النظام السعودي: مبدأ رضا المريض知情明، مبدأ العناية الواجبة، و Duty of Care، و مبدأ التعويض عن الأضرار. كما يُحدد النظام حالات الإعفاء من المسؤولية وأسبابها.",
         "في حال وقوعك في حالة خطأ طبي، يُنصح بسرعة استشارة محامٍ متخصص في المجال الطبي. يمكن لفريقنا مساعدتك في فهم حقوقك وتقديم الدعم القانوني اللازم.",
       ],
     },
@@ -176,14 +178,13 @@ export default async function BlogArticlePage({
     .filter((a) => a.slug !== slug)
     .slice(0, 2);
 
+  const ArrowIcon = typed === "ar" ? "\u2190" : "\u2192";
+
   return (
-    <>
+    <main>
       <section className="bg-navy-gradient py-28 md:py-36">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <h1
-            className="text-3xl font-bold text-white md:text-4xl lg:text-5xl"
-            style={{ fontFamily: "var(--font-heading)" }}
-          >
+          <h1 className="text-4xl font-bold text-white md:text-5xl tracking-tight">
             {article.title}
           </h1>
           <div className="mt-6 flex items-center justify-center gap-4 text-navy-300">
@@ -194,13 +195,13 @@ export default async function BlogArticlePage({
         </div>
       </section>
 
-      <article className="bg-white py-16 lg:py-24">
+      <article className="bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <Link
             href="/blog"
             className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-navy-500 hover:text-gold-600 transition-colors"
           >
-            <span aria-hidden="true">&rarr;</span>
+            <span aria-hidden="true">{ArrowIcon}</span>
             {t("backToBlog")}
           </Link>
 
@@ -215,17 +216,17 @@ export default async function BlogArticlePage({
       </article>
 
       {relatedArticles.length > 0 && (
-        <section className="bg-warm-50 py-16 lg:py-20">
+        <section className="bg-warm-50 py-20 lg:py-28">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="mb-8 text-2xl font-bold text-navy-900">
+            <h2 className="mb-8 text-2xl font-bold text-navy-900 tracking-tight">
               {t("relatedArticles")}
             </h2>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               {relatedArticles.map((related) => (
                 <Link
                   key={related.slug}
                   href={`/blog/${related.slug}`}
-                  className="group rounded-2xl border border-warm-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                  className="group rounded-2xl border border-warm-200 bg-white p-6 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                 >
                   <time className="text-sm text-navy-400">
                     {related.date}
@@ -233,13 +234,19 @@ export default async function BlogArticlePage({
                   <h3 className="mt-2 text-lg font-bold text-navy-900 group-hover:text-gold-600 transition-colors">
                     {related.title}
                   </h3>
-                  <p className="mt-2 text-navy-600">{related.excerpt}</p>
+                  <p className="mt-2 text-navy-600 leading-relaxed">{related.excerpt}</p>
+                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-gold-600 opacity-0 transition-all duration-200 group-hover:opacity-100">
+                    {t("readMore")}
+                    <ArrowUpRight className="h-4 w-4" />
+                  </span>
                 </Link>
               ))}
             </div>
           </div>
         </section>
       )}
-    </>
+
+      <CtaBand locale={typed} />
+    </main>
   );
 }

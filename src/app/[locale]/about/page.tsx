@@ -4,6 +4,7 @@ import { Heart, Award, Eye, Target } from "lucide-react";
 
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { siteConfig, type Locale } from "@/types";
+import CtaBand from "@/components/home/CtaBand";
 
 export function generateStaticParams() {
   return [{ locale: "ar" }, { locale: "en" }];
@@ -52,20 +53,15 @@ export default async function AboutPage({
   const t = await getTranslations("about");
 
   return (
-    <>
-      {/* Hero Banner */}
+    <main>
       <section className="bg-navy-gradient py-28 md:py-36">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <h1
-            className="text-4xl font-bold text-white md:text-5xl lg:text-6xl"
-            style={{ fontFamily: "var(--font-heading)" }}
-          >
+          <h1 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl tracking-tight">
             {t("title")}
           </h1>
         </div>
       </section>
 
-      {/* Who We Are */}
       <section className="bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
@@ -75,7 +71,6 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* Vision */}
       <section className="bg-warm-50 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
@@ -85,7 +80,6 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* Mission */}
       <section className="bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
@@ -95,7 +89,6 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* Values */}
       <section className="bg-warm-50 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
@@ -107,24 +100,24 @@ export default async function AboutPage({
             }
           />
 
-          <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             {valueKeys.map((key) => {
               const Icon = valueIcons[key];
 
               return (
                 <div
                   key={key}
-                  className="group rounded-2xl border border-navy-100 bg-white p-8 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+                  className="group rounded-2xl border border-navy-100 bg-white p-6 md:p-8 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                 >
-                  <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gold-100 transition-colors duration-300 group-hover:bg-gold-200">
-                    <Icon className="h-7 w-7 text-gold-600" />
+                  <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-gold-100 transition-colors duration-300 group-hover:bg-gold-200">
+                    <Icon className="h-5 w-5 text-gold-600" />
                   </div>
 
                   <h3 className="mb-3 text-lg font-bold text-navy-900">
                     {t(`values.items.${key}.title`)}
                   </h3>
 
-                  <p className="leading-relaxed text-navy-600">
+                  <p className="text-navy-600 leading-relaxed">
                     {t(`values.items.${key}.description`)}
                   </p>
                 </div>
@@ -133,6 +126,8 @@ export default async function AboutPage({
           </div>
         </div>
       </section>
-    </>
+
+      <CtaBand locale={typed} />
+    </main>
   );
 }

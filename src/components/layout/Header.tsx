@@ -43,13 +43,6 @@ export function Header({ locale }: HeaderProps) {
 
   return (
     <>
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:start-2 focus:z-[100] focus:bg-navy-900 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg"
-      >
-        Skip to content
-      </a>
-
       <header
         className={cn(
           "fixed top-0 inset-x-0 z-50 transition-all duration-500",

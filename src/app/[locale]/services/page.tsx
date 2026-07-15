@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { type Locale } from "@/types";
+import CtaBand from "@/components/home/CtaBand";
 import {
   Building2,
   Shield,
@@ -143,8 +144,8 @@ export default async function ServicesPage({
 
   return (
     <main>
-      <section className="bg-navy-gradient py-20 md:py-28">
-        <div className="container mx-auto px-4">
+      <section className="bg-navy-gradient py-28 md:py-36">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title={locale === "ar" ? "خدماتنا" : "Our Services"}
             subtitle={
@@ -157,9 +158,9 @@ export default async function ServicesPage({
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      <section className="bg-white py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => {
               const title = service.title[locale];
               const description = service.description[locale];
@@ -169,15 +170,12 @@ export default async function ServicesPage({
                 <Link
                   key={service.slug}
                   href={`/services/${service.slug}`}
-                  className="group block bg-white border border-navy-100 rounded-xl p-6 md:p-8 transition-all duration-300 hover:border-gold-400 hover:shadow-lg"
+                  className="group rounded-2xl border border-navy-100 bg-white p-6 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                 >
-                  <div className="w-14 h-14 rounded-full bg-gold-100 flex items-center justify-center mb-5 group-hover:bg-gold-200 transition-colors duration-300">
-                    <Icon className="w-7 h-7 text-gold-600" />
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-gold-100 transition-colors duration-300 group-hover:bg-gold-200">
+                    <Icon className="h-5 w-5 text-gold-600" />
                   </div>
-                  <h3
-                    className="text-xl font-bold text-navy-900 mb-3"
-                    style={{ fontFamily: "var(--font-heading)" }}
-                  >
+                  <h3 className="mb-3 text-lg font-bold text-navy-900">
                     {title}
                   </h3>
                   <p className="text-navy-600 leading-relaxed">{description}</p>
@@ -187,6 +185,8 @@ export default async function ServicesPage({
           </div>
         </div>
       </section>
+
+      <CtaBand locale={locale} />
     </main>
   );
 }

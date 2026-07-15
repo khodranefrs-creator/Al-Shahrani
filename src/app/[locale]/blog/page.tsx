@@ -1,9 +1,11 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 import { type Locale } from "@/types";
 import { generatePageMetadata } from "@/lib/metadata";
+import CtaBand from "@/components/home/CtaBand";
 
 export function generateStaticParams() {
   return [{ locale: "ar" }, { locale: "en" }];
@@ -121,13 +123,10 @@ export default async function BlogPage({
   const posts = blogPosts[typed];
 
   return (
-    <>
+    <main>
       <section className="bg-navy-gradient py-28 md:py-36">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <h1
-            className="text-4xl font-bold text-white md:text-5xl lg:text-6xl"
-            style={{ fontFamily: "var(--font-heading)" }}
-          >
+          <h1 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl tracking-tight">
             {t("title")}
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-navy-200">
@@ -142,7 +141,7 @@ export default async function BlogPage({
             {posts.map((post) => (
               <article
                 key={post.slug}
-                className="group rounded-2xl border border-warm-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="group rounded-2xl border border-warm-200 bg-white p-6 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 <div className="mb-4 flex items-center gap-3">
                   <span className="rounded-full bg-gold-100 px-3 py-1 text-xs font-semibold text-gold-700">
@@ -151,11 +150,11 @@ export default async function BlogPage({
                   <span className="text-sm text-navy-400">{post.date}</span>
                 </div>
 
-                <h2 className="mb-3 text-xl font-bold text-navy-900 group-hover:text-gold-600 transition-colors">
+                <h2 className="mb-3 text-lg font-bold text-navy-900 group-hover:text-gold-600 transition-colors">
                   <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                 </h2>
 
-                <p className="mb-6 leading-relaxed text-navy-600">
+                <p className="mb-6 text-navy-600 leading-relaxed">
                   {post.excerpt}
                 </p>
 
@@ -164,13 +163,15 @@ export default async function BlogPage({
                   className="inline-flex items-center gap-2 font-semibold text-gold-600 hover:text-gold-700 transition-colors"
                 >
                   {t("readMore")}
-                  <span aria-hidden="true">&larr;</span>
+                  <ArrowUpRight className="h-4 w-4" />
                 </Link>
               </article>
             ))}
           </div>
         </div>
       </section>
-    </>
+
+      <CtaBand locale={typed} />
+    </main>
   );
 }
