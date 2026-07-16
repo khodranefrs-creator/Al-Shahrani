@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { cn, getWhatsAppUrl } from "@/lib/utils";
@@ -27,6 +28,11 @@ const serviceLinks = [
   { href: "/services/litigation", ar: "التقاضي وتسوية المنازعات", en: "Dispute Resolution" },
   { href: "/services/debt-collection", ar: "تحصيل الديون", en: "Debt Collection" },
 ];
+
+const LOGO_ALT = {
+  ar: "شعار مكتب المحامي محمد حمود الشهراني",
+  en: "Mohammed Hamoud Al-Shahrani Law Firm Logo",
+} as const;
 
 export function Header({ locale }: HeaderProps) {
   const t = useTranslations("nav");
@@ -65,51 +71,40 @@ export function Header({ locale }: HeaderProps) {
         role="banner"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-20 md:h-24 items-center justify-between">
-            {/* Logo — larger, more premium */}
+          <div
+            className={cn(
+              "flex items-center justify-between transition-all duration-500",
+              isScrolled ? "h-16 md:h-18" : "h-20 md:h-24"
+            )}
+          >
+            {/* Logo — image, RTL-aware positioning */}
             <Link
               href="/"
-              className="flex items-center gap-4 group"
+              className={cn(
+                "relative shrink-0 transition-all duration-500",
+                locale === "ar" ? "order-last" : "order-first"
+              )}
               aria-label={siteConfig.name[locale]}
             >
-              <div
+              <Image
+                src="/alslogo.png"
+                alt={LOGO_ALT[locale]}
+                width={400}
+                height={120}
+                priority
+                quality={100}
                 className={cn(
-                  "flex h-10 w-10 items-center justify-center font-bold text-lg transition-all duration-300",
-                  showDark
-                    ? "bg-gold-500/15 text-gold-400 border border-gold-400/20 group-hover:bg-gold-500/25"
-                    : "bg-navy-900 text-gold-400 group-hover:bg-navy-800"
+                  "w-auto object-contain transition-all duration-500",
+                  isScrolled ? "h-10 md:h-12" : "h-12 md:h-14"
                 )}
-                style={{ fontFamily: "var(--font-heading-ar)" }}
-              >
-                {locale === "ar" ? "\u0634" : "AS"}
-              </div>
-              <div className="flex flex-col">
-                <span
-                  className={cn(
-                    "text-xl md:text-2xl font-bold leading-tight transition-colors duration-300",
-                    showDark ? "text-white" : "text-navy-900"
-                  )}
-                  style={{ fontFamily: "var(--font-heading-ar)" }}
-                >
-                  {locale === "ar" ? "\u0645\u0643\u062a\u0628 \u0627\u0644\u0634\u0647\u0631\u0627\u0646\u064a" : "Al-Shahrani"}
-                </span>
-                <span
-                  className={cn(
-                    "text-[11px] font-semibold leading-tight tracking-[0.15em] uppercase hidden sm:block transition-colors duration-300",
-                    showDark ? "text-gold-400/60" : "text-navy-400"
-                  )}
-                >
-                  {locale === "ar"
-                    ? "\u0644\u0644\u0645\u062d\u0627\u0645\u0627\u0629 \u0648\u0627\u0644\u0627\u0633\u062a\u0634\u0627\u0631\u0627\u062a \u0627\u0644\u0642\u0627\u0646\u0648\u0646\u064a\u0629"
-                    : "Law Firm & Legal Consultations"}
-                </span>
-              </div>
+                sizes="(max-width: 768px) 160px, 220px"
+              />
             </Link>
 
-            {/* Desktop Nav — larger typography, more spacing */}
+            {/* Desktop Nav */}
             <nav
               className="hidden lg:flex items-center gap-1"
-              aria-label={locale === "ar" ? "\u0627\u0644\u062a\u0646\u0642\u0644 \u0627\u0644\u0631\u0626\u064a\u0633\u064a" : "Main navigation"}
+              aria-label={locale === "ar" ? "التنقل الرئيسي" : "Main navigation"}
             >
               {navItems.map((item) => {
                 const isActive =
@@ -196,12 +191,12 @@ export function Header({ locale }: HeaderProps) {
                     ? "border-white/20 text-white/70 hover:text-white hover:border-white/40"
                     : "border-warm-300 text-warm-700 hover:text-navy-900 hover:border-warm-400"
                 )}
-                aria-label={locale === "ar" ? "Switch to English" : "\u0627\u0644\u062a\u0628\u062f\u064a\u0644 \u0625\u0644\u0649 \u0627\u0644\u0639\u0631\u0628\u064a\u0629"}
+                aria-label={locale === "ar" ? "Switch to English" : "التبديل إلى العربية"}
               >
                 <svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-current stroke-[1.5]" aria-hidden="true">
                   <path d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                <span className="hidden sm:inline">{otherLocale === "ar" ? "\u0639\u0631\u0628\u064a" : "EN"}</span>
+                <span className="hidden sm:inline">{otherLocale === "ar" ? "عربي" : "EN"}</span>
               </Link>
 
               <Link
@@ -258,7 +253,20 @@ export function Header({ locale }: HeaderProps) {
           )}
           aria-hidden={!isOpen}
         >
-          <nav className="p-6 space-y-1" aria-label={locale === "ar" ? "\u0627\u0644\u062a\u0646\u0642\u0644 \u0641\u064a \u0627\u0644\u0642\u0627\u0626\u0645\u0629" : "Mobile navigation"}>
+          {/* Mobile Logo */}
+          <div className="px-6 pt-8 pb-6 flex justify-center border-b border-warm-100">
+            <Image
+              src="/alslogo.png"
+              alt={LOGO_ALT[locale]}
+              width={400}
+              height={120}
+              quality={100}
+              className="h-14 w-auto object-contain"
+              sizes="200px"
+            />
+          </div>
+
+          <nav className="p-6 space-y-1" aria-label={locale === "ar" ? "التنقل في القائمة" : "Mobile navigation"}>
             {navItems.map((item) => {
               const isActive =
                 item.href === "/"
@@ -296,7 +304,7 @@ export function Header({ locale }: HeaderProps) {
                 onClick={() => setIsOpen(false)}
                 className="block text-center px-4 py-3 text-base font-medium text-navy-700 hover:text-navy-900 transition-colors"
               >
-                {locale === "ar" ? "English" : "\u0627\u0644\u0639\u0631\u0628\u064a\u0629"}
+                {locale === "ar" ? "English" : "العربية"}
               </Link>
             </div>
           </nav>

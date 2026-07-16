@@ -11,7 +11,7 @@ export function generatePageMetadata(params: {
   const { locale, title, description, path, ogImage } = params;
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://alshahrani.com";
   const url = `${baseUrl}/${locale}${path}`;
-  const ogUrl = ogImage || `${baseUrl}/og/${path.replace(/\//g, "-") || "home"}.png`;
+  const ogUrl = ogImage || `${baseUrl}/og/default.png`;
 
   return {
     title: `${title} | ${siteConfig.shortName[locale]}`,

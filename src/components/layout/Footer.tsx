@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { siteConfig, type Locale } from "@/types";
@@ -7,21 +8,26 @@ interface FooterProps {
   locale: Locale;
 }
 
+const LOGO_ALT = {
+  ar: "شعار مكتب المحامي محمد حمود الشهراني",
+  en: "Mohammed Hamoud Al-Shahrani Law Firm Logo",
+} as const;
+
 const serviceLinks = [
-  { key: "corporate-law", ar: "\u0627\u0644\u0642\u0627\u0646\u0648\u0646 \u0627\u0644\u062a\u062c\u0627\u0631\u064a", en: "Corporate Law" },
-  { key: "governance", ar: "\u0627\u0644\u062d\u0648\u0643\u0645\u0629 \u0627\u0644\u0645\u0624\u0633\u0633\u064a\u0629", en: "Corporate Governance" },
-  { key: "contracts", ar: "\u0627\u0644\u0639\u0642\u0648\u062f", en: "Contracts" },
-  { key: "ma", ar: "\u0627\u0644\u0627\u0646\u062f\u0645\u0627\u062c \u0648\u0627\u0644\u0627\u0633\u062a\u062d\u0648\u0627\u062b", en: "Mergers & Acquisitions" },
-  { key: "litigation", ar: "\u0627\u0644\u062a\u0642\u0627\u0636\u064a \u0648\u062a\u0633\u0648\u064a\u0629 \u0627\u0644\u0645\u0646\u0627\u0639\u0638\u0627\u062a", en: "Dispute Resolution" },
-  { key: "debt-collection", ar: "\u062a\u062d\u0635\u064a\u0644 \u0627\u0644\u062f\u064a\u0648\u0646", en: "Debt Collection" },
+  { key: "corporate-law", ar: "القانون التجاري", en: "Corporate Law" },
+  { key: "governance", ar: "الحوكمة المؤسسية", en: "Corporate Governance" },
+  { key: "contracts", ar: "العقود", en: "Contracts" },
+  { key: "ma", ar: "الاندماج والاستحواذ", en: "Mergers & Acquisitions" },
+  { key: "litigation", ar: "التقاضي وتسوية المنازعات", en: "Dispute Resolution" },
+  { key: "debt-collection", ar: "تحصيل الديون", en: "Debt Collection" },
 ];
 
 const pageLinks = [
-  { key: "home", ar: "\u0627\u0644\u0631\u0626\u064a\u0633\u064a\u0629", en: "Home", href: "/" },
-  { key: "about", ar: "\u0645\u0646 \u0646\u062d\u0646", en: "About", href: "/about" },
-  { key: "services", ar: "\u0627\u0644\u062e\u062f\u0645\u0627\u062a", en: "Services", href: "/services" },
-  { key: "blog", ar: "\u0627\u0644\u0645\u062f\u0648\u0646\u0629", en: "Insights", href: "/blog" },
-  { key: "contact", ar: "\u062a\u0648\u0627\u0635\u0644 \u0645\u0639\u0646\u0627", en: "Contact", href: "/contact" },
+  { key: "home", ar: "الرئيسية", en: "Home", href: "/" },
+  { key: "about", ar: "من نحن", en: "About", href: "/about" },
+  { key: "services", ar: "الخدمات", en: "Services", href: "/services" },
+  { key: "blog", ar: "المدونة", en: "Insights", href: "/blog" },
+  { key: "contact", ar: "تواصل معنا", en: "Contact", href: "/contact" },
 ];
 
 export function Footer({ locale }: FooterProps) {
@@ -37,25 +43,18 @@ export function Footer({ locale }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-10">
           {/* Firm Info */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-5">
-              <div
-                className="flex h-10 w-10 items-center justify-center bg-gold-500/15 text-gold-400 border border-gold-400/20 text-lg font-bold"
-                style={{ fontFamily: "var(--font-heading-ar)" }}
-              >
-                {locale === "ar" ? "\u0634" : "AS"}
-              </div>
-              <div>
-                <h3
-                  className="text-lg font-bold text-white"
-                  style={{ fontFamily: "var(--font-heading-ar)" }}
-                >
-                  {locale === "ar" ? "\u0645\u0643\u062a\u0628 \u0627\u0644\u0634\u0647\u0631\u0627\u0646\u064a" : "Al-Shahrani"}
-                </h3>
-                <p className="text-[10px] font-medium tracking-wider uppercase text-gold-400/60">
-                  {locale === "ar" ? "\u0644\u0644\u0645\u062d\u0627\u0645\u0627\u0629 \u0648\u0627\u0644\u0627\u0633\u062a\u0634\u0627\u0631\u0627\u062a \u0627\u0644\u0642\u0627\u0646\u0648\u0646\u064a\u0629" : "Law Firm & Legal Consultations"}
-                </p>
-              </div>
-            </div>
+            <Link href="/" className="inline-block mb-5" aria-label={siteConfig.name[locale]}>
+              <Image
+                src="/alslogo.png"
+                alt={LOGO_ALT[locale]}
+                width={400}
+                height={120}
+                quality={100}
+                loading="lazy"
+                className="h-16 w-auto object-contain"
+                sizes="240px"
+              />
+            </Link>
             <p className="text-sm text-warm-400 leading-relaxed mb-6">
               {t("description")}
             </p>
@@ -141,7 +140,7 @@ export function Footer({ locale }: FooterProps) {
                   <path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <span className="text-sm text-warm-400">
-                  {locale === "ar" ? "\u0627\u0644\u0623\u062d\u062f - \u0627\u0644\u062e\u0645\u064a\u0633: 9 \u0635\u0628\u0627\u062d\u0627\u064b - 5 \u0645\u0633\u0627\u0621\u064b" : "Sun - Thu: 9:00 AM - 5:00 PM"}
+                  {locale === "ar" ? "الأحد - الخميس: 9 صباحاً - 5 مساءً" : "Sun - Thu: 9:00 AM - 5:00 PM"}
                 </span>
               </li>
             </ul>
