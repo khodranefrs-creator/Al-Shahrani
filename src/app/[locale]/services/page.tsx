@@ -1,7 +1,5 @@
-import Image from "next/image";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { type Locale } from "@/types";
 import { CtaBand } from "@/components/home/CtaBand";
 import {
@@ -16,6 +14,8 @@ import {
   Heart,
   Home,
   Stethoscope,
+  ArrowRight,
+  ArrowLeft,
 } from "lucide-react";
 
 export function generateStaticParams() {
@@ -142,40 +142,47 @@ export default async function ServicesPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const isRtl = locale === "ar";
+  const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   return (
     <main>
-      <section className="relative bg-navy-gradient py-28 md:py-36 overflow-hidden">
-        {/* Services hero image — TODO: Replace with official firm photography supplied by client */}
-        <div className="absolute inset-0 opacity-15">
-          <Image
-            src="/images/hero/law-firm-office.jpg"
-            alt={
-              locale === "ar"
-                ? "مكتب الشهراني للمحاماة - خدمات قانونية متخصصة"
-                : "Al-Shahrani Law Firm - specialized legal services"
-            }
-            fill
-            sizes="100vw"
-            className="object-cover object-center"
+      {/* Hero */}
+      <section className="section-padding bg-navy-950 text-center relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="svc-grid" width="80" height="80" patternUnits="userSpaceOnUse">
+                <path d="M 80 0 L 0 0 0 80" fill="none" stroke="white" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#svc-grid)" />
+          </svg>
+        </div>
+        <div className="absolute inset-0 pointer-events-none">
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] max-md:w-[350px] max-md:h-[350px]"
+            style={{ background: "radial-gradient(circle, rgba(184,149,60,0.03) 0%, transparent 65%)" }}
           />
         </div>
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            title={locale === "ar" ? "خدماتنا" : "Our Services"}
-            subtitle={
-              locale === "ar"
-                ? "نقدم مجموعة شاملة من الخدمات القانونية المتخصصة لتلبية احتياجات عملائنا"
-                : "We offer a comprehensive range of specialized legal services to meet our clients' needs"
-            }
-            light
-          />
+
+        <div className="relative container-custom">
+          <h1 className="text-[clamp(2rem,5vw,3.25rem)] font-bold text-white mb-6 tracking-tight">
+            {isRtl ? "خدماتنا" : "Our Services"}
+          </h1>
+          <div className="w-20 h-[2px] bg-gradient-to-r from-gold-500 to-gold-300 mx-auto mb-8" />
+          <p className="text-lg leading-[1.8] text-warm-300 max-w-2xl mx-auto">
+            {isRtl
+              ? "نقدم مجموعة شاملة من الخدمات القانونية المتخصصة لتلبية احتياجات عملائنا"
+              : "We offer a comprehensive range of specialized legal services to meet our clients' needs"}
+          </p>
         </div>
       </section>
 
-      <section className="bg-white py-20 lg:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {/* Services Grid */}
+      <section className="section-padding bg-warm-50">
+        <div className="container-custom">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {services.map((service) => {
               const title = service.title[locale];
               const description = service.description[locale];
@@ -185,15 +192,23 @@ export default async function ServicesPage({
                 <Link
                   key={service.slug}
                   href={`/services/${service.slug}`}
-                  className="group rounded-2xl border border-navy-100 bg-white p-6 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                  className="group p-6 bg-white rounded-surface border border-warm-200/60 hover:border-gold-300/30 hover:shadow-raised transition-all duration-300 hover-lift flex flex-col"
                 >
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-gold-100 transition-colors duration-300 group-hover:bg-gold-200">
-                    <Icon className="h-5 w-5 text-gold-600" />
+                  <div className="w-12 h-12 rounded-control bg-gold-100 flex items-center justify-center mb-4 group-hover:bg-gold-200 transition-colors duration-300">
+                    <Icon className="w-6 h-6 text-gold-600" />
                   </div>
-                  <h3 className="mb-3 text-lg font-bold text-navy-900">
+                  <h3 className="font-semibold text-navy-900 mb-2 text-lg">
                     {title}
                   </h3>
-                  <p className="text-navy-600 leading-relaxed">{description}</p>
+                  <p className="text-warm-600 text-sm leading-relaxed mb-4">
+                    {description}
+                  </p>
+                  <div className="mt-auto">
+                    <span className="inline-flex items-center gap-1.5 text-gold-600 text-sm font-medium group-hover:gap-2.5 transition-all duration-300">
+                      {isRtl ? "اقرأ المزيد" : "Learn More"}
+                      <ArrowIcon className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
                 </Link>
               );
             })}

@@ -1,6 +1,6 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
-import { Heart, Award, Eye, Target, Scale, Shield, Users, Briefcase } from "lucide-react";
+import { Shield, Zap, Users, FileCheck, Scale, Building2, Gavel } from "lucide-react";
 
 import { siteConfig, type Locale } from "@/types";
 import { CtaBand } from "@/components/home/CtaBand";
@@ -24,19 +24,21 @@ export async function generateMetadata({
   };
 }
 
+const highlights = [
+  { icon: Scale, key: "years" },
+  { icon: Building2, key: "institutions" },
+  { icon: Gavel, key: "expertise" },
+] as const;
+
 const valueIcons = {
-  integrity: Heart,
-  excellence: Award,
-  confidentiality: Eye,
-  professionalism: Target,
+  integrity: Shield,
+  excellence: Zap,
+  confidentiality: Users,
+  professionalism: FileCheck,
 } as const;
 
 type ValueKey = keyof typeof valueIcons;
 const valueKeys: ValueKey[] = ["integrity", "excellence", "confidentiality", "professionalism"];
-
-const statKeys = ["years", "cases", "clients", "practiceAreas"] as const;
-const statValues = ["+20", "+150", "+100", "+6"] as const;
-const statIcons = [Scale, Shield, Users, Briefcase] as const;
 
 export default async function AboutPage({
   params,
@@ -49,51 +51,34 @@ export default async function AboutPage({
   setRequestLocale(typed);
 
   const t = await getTranslations("about");
-  const tStats = await getTranslations("stats");
 
   return (
     <main>
-      {/* ──────────────────────────────────────────
-          Section 1 — Executive Hero
-      ────────────────────────────────────────── */}
-      <section className="relative bg-navy-950 py-28 md:py-36 overflow-hidden">
-        {/* Background — subtle grid pattern */}
+      {/* Hero */}
+      <section className="section-padding bg-navy-950 text-center relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <pattern id="hero-grid" width="80" height="80" patternUnits="userSpaceOnUse">
+              <pattern id="about-grid" width="80" height="80" patternUnits="userSpaceOnUse">
                 <path d="M 80 0 L 0 0 0 80" fill="none" stroke="white" strokeWidth="0.5" />
               </pattern>
             </defs>
-            <rect width="100%" height="100%" fill="url(#hero-grid)" />
+            <rect width="100%" height="100%" fill="url(#about-grid)" />
           </svg>
         </div>
-
-        {/* Background — ambient glow */}
         <div className="absolute inset-0 pointer-events-none">
           <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] max-md:w-[400px] max-md:h-[400px]"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] max-md:w-[350px] max-md:h-[350px]"
             style={{ background: "radial-gradient(circle, rgba(184,149,60,0.03) 0%, transparent 65%)" }}
           />
         </div>
 
-        {/* Gold accent line — top */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400/30 to-transparent" />
-
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex justify-center mb-6">
-            <EyebrowTag label={typed === "ar" ? "عن المكتب" : "About the Firm"} />
-          </div>
-
-          <h1
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1]"
-          >
+        <div className="relative container-custom">
+          <h1 className="text-[clamp(2rem,5vw,3.25rem)] font-bold text-white mb-6 tracking-tight">
             {t("title")}
           </h1>
-
-          <div className="mt-6 h-[2px] w-16 mx-auto bg-gradient-to-r from-gold-500 to-gold-300" />
-
-          <p className="mt-8 text-lg md:text-xl text-warm-300 max-w-2xl mx-auto leading-relaxed">
+          <div className="w-20 h-[2px] bg-gradient-to-r from-gold-500 to-gold-300 mx-auto mb-8" />
+          <p className="text-lg leading-[1.8] text-warm-300 max-w-2xl mx-auto">
             {typed === "ar"
               ? "مكتب محاماة سعودي متخصص يقدم خدمات قانونية شاملة للشركات والمؤسسات والأفراد"
               : "A Saudi-based law firm delivering comprehensive legal services to corporations, institutions, and individuals"}
@@ -101,131 +86,53 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* ──────────────────────────────────────────
-          Section 2 — About the Firm (Editorial)
-      ────────────────────────────────────────── */}
-      <section className="bg-white py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
-            {/* Text column */}
-            <div>
-              <div className="mb-6">
-                <EyebrowTag label={typed === "ar" ? "من نحن" : "Who We Are"} />
-              </div>
-
-              <h2
-                className="text-3xl md:text-4xl font-bold text-navy-900 tracking-tight leading-[1.15] mb-6"
-              >
-                {t("whoWeAre.title")}
-              </h2>
-
-              <div className="h-[2px] w-12 bg-gradient-to-r from-gold-500 to-gold-300 mb-8" />
-
-              <p className="text-warm-600 text-lg leading-[1.9]">
-                {t("whoWeAre.content")}
-              </p>
-            </div>
-
-            {/* Abstract visual column — geometric monogram */}
-            <div className="relative flex items-center justify-center">
-              <div className="relative w-full max-w-md aspect-square">
-                {/* Outer ring */}
-                <div className="absolute inset-0 rounded-full border-2 border-gold-200/40" />
-                {/* Inner ring */}
-                <div className="absolute inset-8 rounded-full border border-gold-300/20" />
-                {/* Center circle */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-40 h-40 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-navy-900 to-navy-800 flex items-center justify-center shadow-warm">
-                    <span
-                      className="text-5xl md:text-6xl font-bold text-gold-400/80"
-                      style={{ fontFamily: "var(--font-heading-ar)" }}
-                    >
-                      {typed === "ar" ? "ش" : "AS"}
-                    </span>
-                  </div>
-                </div>
-                {/* Decorative gold dots */}
-                <div className="absolute top-8 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-gold-400/40" />
-                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-gold-400/40" />
-                <div className="absolute left-8 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gold-400/40" />
-                <div className="absolute right-8 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gold-400/40" />
-                {/* Corner accents */}
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-[2px] bg-gold-400/30" />
-                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-6 h-[2px] bg-gold-400/30" />
-                <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-[2px] h-6 bg-gold-400/30" />
-                <div className="absolute -right-3 top-1/2 -translate-y-1/2 w-[2px] h-6 bg-gold-400/30" />
-              </div>
-            </div>
+      {/* Bio */}
+      <section className="section-padding bg-warm-50">
+        <div className="container-custom">
+          <div className="max-w-4xl mx-auto">
+            <p className="text-lg leading-[1.8] mb-6 text-warm-800">
+              {t("whoWeAre.content")}
+            </p>
+            <p className="text-lg leading-[1.8] mb-6 text-warm-800">
+              {typed === "ar"
+                ? "نسعى دائماً لتوفير أفضل الحلول القانونية التي تلبي احتياجات عملائنا وتحقق أهدافهم. نؤمن بأن النجاح يتحقق من خلال فهم عميق للقانون وتفهم دقيقة لاحتياجات العملاء."
+                : "We always strive to provide the best legal solutions that meet our clients' needs and achieve their objectives. We believe success comes through a deep understanding of the law and a precise comprehension of our clients' requirements."}
+            </p>
+            <p className="text-lg leading-[1.8] text-warm-800">
+              {typed === "ar"
+                ? "فريقنا من المحامين المتميزين يجمع بين الخبرة العملية الواسعة والكفاءات الأكاديمية العالية، مما يمكّننا من تقديم خدمات قانونية متكاملة بأعلى معايير الجودة والاحترافية."
+                : "Our team of distinguished lawyers combines extensive practical experience with high academic qualifications, enabling us to deliver comprehensive legal services at the highest standards of quality and professionalism."}
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ──────────────────────────────────────────
-          Section 3 — Vision & Mission (Side-by-Side)
-      ────────────────────────────────────────── */}
-      <section className="bg-navy-950 py-20 md:py-28 relative overflow-hidden">
-        {/* Background glow */}
+      {/* Vision & Mission */}
+      <section className="section-padding bg-navy-950 text-white relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div
             className="absolute top-0 left-1/4 w-[500px] h-[500px] max-md:w-[300px] max-md:h-[300px]"
             style={{ background: "radial-gradient(circle, rgba(184,149,60,0.02) 0%, transparent 65%)" }}
           />
-          <div
-            className="absolute bottom-0 right-1/4 w-[400px] h-[400px] max-md:w-[250px] max-md:h-[250px]"
-            style={{ background: "radial-gradient(circle, rgba(184,149,60,0.015) 0%, transparent 65%)" }}
-          />
         </div>
 
-        {/* Top accent line */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400/20 to-transparent" />
-
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {/* Vision card */}
-            <div className="relative rounded-2xl border border-gold-400/15 bg-navy-900/60 p-8 md:p-10">
-              {/* Top gold accent */}
-              <div className="absolute top-0 left-10 right-10 h-[2px] bg-gradient-to-r from-transparent via-gold-400/40 to-transparent" />
-
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-gold-400/10">
-                <svg viewBox="0 0 24 24" className="w-5 h-5 text-gold-400 fill-none stroke-current stroke-[1.5]" aria-hidden="true">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-                  <circle cx="12" cy="12" r="3" />
-                </svg>
-              </div>
-
-              <h3
-                className="text-2xl md:text-3xl font-bold text-white tracking-tight mb-4"
-              >
+        <div className="relative container-custom">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="p-8 rounded-panel border border-gold-400/15 bg-navy-900/60">
+              <h2 className="text-2xl font-bold leading-[1.15] mb-4 text-gold-400">
                 {t("vision.title")}
-              </h3>
-
-              <div className="h-[2px] w-10 bg-gradient-to-r from-gold-500 to-gold-300 mb-5" />
-
-              <p className="text-warm-300 leading-[1.9] text-[15px]">
+              </h2>
+              <div className="w-12 h-[2px] bg-gradient-to-r from-gold-500 to-gold-300 mb-5" />
+              <p className="leading-[1.8] text-warm-300 text-[15px]">
                 {t("vision.content")}
               </p>
             </div>
-
-            {/* Mission card */}
-            <div className="relative rounded-2xl border border-gold-400/15 bg-navy-900/60 p-8 md:p-10">
-              {/* Top gold accent */}
-              <div className="absolute top-0 left-10 right-10 h-[2px] bg-gradient-to-r from-transparent via-gold-400/40 to-transparent" />
-
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-gold-400/10">
-                <svg viewBox="0 0 24 24" className="w-5 h-5 text-gold-400 fill-none stroke-current stroke-[1.5]" aria-hidden="true">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-
-              <h3
-                className="text-2xl md:text-3xl font-bold text-white tracking-tight mb-4"
-              >
+            <div className="p-8 rounded-panel border border-gold-400/15 bg-navy-900/60">
+              <h2 className="text-2xl font-bold leading-[1.15] mb-4 text-gold-400">
                 {t("mission.title")}
-              </h3>
-
-              <div className="h-[2px] w-10 bg-gradient-to-r from-gold-500 to-gold-300 mb-5" />
-
-              <p className="text-warm-300 leading-[1.9] text-[15px]">
+              </h2>
+              <div className="w-12 h-[2px] bg-gradient-to-r from-gold-500 to-gold-300 mb-5" />
+              <p className="leading-[1.8] text-warm-300 text-[15px]">
                 {t("mission.content")}
               </p>
             </div>
@@ -233,100 +140,63 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* ──────────────────────────────────────────
-          Section 4 — Our Expertise (Stats)
-      ────────────────────────────────────────── */}
-      <section className="bg-white py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <div className="flex justify-center mb-6">
-              <EyebrowTag label={typed === "ar" ? "إنجازاتنا" : "Our Track Record"} />
-            </div>
-            <h2
-              className="text-3xl md:text-4xl font-bold text-navy-900 tracking-tight leading-[1.15]"
-            >
-              {typed === "ar" ? "أرقام تتحدث عن تميزنا" : "Numbers That Speak to Our Excellence"}
-            </h2>
-            <div className="mt-5 h-[2px] w-12 mx-auto bg-gradient-to-r from-gold-500 to-gold-300" />
-          </div>
-
-          <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
-            {statKeys.map((key, i) => (
-              <div
-                key={key}
-                className="group relative rounded-2xl border border-navy-100 bg-warm-50 p-6 md:p-8 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-gold-200"
-              >
-                {/* Top gold accent on hover */}
-                <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-gold-400/0 to-transparent transition-all duration-300 group-hover:via-gold-400/40" />
-
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-navy-900 transition-colors duration-300 group-hover:bg-navy-800">
-                  {(() => { const Icon = statIcons[i]; return <Icon className="h-5 w-5 text-gold-400" />; })()}
-                </div>
-
-                <div
-                  className="text-3xl md:text-4xl font-bold text-navy-900 tracking-tight"
-                  style={{ fontFamily: "var(--font-heading-ar)" }}
-                >
-                  {statValues[i]}
-                </div>
-
-                <div className="mt-2 text-sm font-medium text-warm-500 uppercase tracking-wide">
-                  {tStats(key)}
-                </div>
+      {/* Why Choose Us + Values */}
+      <section className="section-padding bg-warm-50">
+        <div className="container-custom">
+          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-5xl mx-auto mb-16">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold leading-[1.15] mb-6 text-navy-900">
+                {typed === "ar" ? "لماذا تختار مكتبنا" : "Why Choose Us"}
+              </h2>
+              <div className="w-16 h-[2px] bg-gradient-to-r from-gold-500 to-gold-300 mb-8" />
+              <div className="space-y-4">
+                {highlights.map(({ icon: Icon, key }) => (
+                  <div key={key} className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gold-100 flex items-center justify-center shrink-0">
+                      <Icon className="w-5 h-5 text-gold-600" />
+                    </div>
+                    <span className="text-warm-700 text-sm">
+                      {typed === "ar"
+                        ? key === "years" ? "خبرة تمتد لأكثر من 20 عاماً" : key === "institutions" ? "خدمة الشركات والمؤسسات الكبرى" : "خبرة قانونية متنوعة وشاملة"
+                        : key === "years" ? "Over 20 years of legal experience" : key === "institutions" ? "Serving major companies and institutions" : "Diverse and comprehensive legal expertise"}
+                    </span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ──────────────────────────────────────────
-          Section 5 — Core Values (Premium Treatment)
-      ────────────────────────────────────────── */}
-      <section className="bg-warm-50 py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <div className="flex justify-center mb-6">
-              <EyebrowTag label={typed === "ar" ? "قيمنا" : "Our Values"} />
             </div>
-            <h2
-              className="text-3xl md:text-4xl font-bold text-navy-900 tracking-tight leading-[1.15]"
-            >
-              {t("values.title")}
-            </h2>
-            <div className="mt-5 h-[2px] w-12 mx-auto bg-gradient-to-r from-gold-500 to-gold-300" />
-            <p className="mt-6 text-warm-600 text-lg max-w-xl mx-auto leading-relaxed">
-              {typed === "ar"
-                ? "المبادئ التي نعمل بها في كل ما نقدمه لعملائنا"
-                : "The principles that guide everything we deliver to our clients"}
-            </p>
+            <div className="aspect-[4/3] rounded-card bg-navy-950 overflow-hidden flex items-center justify-center">
+              <div className="text-center p-8">
+                <div className="w-20 h-20 rounded-full bg-gold-400/10 flex items-center justify-center mx-auto mb-4">
+                  <Scale className="w-8 h-8 text-gold-400" />
+                </div>
+                <p className="text-warm-400 text-sm">
+                  {typed === "ar" ? "مكتب الشهراني للمحاماة" : "Al-Shahrani Law Firm"}
+                </p>
+              </div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+          <h2 className="text-3xl md:text-4xl font-bold leading-[1.15] text-center mb-12 text-navy-900">
+            {t("values.title")}
+          </h2>
+          <div className="w-16 h-[2px] bg-gradient-to-r from-gold-500 to-gold-300 mx-auto mb-12" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {valueKeys.map((key) => {
               const Icon = valueIcons[key];
-
               return (
                 <div
                   key={key}
-                  className="group relative rounded-2xl border border-navy-100 bg-white p-7 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-gold-200"
+                  className="p-6 rounded-panel bg-white border border-warm-200 shadow-subtle hover-lift transition-all"
                 >
-                  {/* Left gold accent bar */}
-                  <div className="absolute top-6 bottom-6 left-0 w-[3px] rounded-full bg-gold-400/0 transition-all duration-300 group-hover:bg-gold-400/60" />
-
-                  <div className="flex gap-5">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-navy-900 transition-colors duration-300 group-hover:bg-navy-800">
-                      <Icon className="h-5 w-5 text-gold-400" />
-                    </div>
-
-                    <div>
-                      <h3 className="text-lg font-bold text-navy-900 mb-2">
-                        {t(`values.items.${key}.title`)}
-                      </h3>
-                      <p className="text-warm-600 leading-relaxed text-[15px]">
-                        {t(`values.items.${key}.description`)}
-                      </p>
-                    </div>
+                  <div className="w-12 h-12 rounded-control bg-gold-100 flex items-center justify-center mb-4">
+                    <Icon className="w-6 h-6 text-gold-600" />
                   </div>
+                  <h3 className="text-lg font-bold mb-2 text-navy-900">
+                    {t(`values.items.${key}.title`)}
+                  </h3>
+                  <p className="text-sm leading-[1.7] text-warm-600">
+                    {t(`values.items.${key}.description`)}
+                  </p>
                 </div>
               );
             })}
@@ -334,9 +204,6 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* ──────────────────────────────────────────
-          Section 6 — CTA
-      ────────────────────────────────────────── */}
       <CtaBand locale={typed} />
     </main>
   );
