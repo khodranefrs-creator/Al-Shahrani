@@ -87,10 +87,10 @@ export function Header({ locale }: HeaderProps) {
               aria-label={siteConfig.name[locale]}
             >
               <Image
-                src="/alslogo.png"
+                src="/alslogo-cropped.png"
                 alt={LOGO_ALT[locale]}
-                width={600}
-                height={180}
+                width={545}
+                height={511}
                 priority
                 quality={100}
                 className={cn(
@@ -256,13 +256,13 @@ export function Header({ locale }: HeaderProps) {
           {/* Mobile Logo — premium scale */}
           <div className="px-6 pt-8 pb-6 flex justify-center border-b border-warm-100">
             <Image
-              src="/alslogo.png"
+              src="/alslogo-cropped.png"
               alt={LOGO_ALT[locale]}
-              width={600}
-              height={180}
+              width={545}
+              height={511}
               quality={100}
-              className="h-16 w-auto object-contain"
-              sizes="240px"
+              className="h-14 w-auto object-contain"
+              sizes="200px"
             />
           </div>
 

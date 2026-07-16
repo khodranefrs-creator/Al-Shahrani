@@ -58,8 +58,8 @@ export default async function LocaleLayout({ children, params }: Props) {
     alternateName: siteConfig.shortName[typed],
     description: siteConfig.description[typed],
     url: `${baseUrl}/${typed}`,
-    logo: `${baseUrl}/alslogo.png`,
-    image: `${baseUrl}/alslogo.png`,
+    logo: `${baseUrl}/alslogo-cropped.png`,
+    image: `${baseUrl}/alslogo-cropped.png`,
     telephone: siteConfig.phone,
     email: siteConfig.email,
     address: {

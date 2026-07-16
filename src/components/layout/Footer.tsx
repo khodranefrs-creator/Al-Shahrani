@@ -45,10 +45,10 @@ export function Footer({ locale }: FooterProps) {
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-5" aria-label={siteConfig.name[locale]}>
               <Image
-                src="/alslogo.png"
+                src="/alslogo-cropped.png"
                 alt={LOGO_ALT[locale]}
-                width={600}
-                height={180}
+                width={545}
+                height={511}
                 quality={100}
                 loading="lazy"
                 className="h-20 w-auto object-contain"
