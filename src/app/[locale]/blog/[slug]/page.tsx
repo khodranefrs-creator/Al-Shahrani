@@ -1,13 +1,13 @@
-import Image from "next/image";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { Calendar, Clock, ArrowRight, ArrowLeft } from "lucide-react";
 
 import { type Locale } from "@/types";
 import { generatePageMetadata } from "@/lib/metadata";
 import { CtaBand } from "@/components/home/CtaBand";
+import { ReadingProgress } from "@/components/blog/ReadingProgress";
 
 interface BlogArticle {
   slug: string;
@@ -15,6 +15,8 @@ interface BlogArticle {
   excerpt: string;
   author: string;
   date: string;
+  category: string;
+  readingTime: string;
   content: string[];
 }
 
@@ -27,6 +29,8 @@ const blogArticles: Record<Locale, BlogArticle[]> = {
         "نظرة معمقة على متطلبات حوكمة الشركات وفقاً للنظام السعودي الجديد.",
       author: "م. محمد حمود الشهراني",
       date: "١٠ يوليو ٢٠٢٦",
+      category: "القانون التجاري",
+      readingTime: "٥ دقائق قراءة",
       content: [
         "تُعد حوكمة الشركات من أهم العناصر التي تحدد نجاح واستدامة المؤسسات في المملكة العربية السعودية. مع صدور النظام السعودي للحوكمة، أصبح على الشركات التكيف مع متطلبات جديدة تهدف إلى تعزيز الشفافية والمساءلة.",
         "يشمل النظام السعودي لحوكمة الشركات مجموعة من المبادئ والمعايير التي تُنظم إدارة الشركات وتضمن حماية حقوق المساهمين والأطراف المعنية. ومن أبرز متطلبات النظام: تشكيل مجلس إدارة مستقل، وإنشاء لجان متخصصة، وتطبيق معايير إفصاح مالية صارمة.",
@@ -40,6 +44,8 @@ const blogArticles: Record<Locale, BlogArticle[]> = {
         "مراجعة شاملة لأحدث التعديلات على نظام العمل السعودي وتأثيرها على حقوق العمال وأصحاب العمل.",
       author: "م. محمد حمود الشهراني",
       date: "٢٥ يونيو ٢٠٢٦",
+      category: "قانون العمل",
+      readingTime: "٧ دقائق قراءة",
       content: [
         "شهد نظام العمل السعودي تحديثات مهمة في عام 2026 تهدف إلى تعزيز حقوق العمال وتحسين بيئة العمل. تأتي هذه التعديلات في إطار رؤية المملكة 2030 لتطوير سوق العمل وزيادة تنافسية الشركات.",
         "من أبرز التحديثات: زيادة الحد الأدنى للأجور، وتحسين ظروف العمل، وتعزيز حماية العمال من التعسف. كما شملت التعديلات تحديثات على نظام إجازات العمل.",
@@ -53,6 +59,8 @@ const blogArticles: Record<Locale, BlogArticle[]> = {
         "شرح تفصيلي للمسؤولية الطبية وفقاً للنظام السعودي، وحقوق المرضى في حالات الأخطاء الطبية.",
       author: "م. محمد حمود الشهراني",
       date: "١٨ مايو ٢٠٢٦",
+      category: "القانون الطبي",
+      readingTime: "٤ دقائق قراءة",
       content: [
         "تُمثل المسؤولية الطبية من أكثر المجالات القانونية تعقيداً في المملكة العربية السعودية. يُنظم هذا المجال مجموعة من الأنظمة واللوائح التي تحدد حقوق ومسؤوليات كل من المريض والطبيب والمؤسسة الصحية.",
         "من أبرز المبادئ التي يُرسيها النظام السعودي: مبدأ رضا المريض والإفصاح المسبق، مبدأ العناية الواجبة (Duty of Care)، ومبدأ التعويض عن الأضرار. كما يُحدد النظام حالات الإعفاء من المسؤولية وأسبابها.",
@@ -66,6 +74,8 @@ const blogArticles: Record<Locale, BlogArticle[]> = {
         "استكشاف الطرق القانونية المختلفة لحل النزاعات العقارية في السعودية، من التفاوض إلى التحكيم.",
       author: "م. محمد حمود الشهراني",
       date: "٣٠ أبريل ٢٠٢٦",
+      category: "القانون العقاري",
+      readingTime: "٦ دقائق قراءة",
       content: [
         "تُعد النزاعات العقارية من أكثر أنواع النزاعات شيوعاً في المملكة العربية السعودية. وتشمل هذه النزاعات خلافات الحيازة والملكية، ونزاعات الإيجار، ومشاكل التسليم، والتعويض عن الأضرار.",
         "يتوفر عدة بدائل لحل النزاعات العقارية: التفاوض المباشر، والوساطة، والتحكيم، وتقديم دعوى قضائية. كل بديل له مميزاته وتحدياته، ويجب اختيار الأنسب بناءً على ظروف كل حالة.",
@@ -81,6 +91,8 @@ const blogArticles: Record<Locale, BlogArticle[]> = {
         "An in-depth look at corporate governance requirements under the new Saudi regulations.",
       author: "Mohammed Hamad Al-Shahrani",
       date: "July 10, 2026",
+      category: "Corporate Law",
+      readingTime: "5 min read",
       content: [
         "Corporate governance is one of the most important factors determining the success and sustainability of institutions in Saudi Arabia. With the issuance of the new Saudi Corporate Governance Regulations, companies must adapt to new requirements aimed at enhancing transparency and accountability.",
         "The Saudi Corporate Governance Regulations include a set of principles and standards governing company management and protecting the rights of shareholders and stakeholders. Key requirements include forming an independent board of directors, establishing specialized committees, and implementing strict financial disclosure standards.",
@@ -94,6 +106,8 @@ const blogArticles: Record<Locale, BlogArticle[]> = {
         "A comprehensive review of the latest amendments to the Saudi Labor Law and their impact on employee and employer rights.",
       author: "Mohammed Hamad Al-Shahrani",
       date: "June 25, 2026",
+      category: "Labor Law",
+      readingTime: "7 min read",
       content: [
         "The Saudi Labor Law has undergone important updates in 2026 aimed at strengthening worker rights and improving the work environment. These amendments come within the framework of Saudi Vision 2030 to develop the labor market and increase corporate competitiveness.",
         "Key updates include: increasing the minimum wage, improving working conditions, and strengthening protections against workplace abuse. The amendments also cover updates to leave policies and employment regulations.",
@@ -107,6 +121,8 @@ const blogArticles: Record<Locale, BlogArticle[]> = {
         "A detailed explanation of medical liability under Saudi law, including patient rights in cases of medical malpractice.",
       author: "Mohammed Hamad Al-Shahrani",
       date: "May 18, 2026",
+      category: "Medical Law",
+      readingTime: "4 min read",
       content: [
         "Medical liability represents one of the most complex legal fields in Saudi Arabia. This area is governed by a set of laws and regulations that define the rights and responsibilities of patients, doctors, and healthcare institutions.",
         "Among the most prominent principles established by Saudi law are: informed consent, duty of care, and compensation for damages. The law also defines cases and reasons for exemption from liability.",
@@ -120,6 +136,8 @@ const blogArticles: Record<Locale, BlogArticle[]> = {
         "Exploring the various legal avenues for resolving real estate disputes in Saudi Arabia, from negotiation to arbitration.",
       author: "Mohammed Hamad Al-Shahrani",
       date: "April 30, 2026",
+      category: "Real Estate Law",
+      readingTime: "6 min read",
       content: [
         "Real estate disputes are among the most common types of disputes in Saudi Arabia. These disputes include ownership and possession conflicts, lease disagreements, delivery issues, and damage compensation claims.",
         "Several alternatives are available for resolving real estate disputes: direct negotiation, mediation, arbitration, and filing a lawsuit. Each alternative has its advantages and challenges, and the most appropriate choice depends on the circumstances of each case.",
@@ -177,87 +195,121 @@ export default async function BlogArticlePage({
 
   const relatedArticles = articles
     .filter((a) => a.slug !== slug)
-    .slice(0, 2);
+    .slice(0, 3);
 
-  const ArrowIcon = typed === "ar" ? "\u2190" : "\u2192";
+  const isRtl = typed === "ar";
+  const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   return (
     <main>
-      <section className="bg-navy-gradient py-28 md:py-36">
-        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold text-white md:text-5xl tracking-tight">
+      <ReadingProgress />
+
+      {/* Hero */}
+      <section className="section-padding bg-navy-950 text-white relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="post-grid" width="80" height="80" patternUnits="userSpaceOnUse">
+                <path d="M 80 0 L 0 0 0 80" fill="none" stroke="white" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#post-grid)" />
+          </svg>
+        </div>
+
+        <div className="relative container-custom max-w-4xl">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-1 text-warm-400 hover:text-gold-400 transition-colors mb-8 text-sm"
+          >
+            <ArrowIcon className="w-4 h-4" />
+            {isRtl ? "العودة للمدونة" : "Back to Insights"}
+          </Link>
+
+          <div className="mb-4">
+            <span className="rounded-full bg-gold-400/10 px-3 py-1 text-xs font-semibold text-gold-400">
+              {article.category}
+            </span>
+          </div>
+
+          <h1 className="text-[clamp(1.75rem,4vw,2.75rem)] font-bold mb-6 tracking-tight leading-[1.2]">
             {article.title}
           </h1>
-          <div className="mt-6 flex items-center justify-center gap-4 text-navy-300">
-            <span>{article.author}</span>
-            <span aria-hidden="true">&middot;</span>
-            <time>{article.date}</time>
+
+          <div className="flex flex-wrap items-center gap-4 text-sm text-warm-400">
+            <span className="flex items-center gap-2">
+              <span className="w-7 h-7 bg-gold-400/10 rounded-full flex items-center justify-center text-xs text-gold-400 font-bold">
+                {article.author.charAt(0)}
+              </span>
+              {article.author}
+            </span>
+            <span className="flex items-center gap-1">
+              <Calendar className="w-4 h-4" />
+              {article.date}
+            </span>
+            <span className="flex items-center gap-1">
+              <Clock className="w-4 h-4" />
+              {article.readingTime}
+            </span>
           </div>
         </div>
       </section>
 
-      {/* Article header image — TODO: Replace with official firm photography supplied by client */}
-      <div className="relative mx-auto -mt-8 max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div className="relative aspect-[21/9] w-full overflow-hidden rounded-2xl shadow-2xl">
-          <Image
-            src={`/images/blog/${slug}.jpg`}
-            alt={
-              typed === "ar"
-                ? `صورة مقال: ${article.title}`
-                : `Article image: ${article.title}`
-            }
-            fill
-            sizes="(max-width: 768px) 100vw, 768px"
-            className="object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy-900/20 via-transparent to-transparent" aria-hidden="true" />
-        </div>
-      </div>
-
-      <article className="bg-white py-20 lg:py-28">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <Link
-            href="/blog"
-            className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-navy-500 hover:text-gold-600 transition-colors"
-          >
-            <span aria-hidden="true">{ArrowIcon}</span>
-            {t("backToBlog")}
-          </Link>
-
-          <div className="prose prose-lg prose-navy max-w-none">
-            {article.content.map((paragraph, idx) => (
-              <p key={idx} className="mb-6 leading-relaxed text-navy-700">
-                {paragraph}
-              </p>
-            ))}
+      {/* Content */}
+      <section className="section-padding bg-warm-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-panel border border-warm-200/60 p-8 md:p-12 shadow-subtle">
+            <div className="prose prose-lg max-w-none">
+              {article.content.map((paragraph, idx) => (
+                <p key={idx} className="leading-[1.9] mb-6 text-warm-800">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
           </div>
         </div>
-      </article>
+      </section>
 
+      {/* Related Articles */}
       {relatedArticles.length > 0 && (
-        <section className="bg-warm-50 py-20 lg:py-28">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="mb-8 text-2xl font-bold text-navy-900 tracking-tight">
+        <section className="section-padding bg-white">
+          <div className="container-custom">
+            <h2 className="text-2xl font-bold leading-[1.15] mb-10 text-navy-900">
               {t("relatedArticles")}
             </h2>
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-              {relatedArticles.map((related) => (
+            <div className="w-16 h-[2px] bg-gradient-to-r from-gold-500 to-gold-300 mb-10" />
+            <div className="grid md:grid-cols-3 gap-6">
+              {relatedArticles.map((rp) => (
                 <Link
-                  key={related.slug}
-                  href={`/blog/${related.slug}`}
-                  className="group rounded-2xl border border-warm-200 bg-white p-6 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                  key={rp.slug}
+                  href={`/blog/${rp.slug}`}
+                  className="group"
                 >
-                  <time className="text-sm text-navy-400">
-                    {related.date}
-                  </time>
-                  <h3 className="mt-2 text-lg font-bold text-navy-900 group-hover:text-gold-600 transition-colors">
-                    {related.title}
-                  </h3>
-                  <p className="mt-2 text-navy-600 leading-relaxed">{related.excerpt}</p>
-                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-gold-600 opacity-0 transition-all duration-200 group-hover:opacity-100">
-                    {t("readMore")}
-                    <ArrowUpRight className="h-4 w-4" />
-                  </span>
+                  <div className="bg-warm-50 rounded-panel border border-warm-200/60 overflow-hidden shadow-subtle hover-lift transition-all">
+                    {/* Image area — monogram placeholder */}
+                    <div className="h-36 bg-warm-100 flex items-center justify-center overflow-hidden relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-warm-200 via-warm-100 to-warm-50" />
+                      <span
+                        className="relative text-4xl font-bold text-warm-200 select-none"
+                        style={{ fontFamily: "var(--font-heading-ar)" }}
+                        aria-hidden="true"
+                      >
+                        {typed === "ar" ? "ش" : "AS"}
+                      </span>
+                    </div>
+
+                    <div className="p-5">
+                      <div className="flex items-center gap-2 text-xs text-warm-400 mb-2">
+                        <span>{rp.date}</span>
+                        <span aria-hidden="true">&middot;</span>
+                        <span>{rp.readingTime}</span>
+                      </div>
+                      <h3 className="font-semibold text-sm text-navy-900 group-hover:text-gold-600 transition-colors line-clamp-2">
+                        {rp.title}
+                      </h3>
+                      <p className="text-xs text-warm-500 mt-2 line-clamp-2">{rp.excerpt}</p>
+                    </div>
+                  </div>
                 </Link>
               ))}
             </div>
