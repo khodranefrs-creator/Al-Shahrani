@@ -31,9 +31,9 @@ export function TestimonialsSection({ locale }: TestimonialsSectionProps) {
       <div className="absolute bottom-0 left-0 right-0 h-px bg-warm-100" />
 
       <div className="section-padding container-custom">
-        <div className="max-w-4xl mx-auto text-center mb-14 md:mb-20">
+        <div className="max-w-4xl mx-auto text-center mb-12 md:mb-16">
           <h2
-            className="text-[clamp(1.25rem,3vw,2.25rem)] font-bold text-navy-900 mb-4"
+            className="text-3xl md:text-4xl font-bold text-navy-900 mb-4"
             style={{ fontFamily: "var(--font-heading-ar)" }}
           >
             {t("title")}
@@ -48,24 +48,23 @@ export function TestimonialsSection({ locale }: TestimonialsSectionProps) {
               className="relative p-8 md:p-10 rounded-[var(--radius-panel)] bg-warm-50 border border-warm-100 hover:border-gold-400/25 transition-colors duration-500 group"
             >
               {/* Quote mark */}
-              <div className="mb-5">
+              <div className="mb-4">
                 <Quote
                   aria-hidden="true"
-                  className="w-10 h-10 text-gold-400/30 group-hover:text-gold-400/50 transition-colors duration-500"
+                  className="w-8 h-8 text-gold-400/25 group-hover:text-gold-400/40 transition-colors duration-500"
                   fill="currentColor"
                 />
               </div>
 
               {/* Testimonial text */}
               <p
-                className="text-sm text-navy-900 leading-[1.8] mb-7"
-                style={{ fontFamily: "var(--font-heading-ar)" }}
+                className="text-[0.9375rem] text-navy-800 leading-[1.85] mb-6"
               >
                 {t(`items.${item.key}`)}
               </p>
 
               {/* Gold divider */}
-              <div className="w-12 h-px bg-gold-400/30 mb-6" />
+              <div className="w-16 h-px bg-gold-400/30 mb-5" />
 
               {/* Author — with initials avatar */}
               <div className="flex items-center gap-3">

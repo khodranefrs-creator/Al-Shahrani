@@ -53,7 +53,7 @@ export function Hero({ locale }: HeroProps) {
       {/* Top gold accent line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent" />
 
-      <div className="relative z-10 container-custom pt-28 md:pt-36 pb-16 md:pb-20">
+      <div className="relative z-10 container-custom pt-24 md:pt-32 pb-16 md:pb-20">
         <div className="max-w-4xl mx-auto text-center">
           {/* Eyebrow */}
           <div className="flex justify-center mb-3">
@@ -69,7 +69,7 @@ export function Hero({ locale }: HeroProps) {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-base sm:text-lg md:text-xl text-warm-400 leading-[1.7] sm:leading-[1.8] max-w-[39rem] mb-8 md:mb-10 mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-warm-300 leading-[1.7] sm:leading-[1.8] max-w-[39rem] mb-8 md:mb-10 mx-auto">
             {t("subtitle")}
           </p>
 
@@ -96,7 +96,7 @@ export function Hero({ locale }: HeroProps) {
         </div>
 
         {/* Trust cards — 4-col grid with premium depth */}
-        <div className="mt-10 sm:mt-12 md:mt-20">
+        <div className="mt-12 sm:mt-14 md:mt-16">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
             {trustCards.map((card) => {
               const Icon = card.icon;

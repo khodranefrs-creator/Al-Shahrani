@@ -65,7 +65,7 @@ export function Header({ locale }: HeaderProps) {
         role="banner"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-24 md:h-28 items-center justify-between">
+          <div className="flex h-20 md:h-24 items-center justify-between">
             {/* Logo — larger, more premium */}
             <Link
               href="/"
@@ -74,7 +74,7 @@ export function Header({ locale }: HeaderProps) {
             >
               <div
                 className={cn(
-                  "flex h-12 w-12 items-center justify-center font-bold text-lg transition-all duration-300",
+                  "flex h-10 w-10 items-center justify-center font-bold text-lg transition-all duration-300",
                   showDark
                     ? "bg-gold-500/15 text-gold-400 border border-gold-400/20 group-hover:bg-gold-500/25"
                     : "bg-navy-900 text-gold-400 group-hover:bg-navy-800"
@@ -191,7 +191,7 @@ export function Header({ locale }: HeaderProps) {
               <Link
                 href={otherLocalePath}
                 className={cn(
-                  "flex items-center gap-1.5 px-4 py-2.5 text-sm font-semibold transition-all duration-200 border",
+                  "flex items-center gap-1.5 px-4 py-2 text-sm font-semibold transition-all duration-200 border rounded-lg",
                   showDark
                     ? "border-white/20 text-white/70 hover:text-white hover:border-white/40"
                     : "border-warm-300 text-warm-700 hover:text-navy-900 hover:border-warm-400"
@@ -207,7 +207,7 @@ export function Header({ locale }: HeaderProps) {
               <Link
                 href="/contact"
                 className={cn(
-                  "hidden md:inline-flex items-center justify-center px-6 py-3 text-sm font-bold transition-all duration-200",
+                  "hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold transition-all duration-200 rounded-lg",
                   "bg-gold-500 text-white hover:bg-gold-400 shadow-sm hover:shadow-md"
                 )}
               >
@@ -253,7 +253,7 @@ export function Header({ locale }: HeaderProps) {
         <div
           id="mobile-menu"
           className={cn(
-            "lg:hidden fixed inset-x-0 top-24 md:top-28 bottom-0 bg-white z-40 transition-all duration-300 overflow-y-auto border-t border-warm-200",
+            "lg:hidden fixed inset-x-0 top-20 md:top-24 bottom-0 bg-white z-40 transition-all duration-300 overflow-y-auto border-t border-warm-200",
             isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           )}
           aria-hidden={!isOpen}

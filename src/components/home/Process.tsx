@@ -28,7 +28,7 @@ export function Process({ locale }: ProcessProps) {
         <div className="max-w-4xl mx-auto text-center mb-14 md:mb-20">
           <EyebrowTag label={t("eyebrow")} />
           <h2
-            className="text-[clamp(1.25rem,3vw,2.25rem)] font-bold text-white mb-4"
+            className="text-3xl md:text-4xl font-bold text-white mb-4"
             style={{ fontFamily: "var(--font-heading-ar)" }}
           >
             {t("title")}
@@ -64,7 +64,7 @@ export function Process({ locale }: ProcessProps) {
 
                   {/* Step title — slightly larger */}
                   <h3
-                    className="text-base md:text-lg font-bold text-white mb-3 px-2"
+                    className="text-base md:text-xl font-bold text-white mb-3 px-2"
                     style={{ fontFamily: "var(--font-heading-ar)" }}
                   >
                     {t(`steps.${step.key}`)}
@@ -73,7 +73,7 @@ export function Process({ locale }: ProcessProps) {
                   {/* Features list */}
                   <ul className="space-y-2 text-sm text-warm-400 max-w-[220px] mx-auto">
                     {["0", "1", "2"].map((fKey) => (
-                      <li key={fKey} className="flex items-start gap-2 text-left">
+                      <li key={fKey} className="flex items-start gap-2">
                         <Check
                           aria-hidden="true"
                           className="w-3.5 h-3.5 text-gold-400 shrink-0 mt-[3px]"

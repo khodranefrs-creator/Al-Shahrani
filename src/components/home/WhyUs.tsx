@@ -36,9 +36,9 @@ export function WhyUs({ locale }: WhyUsProps) {
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400/15 to-transparent" />
 
       <div className="container-custom relative z-10">
-        <div className="text-center mb-10 md:mb-12">
+        <div className="text-center mb-12 md:mb-14">
           <h2
-            className="text-3xl md:text-4xl font-bold text-white leading-[1.15] mb-4 text-balance"
+            className="text-3xl md:text-[2.5rem] font-bold text-white leading-[1.15] mb-4 text-balance"
             style={{ fontFamily: "var(--font-heading-ar)" }}
           >
             {t("title")}
@@ -52,7 +52,7 @@ export function WhyUs({ locale }: WhyUsProps) {
           {reasons.map((reason, i) => (
             <div
               key={reason.key}
-              className="group relative pt-4 md:pt-5 pb-5 md:pb-6 px-6 md:px-7 rounded-2xl bg-navy-900/50 border border-white/[0.06] hover:border-gold-400/25 transition-[border-color,box-shadow] duration-500 hover:shadow-[0_0_35px_rgba(184,149,60,0.08)] overflow-hidden"
+              className="group relative pt-5 md:pt-6 pb-6 md:pb-7 px-6 md:px-8 rounded-2xl bg-navy-900/50 border border-white/[0.06] hover:border-gold-400/25 transition-[border-color,box-shadow] duration-500 hover:shadow-[0_0_35px_rgba(184,149,60,0.08)] overflow-hidden"
               style={{ animationDelay: `${i * 0.06}s` }}
             >
               {/* Left gold accent bar */}
@@ -82,7 +82,7 @@ export function WhyUs({ locale }: WhyUsProps) {
               </h3>
 
               {/* Features */}
-              <ul className="relative z-10 space-y-1.5">
+              <ul className="relative z-10 space-y-2">
                 {reason.featureKeys.map((fKey) => (
                   <li key={fKey} className="text-warm-400 text-sm md:text-base font-medium leading-relaxed">
                     {t(`features.${reason.key}.${fKey}`)}

@@ -22,7 +22,7 @@ export function BlogSection({ locale }: BlogSectionProps) {
   return (
     <section className="bg-warm-50 section-padding">
       <div className="container-custom">
-        <div className="mb-10 md:mb-12">
+        <div className="mb-8 md:mb-10">
           <h2
             className="text-3xl md:text-4xl font-bold text-navy-900 leading-[1.15]"
             style={{ fontFamily: "var(--font-heading-ar)" }}
@@ -39,12 +39,19 @@ export function BlogSection({ locale }: BlogSectionProps) {
               className="group block bg-white rounded-2xl border border-warm-100/60 hover:border-gold-400/30 hover:shadow-[0_4px_20px_rgba(184,149,60,0.2)] transition-all duration-300 overflow-hidden"
               style={{ animationDelay: `${idx * 0.1}s` }}
             >
-              {/* Image area */}
+              {/* Image area — subtle monogram pattern */}
               <div className="h-44 md:h-[200px] bg-warm-100 rounded-t-2xl flex items-center justify-center overflow-hidden relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-warm-200 via-warm-100 to-warm-50" />
+                <span
+                  className="relative text-5xl font-bold text-warm-200 select-none"
+                  style={{ fontFamily: "var(--font-heading-ar)" }}
+                  aria-hidden="true"
+                >
+                  {locale === "ar" ? "ش" : "AS"}
+                </span>
               </div>
 
-              <div className="p-5">
+              <div className="p-6">
                 {/* Meta: reading time badge */}
                 <div className="flex items-center gap-3 mb-3">
                   <span className="inline-flex items-center gap-1.5 text-xs text-gold-400 bg-gold-400/5 px-2.5 py-0.5 rounded-full">
