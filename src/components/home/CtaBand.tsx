@@ -20,11 +20,14 @@ export function CtaBand({ locale }: { locale: Locale }) {
     <section className="bg-navy-950 section-padding relative overflow-hidden">
       {/* Top accent lines — layered like Qimam */}
       <div className="absolute top-6 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400/40 to-transparent" />
-      <div className="absolute top-7 left-1/2 -translate-x-1/2 w-24 h-[2px] bg-gold-400/[0.06] blur-[3px]" />
+      <div className="absolute top-7 left-1/2 -translate-x-1/2 w-24 h-[2px] bg-gold-400/[0.06]" />
 
-      {/* Background ambient glow */}
+      {/* Background ambient glow — radial-gradient (no filter, GPU-safe) */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gold-400/[0.02] blur-[120px] max-md:blur-[60px]" />
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] max-md:w-[350px] max-md:h-[350px]"
+          style={{ background: "radial-gradient(circle, rgba(184,149,60,0.02) 0%, transparent 65%)" }}
+        />
       </div>
 
       <div className="container-custom relative z-10">

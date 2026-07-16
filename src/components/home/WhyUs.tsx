@@ -20,10 +20,16 @@ export function WhyUs({ locale }: WhyUsProps) {
 
   return (
     <section className="bg-navy-950 section-padding relative overflow-hidden">
-      {/* Background ambient orbs */}
+      {/* Background ambient orbs — radial-gradient (no filter, GPU-safe) */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 -left-20 w-80 h-80 rounded-full bg-gold-400/[0.03] blur-[120px] max-md:blur-[60px]" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-gold-400/[0.02] blur-[100px] max-md:blur-[50px]" />
+        <div
+          className="absolute top-1/2 -left-20 w-80 h-80 max-md:w-48 max-md:h-48 max-md:-left-12"
+          style={{ background: "radial-gradient(circle, rgba(184,149,60,0.03) 0%, transparent 70%)" }}
+        />
+        <div
+          className="absolute bottom-0 right-0 w-96 h-96 max-md:w-56 max-md:h-56"
+          style={{ background: "radial-gradient(circle, rgba(184,149,60,0.02) 0%, transparent 65%)" }}
+        />
       </div>
 
       {/* Bottom gold accent line */}

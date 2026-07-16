@@ -23,7 +23,7 @@ export function Hero({ locale }: HeroProps) {
   const tStats = useTranslations("stats");
 
   return (
-    <section className="relative min-h-screen bg-navy-950 flex items-center overflow-hidden">
+    <section className="relative min-h-dvh bg-navy-950 flex items-center overflow-hidden">
       {/* Background — premium depth layers */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Subtle grid pattern */}
@@ -34,10 +34,16 @@ export function Hero({ locale }: HeroProps) {
             backgroundSize: "100px 100px",
           }}
         />
-        {/* Central ambient glow */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-gold-400/[0.04] blur-[180px] max-md:blur-[100px] max-md:opacity-40" />
+        {/* Central ambient glow — radial-gradient (no filter, GPU-safe) */}
+        <div
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] max-md:w-[400px] max-md:h-[400px] max-md:opacity-40"
+          style={{ background: "radial-gradient(circle, rgba(184,149,60,0.04) 0%, rgba(184,149,60,0.015) 40%, transparent 70%)" }}
+        />
         {/* Bottom-right glow for depth */}
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-gold-400/[0.02] blur-[150px]" />
+        <div
+          className="absolute bottom-0 right-0 w-[500px] h-[500px] max-md:w-[300px] max-md:h-[300px]"
+          style={{ background: "radial-gradient(circle, rgba(184,149,60,0.02) 0%, transparent 65%)" }}
+        />
         {/* Left vertical accent line */}
         <div className="absolute top-0 bottom-0 left-[15%] w-px bg-gradient-to-b from-transparent via-gold-400/[0.08] to-transparent hidden lg:block" />
         {/* Right vertical accent line */}

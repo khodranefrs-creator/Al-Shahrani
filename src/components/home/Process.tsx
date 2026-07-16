@@ -49,7 +49,7 @@ export function Process({ locale }: ProcessProps) {
                   {/* Step node — larger */}
                   <div className="relative inline-flex mb-6">
                     {/* Active glow ring */}
-                    <div className="absolute -inset-3 rounded-full bg-gold-400/[0.08] opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-lg" />
+                    <div className="absolute -inset-3 rounded-full bg-gold-400/[0.08] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                     <div className="relative w-14 h-14 md:w-16 md:h-16 rounded-full bg-gold-400/[0.08] flex items-center justify-center ring-1 ring-gold-400/25 group-hover:ring-gold-400/50 transition-all duration-500 shadow-[0_0_20px_rgba(184,149,60,0.06)]">
                       <Icon aria-hidden="true" className="w-6 h-6 md:w-7 md:h-7 text-gold-400" />
                     </div>

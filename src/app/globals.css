@@ -289,14 +289,23 @@ p { line-height: 1.8; }
 /* ─── Glass Header ─── */
 .header-scrolled {
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(16px) saturate(180%);
   box-shadow: 0 1px 0 var(--color-warm-200), 0 4px 24px rgba(12, 18, 34, 0.06);
 }
 
 .header-scrolled-dark {
   background: rgba(7, 11, 21, 0.92);
-  backdrop-filter: blur(16px) saturate(180%);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .header-scrolled {
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    backdrop-filter: blur(16px) saturate(180%);
+  }
+  .header-scrolled-dark {
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    backdrop-filter: blur(16px) saturate(180%);
+  }
 }
 
 /* ─── Animations ─── */
