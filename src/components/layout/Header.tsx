@@ -74,14 +74,14 @@ export function Header({ locale }: HeaderProps) {
           <div
             className={cn(
               "flex items-center justify-between transition-all duration-500",
-              isScrolled ? "h-16 md:h-18" : "h-20 md:h-24"
+              isScrolled ? "h-20 md:h-24" : "h-24 md:h-28"
             )}
           >
-            {/* Logo — image, RTL-aware positioning */}
+            {/* Logo — dominant branding element, RTL-aware */}
             <Link
               href="/"
               className={cn(
-                "relative shrink-0 transition-all duration-500",
+                "relative shrink-0 flex items-center transition-all duration-500",
                 locale === "ar" ? "order-last" : "order-first"
               )}
               aria-label={siteConfig.name[locale]}
@@ -89,21 +89,21 @@ export function Header({ locale }: HeaderProps) {
               <Image
                 src="/alslogo.png"
                 alt={LOGO_ALT[locale]}
-                width={400}
-                height={120}
+                width={600}
+                height={180}
                 priority
                 quality={100}
                 className={cn(
                   "w-auto object-contain transition-all duration-500",
-                  isScrolled ? "h-10 md:h-12" : "h-12 md:h-14"
+                  isScrolled ? "h-14 md:h-18" : "h-16 md:h-20"
                 )}
-                sizes="(max-width: 768px) 160px, 220px"
+                sizes="(max-width: 768px) 200px, 280px"
               />
             </Link>
 
-            {/* Desktop Nav */}
+            {/* Desktop Nav — slightly compact to let logo dominate */}
             <nav
-              className="hidden lg:flex items-center gap-1"
+              className="hidden lg:flex items-center gap-0.5"
               aria-label={locale === "ar" ? "التنقل الرئيسي" : "Main navigation"}
             >
               {navItems.map((item) => {
@@ -124,7 +124,7 @@ export function Header({ locale }: HeaderProps) {
                     <Link
                       href={item.href}
                       className={cn(
-                        "px-5 py-2 text-base font-semibold transition-all duration-200 relative inline-flex items-center gap-1.5",
+                        "px-4 py-2 text-[15px] font-semibold transition-all duration-200 relative inline-flex items-center gap-1.5",
                         isActive
                           ? showDark
                             ? "text-gold-400"
@@ -182,7 +182,7 @@ export function Header({ locale }: HeaderProps) {
             </nav>
 
             {/* Actions */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <Link
                 href={otherLocalePath}
                 className={cn(
@@ -248,21 +248,21 @@ export function Header({ locale }: HeaderProps) {
         <div
           id="mobile-menu"
           className={cn(
-            "lg:hidden fixed inset-x-0 top-20 md:top-24 bottom-0 bg-white z-40 transition-all duration-300 overflow-y-auto border-t border-warm-200",
+            "lg:hidden fixed inset-x-0 top-24 md:top-28 bottom-0 bg-white z-40 transition-all duration-300 overflow-y-auto border-t border-warm-200",
             isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           )}
           aria-hidden={!isOpen}
         >
-          {/* Mobile Logo */}
+          {/* Mobile Logo — premium scale */}
           <div className="px-6 pt-8 pb-6 flex justify-center border-b border-warm-100">
             <Image
               src="/alslogo.png"
               alt={LOGO_ALT[locale]}
-              width={400}
-              height={120}
+              width={600}
+              height={180}
               quality={100}
-              className="h-14 w-auto object-contain"
-              sizes="200px"
+              className="h-16 w-auto object-contain"
+              sizes="240px"
             />
           </div>
 

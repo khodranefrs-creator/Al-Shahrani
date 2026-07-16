@@ -47,12 +47,12 @@ export function Footer({ locale }: FooterProps) {
               <Image
                 src="/alslogo.png"
                 alt={LOGO_ALT[locale]}
-                width={400}
-                height={120}
+                width={600}
+                height={180}
                 quality={100}
                 loading="lazy"
-                className="h-16 w-auto object-contain"
-                sizes="240px"
+                className="h-20 w-auto object-contain"
+                sizes="300px"
               />
             </Link>
             <p className="text-sm text-warm-400 leading-relaxed mb-6">
