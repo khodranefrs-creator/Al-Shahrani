@@ -2,9 +2,8 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowLeft, Clock } from "lucide-react";
 import { type Locale } from "@/types";
-import { EyebrowTag } from "@/components/ui/EyebrowTag";
 
 const posts = [
   { key: "0", tag: "news" },
@@ -12,80 +11,74 @@ const posts = [
   { key: "2", tag: "news" },
 ] as const;
 
-const placeholderImages = ["/images/blog-1.jpg", "/images/blog-2.jpg", "/images/blog-3.jpg"];
-
 interface BlogSectionProps {
   locale: Locale;
 }
 
 export function BlogSection({ locale }: BlogSectionProps) {
   const t = useTranslations("blog");
+  const isRtl = locale === "ar";
 
   return (
-    <section className="bg-warm-50 relative">
-      {/* Top section divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gold-400/[0.15]" />
-
-      <div className="section-padding container-custom">
-        <div className="max-w-4xl mx-auto text-center mb-14 md:mb-20">
-          <EyebrowTag label={t("eyebrow")} />
+    <section className="bg-warm-50 section-padding">
+      <div className="container-custom">
+        <div className="mb-10 md:mb-12">
           <h2
-            className="text-[clamp(1.25rem,3vw,2.25rem)] font-bold text-navy-900 mb-4"
+            className="text-3xl md:text-4xl font-bold text-navy-900 leading-[1.15]"
             style={{ fontFamily: "var(--font-heading-ar)" }}
           >
             {t("title")}
           </h2>
-          <p className="text-warm-500 leading-[1.7] max-w-2xl mx-auto">{t("description")}</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
-          {posts.map((post, i) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {posts.map((post, idx) => (
             <Link
               key={post.key}
-              href={`/${locale}/news`}
-              className="group rounded-[var(--radius-panel)] overflow-hidden bg-white border border-warm-100 hover:border-gold-400/25 transition-all duration-500 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] flex flex-col"
+              href={`/${locale}/blog`}
+              className="group block bg-white rounded-2xl border border-warm-100/60 hover:border-gold-400/30 hover:shadow-[0_4px_20px_rgba(184,149,60,0.2)] transition-all duration-300 overflow-hidden"
+              style={{ animationDelay: `${idx * 0.1}s` }}
             >
-              {/* Taller image area for editorial feel */}
-              <div className="relative h-52 md:h-60 bg-warm-100 overflow-hidden">
-                {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 via-navy-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
-                {/* Placeholder image */}
+              {/* Image area */}
+              <div className="h-44 md:h-[200px] bg-warm-100 rounded-t-2xl flex items-center justify-center overflow-hidden relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-warm-200 via-warm-100 to-warm-50" />
-                {/* Read time badge */}
-                <div className="absolute top-4 end-4 z-20 px-3 py-1.5 rounded-full bg-navy-900/80 backdrop-blur-sm text-warm-400 text-[0.7rem] font-semibold">
-                  {t(`read_times.${post.key}`)}
-                </div>
               </div>
 
-              <div className="p-7 flex flex-col flex-1">
-                {/* Tag */}
-                <span className="text-xs font-semibold text-gold-400 mb-3 uppercase tracking-wider">
-                  {t(`tags.${post.tag}`)}
-                </span>
+              <div className="p-5">
+                {/* Meta: reading time badge */}
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="inline-flex items-center gap-1.5 text-xs text-gold-400 bg-gold-400/5 px-2.5 py-0.5 rounded-full">
+                    <Clock className="w-3 h-3" />
+                    {t(`read_times.${post.key}`)}
+                  </span>
+                </div>
 
                 {/* Title */}
                 <h3
-                  className="text-base font-bold text-navy-900 mb-3 leading-[1.5] group-hover:text-gold-400 transition-colors duration-300"
+                  className="font-bold text-navy-900 mb-2 group-hover:text-gold-400 transition-colors duration-300 line-clamp-2 text-lg"
                   style={{ fontFamily: "var(--font-heading-ar)" }}
                 >
                   {t(`posts.${post.key}`)}
                 </h3>
 
                 {/* Excerpt */}
-                <p className="text-sm text-warm-500 leading-[1.7] mb-5 line-clamp-2">
+                <p className="text-warm-500 text-sm leading-relaxed line-clamp-2">
                   {t(`excerpts.${post.key}`)}
                 </p>
-
-                {/* Read more */}
-                <div className="mt-auto pt-4 border-t border-warm-100">
-                  <span className="text-gold-400 text-xs font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all duration-300">
-                    {t("read_more")}
-                    <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180 transition-transform" />
-                  </span>
-                </div>
               </div>
             </Link>
           ))}
+        </div>
+
+        <div className="text-center mt-10 md:mt-12">
+          <Link href={`/${locale}/blog`} className="inline-flex items-center gap-2 text-gold-400 font-medium hover:text-gold-300 transition-colors duration-200 group">
+            <span>{t("read_more")}</span>
+            {isRtl ? (
+              <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
+            ) : (
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            )}
+          </Link>
         </div>
       </div>
     </section>

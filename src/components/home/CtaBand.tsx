@@ -18,13 +18,16 @@ export function CtaBand({ locale }: { locale: Locale }) {
 
   return (
     <section className="bg-navy-950 section-padding relative overflow-hidden">
-      {/* Subtle ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gold-400/[0.03] blur-[120px] pointer-events-none" />
-
-      {/* Top accent line */}
+      {/* Top accent lines — layered like Qimam */}
       <div className="absolute top-6 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400/40 to-transparent" />
+      <div className="absolute top-7 left-1/2 -translate-x-1/2 w-24 h-[2px] bg-gold-400/[0.06] blur-[3px]" />
 
-      <div className="container-custom">
+      {/* Background ambient glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gold-400/[0.02] blur-[120px] max-md:blur-[60px]" />
+      </div>
+
+      <div className="container-custom relative z-10">
         <div className="max-w-2xl mx-auto text-center">
           <div className="flex justify-center mb-5">
             <EyebrowTag label={locale === 'ar' ? 'تواصل معنا' : 'Get in Touch'} />
