@@ -17,7 +17,7 @@ export function CtaBand({ locale }: { locale: Locale }) {
     : ['Over 20 years of experience', 'Team of specialized lawyers', 'Initial consultation free'];
 
   return (
-    <section className="bg-navy-950 section-padding relative overflow-hidden">
+    <section className="bg-navy-950 py-20 md:py-28 relative overflow-hidden">
       {/* Top accent lines — layered like Qimam */}
       <div className="absolute top-6 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400/40 to-transparent" />
       <div className="absolute top-7 left-1/2 -translate-x-1/2 w-24 h-[2px] bg-gold-400/[0.06]" />

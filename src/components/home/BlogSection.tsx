@@ -36,7 +36,7 @@ export function BlogSection({ locale }: BlogSectionProps) {
             <Link
               key={post.key}
               href={`/${locale}/blog`}
-              className="group block bg-white rounded-2xl border border-warm-100/60 hover:border-gold-400/30 hover:shadow-[0_4px_20px_rgba(184,149,60,0.2)] transition-all duration-300 overflow-hidden"
+              className="group block bg-white rounded-2xl border border-warm-100/60 hover:border-gold-400/30 hover:shadow-[0_4px_20px_rgba(184,149,60,0.2)] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
               style={{ animationDelay: `${idx * 0.1}s` }}
             >
               {/* Image area — subtle monogram pattern */}
@@ -62,7 +62,7 @@ export function BlogSection({ locale }: BlogSectionProps) {
 
                 {/* Title */}
                 <h3
-                  className="font-bold text-navy-900 mb-2 group-hover:text-gold-400 transition-colors duration-300 line-clamp-2 text-lg"
+                  className="font-semibold text-navy-900 mb-2 group-hover:text-gold-400 transition-colors duration-300 line-clamp-2 text-lg"
                   style={{ fontFamily: "var(--font-heading-ar)" }}
                 >
                   {t(`posts.${post.key}`)}

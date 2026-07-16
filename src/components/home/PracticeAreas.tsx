@@ -48,7 +48,7 @@ export function PracticeAreas({ locale }: PracticeAreasProps) {
               <Link
                 key={service.key}
                 href={`/${locale}/services#${service.key}`}
-                className="group flex flex-col h-full bg-white rounded-2xl border border-warm-100/60 hover:border-gold-400/30 hover:shadow-[0_4px_20px_rgba(184,149,60,0.2)] transition-all duration-300 overflow-hidden"
+                className="group flex flex-col h-full bg-white rounded-2xl border border-warm-100/60 hover:border-gold-400/30 hover:shadow-[0_4px_20px_rgba(184,149,60,0.2)] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
               >
                 {/* Gradient top strip */}
                 <div className={`h-1.5 bg-gradient-to-r ${service.color}`} />
@@ -57,7 +57,7 @@ export function PracticeAreas({ locale }: PracticeAreasProps) {
                     <Icon aria-hidden="true" className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-gold-400" />
                   </div>
                   <h3
-                    className="font-bold text-navy-900 mb-3 text-xl group-hover:text-gold-400 transition-colors duration-300"
+                    className="font-semibold text-navy-900 mb-3 text-xl group-hover:text-gold-400 transition-colors duration-300"
                     style={{ fontFamily: "var(--font-heading-ar)" }}
                   >
                     {t(`${service.key}.title`)}
