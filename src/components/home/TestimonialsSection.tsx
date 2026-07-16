@@ -2,30 +2,28 @@
 
 import { useTranslations } from "next-intl";
 import { Quote } from "lucide-react";
+import { type Locale } from "@/types";
 
-const testimonials = [
-  {
-    key: "0",
-    name: "محمد العنزي",
-    role: "رائد أعمال",
-    initials: "ع",
-  },
-  {
-    key: "1",
-    name: "سارة الشمري",
-    role: "مديرة تنفيذية",
-    initials: "ش",
-  },
-  {
-    key: "2",
-    name: "عبدالله الحربي",
-    role: "مدير شركة",
-    initials: "ح",
-  },
-] as const;
+const testimonialsData = {
+  ar: [
+    { key: "0", name: "محمد العنزي", role: "رائد أعمال", initials: "ع" },
+    { key: "1", name: "سارة الشمري", role: "مديرة تنفيذية", initials: "ش" },
+    { key: "2", name: "عبدالله الحربي", role: "مدير شركة", initials: "ح" },
+  ],
+  en: [
+    { key: "0", name: "Mohammed Al-Anzi", role: "Entrepreneur", initials: "MA" },
+    { key: "1", name: "Sarah Al-Shamri", role: "CEO", initials: "SS" },
+    { key: "2", name: "Abdullah Al-Harbi", role: "Company Director", initials: "AH" },
+  ],
+} as const;
 
-export function TestimonialsSection() {
+interface TestimonialsSectionProps {
+  locale: Locale;
+}
+
+export function TestimonialsSection({ locale }: TestimonialsSectionProps) {
   const t = useTranslations("testimonials");
+  const testimonials = testimonialsData[locale] || testimonialsData.ar;
 
   return (
     <section className="bg-white relative">
@@ -49,7 +47,7 @@ export function TestimonialsSection() {
               key={item.key}
               className="relative p-8 md:p-10 rounded-[var(--radius-panel)] bg-warm-50 border border-warm-100 hover:border-gold-400/25 transition-colors duration-500 group"
             >
-              {/* Quote mark — larger and bolder */}
+              {/* Quote mark */}
               <div className="mb-5">
                 <Quote
                   aria-hidden="true"

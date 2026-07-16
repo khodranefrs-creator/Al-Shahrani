@@ -26,7 +26,7 @@ export default async function HomePage({
       <PracticeAreas locale={locale} />
       <CorporateSpotlight locale={locale} />
       <Process locale={locale} />
-      <TestimonialsSection />
+      <TestimonialsSection locale={locale} />
       <BlogSection locale={locale} />
       <CtaBand locale={locale} />
     </>
