@@ -231,6 +231,11 @@
       "hours": "Office Hours",
       "hoursValue": "Sunday - Thursday: 9:00 AM - 5:00 PM",
       "map": "View on Map"
+    },
+    "trust": {
+      "confidential": "Strictly Confidential",
+      "licensed": "Licensed by Ministry of Justice",
+      "experience": "Over 20 Years of Experience"
     }
   },
   "footer": {
