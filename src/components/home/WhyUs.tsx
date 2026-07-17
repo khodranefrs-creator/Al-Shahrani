@@ -52,7 +52,7 @@ export function WhyUs({ locale }: WhyUsProps) {
           {reasons.map((reason, i) => (
             <div
               key={reason.key}
-              className="group relative pt-5 md:pt-6 pb-6 md:pb-7 px-6 md:px-8 rounded-2xl bg-navy-900 border border-white/[0.06] hover:border-gold-400/25 hover:-translate-y-1 transition-[border-color,box-shadow,transform] duration-500 hover:shadow-[0_0_35px_rgba(184,149,60,0.08)] overflow-hidden"
+              className="group relative pt-5 md:pt-6 pb-6 md:pb-7 px-6 md:px-8 rounded-2xl bg-navy-800/80 border border-white/[0.10] hover:border-gold-400/30 hover:-translate-y-1 transition-[border-color,box-shadow,transform] duration-500 hover:shadow-[0_8px_40px_rgba(184,149,60,0.12)] overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.25)]"
               style={{ animationDelay: `${i * 0.06}s` }}
             >
               {/* Left gold accent bar */}

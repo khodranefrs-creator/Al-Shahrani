@@ -7,12 +7,12 @@ import { type Locale } from "@/types";
 import { EyebrowTag } from "@/components/ui/EyebrowTag";
 
 const services = [
-  { icon: Scale, key: "corporate", color: "from-gold-400/20 via-gold-400/10 to-transparent" },
-  { icon: Shield, key: "litigation", color: "from-amber-500/15 via-amber-500/5 to-transparent" },
-  { icon: BookOpen, key: "contracts", color: "from-blue-500/15 via-blue-500/5 to-transparent" },
-  { icon: Briefcase, key: "labor", color: "from-emerald-500/15 via-emerald-500/5 to-transparent" },
-  { icon: Shield, key: "debtCollection", color: "from-rose-500/15 via-rose-500/5 to-transparent" },
-  { icon: BookOpen, key: "notarization", color: "from-indigo-500/15 via-indigo-500/5 to-transparent" },
+  { icon: Scale, key: "corporate" },
+  { icon: Shield, key: "litigation" },
+  { icon: BookOpen, key: "contracts" },
+  { icon: Briefcase, key: "labor" },
+  { icon: Shield, key: "debtCollection" },
+  { icon: BookOpen, key: "notarization" },
 ] as const;
 
 interface PracticeAreasProps {
@@ -50,8 +50,8 @@ export function PracticeAreas({ locale }: PracticeAreasProps) {
                 href={`/${locale}/services#${service.key}`}
                 className="group flex flex-col h-full bg-white rounded-2xl border border-warm-100/60 hover:border-gold-400/30 hover:shadow-[0_4px_20px_rgba(184,149,60,0.2)] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
               >
-                {/* Gradient top strip */}
-                <div className={`h-1.5 bg-gradient-to-r ${service.color}`} />
+                {/* Consistent gold top strip */}
+                <div className="h-1.5 bg-gradient-to-r from-gold-400/30 via-gold-400/15 to-transparent" />
                 <div className="p-5 md:p-7 flex flex-col flex-1">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg bg-gold-400/10 flex items-center justify-center mb-5 group-hover:bg-gold-400/20 transition-colors duration-300">
                     <Icon aria-hidden="true" className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-gold-400" />

@@ -11,6 +11,35 @@ const posts = [
   { key: "2", tag: "news" },
 ] as const;
 
+const legalIllustrations = [
+  // Scales of justice — corporate governance
+  <svg key="scales" viewBox="0 0 200 160" fill="none" className="w-24 h-20 text-gold-400/40" aria-hidden="true">
+    <path d="M100 20v100" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M60 40h80" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M60 40l-20 40h40l-20-40z" stroke="currentColor" strokeWidth="1" fill="currentColor" fillOpacity="0.05" />
+    <path d="M140 40l-20 40h40l-20-40z" stroke="currentColor" strokeWidth="1" fill="currentColor" fillOpacity="0.05" />
+    <path d="M80 120h40" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M70 120h60" stroke="currentColor" strokeWidth="1" />
+    <circle cx="100" cy="18" r="3" fill="currentColor" fillOpacity="0.3" />
+  </svg>,
+  // Gavel — litigation/labor rights
+  <svg key="gavel" viewBox="0 0 200 160" fill="none" className="w-24 h-20 text-gold-400/40" aria-hidden="true">
+    <rect x="70" y="50" width="60" height="20" rx="2" stroke="currentColor" strokeWidth="1" fill="currentColor" fillOpacity="0.05" transform="rotate(-30 100 60)" />
+    <path d="M85 85l15-15" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M80 90l20-20" stroke="currentColor" strokeWidth="1" />
+    <circle cx="75" cy="95" r="8" stroke="currentColor" strokeWidth="1" fill="currentColor" fillOpacity="0.05" />
+    <path d="M60 120h80" stroke="currentColor" strokeWidth="1" />
+    <rect x="55" y="115" width="90" height="10" rx="2" stroke="currentColor" strokeWidth="1" fill="currentColor" fillOpacity="0.03" />
+  </svg>,
+  // Document/contract
+  <svg key="doc" viewBox="0 0 200 160" fill="none" className="w-24 h-20 text-gold-400/40" aria-hidden="true">
+    <rect x="55" y="25" width="90" height="110" rx="3" stroke="currentColor" strokeWidth="1" fill="currentColor" fillOpacity="0.04" />
+    <path d="M75 55h50M75 70h50M75 85h35" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
+    <path d="M75 105l8 8 16-16" stroke="currentColor" strokeWidth="1.5" />
+    <circle cx="135" cy="115" r="12" stroke="currentColor" strokeWidth="1" fill="currentColor" fillOpacity="0.06" />
+  </svg>,
+];
+
 interface BlogSectionProps {
   locale: Locale;
 }
@@ -39,16 +68,19 @@ export function BlogSection({ locale }: BlogSectionProps) {
               className="group block bg-white rounded-2xl border border-warm-100/60 hover:border-gold-400/30 hover:shadow-[0_4px_20px_rgba(184,149,60,0.2)] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
               style={{ animationDelay: `${idx * 0.1}s` }}
             >
-              {/* Image area — subtle monogram pattern */}
-              <div className="h-44 md:h-[200px] bg-warm-100 rounded-t-2xl flex items-center justify-center overflow-hidden relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-warm-200 via-warm-100 to-warm-50" />
-                <span
-                  className="relative text-5xl font-bold text-warm-200 select-none"
-                  style={{ fontFamily: "var(--font-heading-ar)" }}
-                  aria-hidden="true"
-                >
-                  {locale === "ar" ? "ش" : "AS"}
-                </span>
+              {/* Image area — premium legal illustration */}
+              <div className="h-44 md:h-[200px] bg-gradient-to-br from-navy-900 to-navy-950 rounded-t-2xl flex items-center justify-center overflow-hidden relative">
+                <div className="absolute inset-0 opacity-[0.03]">
+                  <svg width="100%" height="100%">
+                    <defs>
+                      <pattern id={`blog-grid-${post.key}`} width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-gold-400" />
+                      </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill={`url(#blog-grid-${post.key})`} />
+                  </svg>
+                </div>
+                {legalIllustrations[idx]}
               </div>
 
               <div className="p-6">

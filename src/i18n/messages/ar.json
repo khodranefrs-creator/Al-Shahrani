@@ -17,7 +17,12 @@
     "years": "سنة من الخبرة",
     "cases": "قضية تم التعامل معها",
     "clients": "عميل مؤسسي",
-    "practiceAreas": "مجال تخصص قانوني"
+    "practiceAreas": "مجال تخصص قانوني",
+    "badges": {
+      "accredited": "مرخص من وزارة العدل",
+      "confidential": "سرية تامة مضمونة",
+      "bilingual": "عربي وإنجليزي"
+    }
   },
   "why_us": {
     "eyebrow": "لماذا نحن",

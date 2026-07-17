@@ -2,13 +2,19 @@
 
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
-import { BadgeCheck, Shield, Scale, ScrollText } from "lucide-react";
+import { BadgeCheck, Shield, Scale, ScrollText, Award, Users } from "lucide-react";
 
-const credentials = [
-  { icon: BadgeCheck, key: "years" },
-  { icon: Shield, key: "cases" },
-  { icon: Scale, key: "clients" },
-  { icon: ScrollText, key: "practiceAreas" },
+const trustBadges = [
+  { icon: Award, key: "accredited" },
+  { icon: Shield, key: "confidential" },
+  { icon: Users, key: "bilingual" },
+] as const;
+
+const stats = [
+  { icon: BadgeCheck, key: "years", value: 20, suffix: "+" },
+  { icon: Shield, key: "cases", value: 150, suffix: "+" },
+  { icon: Scale, key: "clients", value: 100, suffix: "+" },
+  { icon: ScrollText, key: "practiceAreas", value: 6, suffix: "" },
 ] as const;
 
 function useCountUp(target: number, duration = 2000) {
@@ -45,45 +51,56 @@ function useCountUp(target: number, duration = 2000) {
   return { count, ref };
 }
 
-const statValues: Record<string, { value: number; suffix: string }> = {
-  years: { value: 20, suffix: "+" },
-  cases: { value: 150, suffix: "+" },
-  clients: { value: 100, suffix: "+" },
-  practiceAreas: { value: 6, suffix: "" },
-};
-
-function StatItem({ credential }: { credential: (typeof credentials)[number] }) {
-  const { count, ref } = useCountUp(statValues[credential.key].value);
+function StatItem({ stat }: { stat: (typeof stats)[number] }) {
+  const { count, ref } = useCountUp(stat.value);
   const t = useTranslations("stats");
-  const Icon = credential.icon;
+  const Icon = stat.icon;
 
   return (
-    <div ref={ref} className="relative text-center py-4">
-      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gold-400/10 flex items-center justify-center mx-auto mb-3">
+    <div ref={ref} className="text-center">
+      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gold-400/10 flex items-center justify-center mx-auto mb-2">
         <Icon aria-hidden="true" className="w-5 h-5 text-gold-400" />
       </div>
       <span
-        className="block text-3xl md:text-4xl font-bold text-gold-400 leading-none"
+        className="block text-2xl md:text-3xl font-bold text-gold-400 leading-none"
         style={{ fontFamily: "var(--font-heading-en)" }}
       >
-        {count}{statValues[credential.key].suffix}
+        {count}{stat.suffix}
       </span>
-      <span className="block text-sm text-warm-400 mt-2 leading-snug">{t(credential.key)}</span>
+      <span className="block text-xs text-warm-400 mt-1.5 leading-snug">{t(stat.key)}</span>
     </div>
   );
 }
 
 export function StatsBand({ locale = "ar" }: { locale?: string }) {
+  const t = useTranslations("stats");
+
   return (
     <section className="bg-navy-950 border-y border-gold-400/15">
-      <div className="container-custom py-12 md:py-14">
+      <div className="container-custom py-10 md:py-12">
+        {/* Trust badges — top row, institutional style */}
+        <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 mb-8 md:mb-10 pb-8 md:pb-10 border-b border-white/[0.06]">
+          {trustBadges.map((badge) => {
+            const Icon = badge.icon;
+            return (
+              <div key={badge.key} className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-full bg-gold-400/10 flex items-center justify-center">
+                  <Icon aria-hidden="true" className="w-4 h-4 text-gold-400" />
+                </div>
+                <span className="text-sm text-warm-300 font-medium">{t(`badges.${badge.key}`)}</span>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Statistics — bottom row with count-up */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {credentials.map((credential, i) => (
-            <div key={credential.key} className="relative">
+          {stats.map((stat, i) => (
+            <div key={stat.key} className="relative">
               {i > 0 && (
-                <div className="hidden lg:block absolute top-1/2 -translate-y-1/2 -start-3 w-px h-12 bg-gold-400/15" />
+                <div className="hidden lg:block absolute top-1/2 -translate-y-1/2 -start-3 w-px h-10 bg-gold-400/15" />
               )}
-              <StatItem credential={credential} />
+              <StatItem stat={stat} />
             </div>
           ))}
         </div>

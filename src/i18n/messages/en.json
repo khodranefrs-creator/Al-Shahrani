@@ -17,7 +17,12 @@
     "years": "Years of Experience",
     "cases": "Cases Handled",
     "clients": "Corporate Clients",
-    "practiceAreas": "Practice Areas"
+    "practiceAreas": "Practice Areas",
+    "badges": {
+      "accredited": "Licensed by Ministry of Justice",
+      "confidential": "Strictly Confidential",
+      "bilingual": "Arabic & English"
+    }
   },
   "why_us": {
     "eyebrow": "Why Us",

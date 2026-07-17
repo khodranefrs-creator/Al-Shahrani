@@ -59,40 +59,44 @@ export function CorporateSpotlight({ locale }: CorporateSpotlightProps) {
                 backgroundSize: "40px 40px"
               }} />
 
-              {/* Abstract geometric composition — premium legal seal */}
+              {/* Legal institution illustration — courthouse columns */}
               <svg
-                viewBox="0 0 320 320"
-                className="w-[55%] h-[55%] text-gold-400 opacity-70"
+                viewBox="0 0 320 280"
+                className="w-[65%] h-[65%] text-gold-400 opacity-60"
                 fill="none"
                 stroke="currentColor"
                 aria-hidden="true"
               >
                 <g strokeWidth="1" strokeLinecap="round">
-                  {/* Outer concentric rings */}
-                  <circle cx="160" cy="160" r="120" strokeOpacity="0.12" />
-                  <circle cx="160" cy="160" r="90" strokeOpacity="0.18" />
-                  <circle cx="160" cy="160" r="60" strokeOpacity="0.25" />
+                  {/* Pediment / triangular roof */}
+                  <path d="M80 110 L160 60 L240 110" strokeOpacity="0.3" fill="currentColor" fillOpacity="0.03" />
+                  <line x1="80" y1="110" x2="240" y2="110" strokeOpacity="0.25" />
 
-                  {/* Diagonal cross — precision/structure */}
-                  <line x1="75" y1="75" x2="245" y2="245" strokeOpacity="0.15" />
-                  <line x1="245" y1="75" x2="75" y2="245" strokeOpacity="0.15" />
+                  {/* Entablature — horizontal beam */}
+                  <rect x="70" y="110" width="180" height="8" rx="1" strokeOpacity="0.15" fill="currentColor" fillOpacity="0.04" />
 
-                  {/* Horizontal + vertical axis */}
-                  <line x1="40" y1="160" x2="280" y2="160" strokeOpacity="0.1" />
-                  <line x1="160" y1="40" x2="160" y2="280" strokeOpacity="0.1" />
+                  {/* Columns */}
+                  {[95, 130, 165, 200, 225].map((x) => (
+                    <g key={x}>
+                      <rect x={x - 5} y="118" width="10" height="80" rx="1" strokeOpacity="0.2" fill="currentColor" fillOpacity="0.04" />
+                      <line x1={x - 4} y1="125" x2={x - 4} y2="193" strokeOpacity="0.08" />
+                      <line x1={x + 4} y1="125" x2={x + 4} y2="193" strokeOpacity="0.08" />
+                      {/* Column capitals */}
+                      <rect x={x - 6} y="115" width="12" height="5" rx="1" strokeOpacity="0.2" fill="currentColor" fillOpacity="0.05" />
+                    </g>
+                  ))}
 
-                  {/* Central diamond — focal point */}
-                  <rect x="140" y="140" width="40" height="40" rx="2" transform="rotate(45 160 160)" fill="currentColor" fillOpacity="0.06" strokeOpacity="0.3" />
-                  <circle cx="160" cy="160" r="6" fill="currentColor" fillOpacity="0.2" />
+                  {/* Base / stylobate */}
+                  <rect x="65" y="198" width="190" height="6" rx="1" strokeOpacity="0.2" fill="currentColor" fillOpacity="0.04" />
+                  <rect x="60" y="204" width="200" height="8" rx="1" strokeOpacity="0.15" fill="currentColor" fillOpacity="0.03" />
 
-                  {/* Corner accent dots */}
-                  <circle cx="160" cy="40" r="3" fill="currentColor" fillOpacity="0.2" />
-                  <circle cx="160" cy="280" r="3" fill="currentColor" fillOpacity="0.2" />
-                  <circle cx="40" cy="160" r="3" fill="currentColor" fillOpacity="0.2" />
-                  <circle cx="280" cy="160" r="3" fill="currentColor" fillOpacity="0.2" />
+                  {/* Steps */}
+                  <rect x="55" y="212" width="210" height="5" rx="1" strokeOpacity="0.1" />
+                  <rect x="50" y="217" width="220" height="5" rx="1" strokeOpacity="0.08" />
 
-                  {/* Subtle inner square */}
-                  <rect x="105" y="105" width="110" height="110" rx="2" strokeOpacity="0.12" />
+                  {/* Central scales emblem — small, above pediment */}
+                  <circle cx="160" cy="50" r="10" strokeOpacity="0.2" fill="currentColor" fillOpacity="0.05" />
+                  <path d="M160 42v16M152 48h16" strokeOpacity="0.25" strokeWidth="0.8" />
                 </g>
               </svg>
 
