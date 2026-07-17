@@ -95,7 +95,7 @@ export function WhyUs({ locale }: WhyUsProps) {
               {/* Bottom link */}
               <div className="relative z-10 mt-4 pt-3 border-t border-white/[0.06]">
                 <Link
-                  href={`/${locale}/governance`}
+                  href="/services/governance"
                   className="text-gold-400 text-xs font-medium inline-flex items-center gap-1.5 group/link hover:text-gold-300 transition-colors duration-300"
                 >
                   {t("links.governance")}

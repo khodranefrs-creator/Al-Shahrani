@@ -2,7 +2,17 @@ import { db } from "@/lib/db";
 import { cookies } from "next/headers";
 import crypto from "crypto";
 
-const SESSION_SECRET = process.env.SESSION_SECRET || "al-shahrani-dev-secret-change-in-production";
+function getSessionSecret(): string {
+  const secret = process.env.SESSION_SECRET;
+  if (!secret) {
+    throw new Error(
+      "SESSION_SECRET environment variable is required but was not set. " +
+      "Set it in your .env file or environment before starting the server."
+    );
+  }
+  return secret;
+}
+
 const COOKIE_NAME = "al-shahrani-session";
 const SESSION_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 
@@ -17,7 +27,7 @@ export async function verifyPassword(plain: string, hashed: string): Promise<boo
 }
 
 function sign(payload: string): string {
-  const hmac = crypto.createHmac("sha256", SESSION_SECRET);
+  const hmac = crypto.createHmac("sha256", getSessionSecret());
   hmac.update(payload);
   const signature = hmac.digest("hex");
   return `${Buffer.from(payload).toString("base64")}.${signature}`;
@@ -28,7 +38,7 @@ function unsign(signed: string): string | null {
   if (!payloadB64 || !signature) return null;
 
   const payload = Buffer.from(payloadB64, "base64").toString("utf-8");
-  const hmac = crypto.createHmac("sha256", SESSION_SECRET);
+  const hmac = crypto.createHmac("sha256", getSessionSecret());
   hmac.update(payload);
   const expectedSignature = hmac.digest("hex");
 

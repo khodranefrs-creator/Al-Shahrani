@@ -38,7 +38,7 @@ export function CorporateSpotlight({ locale }: CorporateSpotlightProps) {
             </ul>
 
             <Link
-              href={`/${locale}/governance`}
+              href="/services/governance"
               className="text-gold-400 text-sm font-semibold inline-flex items-center gap-2 group/link"
             >
               {t("cta")}

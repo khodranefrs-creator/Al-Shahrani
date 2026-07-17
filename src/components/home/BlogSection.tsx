@@ -67,7 +67,7 @@ export function BlogSection({ locale }: BlogSectionProps) {
               style={{ animationDelay: `${idx * 0.1}s` }}
             >
               <Link
-                href={`/${locale}/blog`}
+                href="/blog"
                 className="group block bg-white rounded-2xl border border-warm-100/60 hover:border-gold-400/30 hover:shadow-[0_4px_20px_rgba(184,149,60,0.2)] transition-colors duration-300 overflow-hidden"
               >
               {/* Image area — premium legal illustration */}
@@ -113,7 +113,7 @@ export function BlogSection({ locale }: BlogSectionProps) {
         </div>
 
         <div className="text-center mt-10 md:mt-12">
-          <Link href={`/${locale}/blog`} className="inline-flex items-center gap-2 text-gold-400 font-medium hover:text-gold-300 transition-colors duration-200 group">
+          <Link href="/blog" className="inline-flex items-center gap-2 text-gold-400 font-medium hover:text-gold-300 transition-colors duration-200 group">
             <span>{t("read_more")}</span>
             {isRtl ? (
               <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
