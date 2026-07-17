@@ -291,6 +291,14 @@
   .text-balance { text-wrap: balance; }
 
   /* ─── Glass Header ─── */
+  .glass-header {
+    background: rgba(7, 11, 21, 0.88);
+    backdrop-filter: blur(16px) saturate(1.15);
+    -webkit-backdrop-filter: blur(16px) saturate(1.15);
+    border-bottom: 1px solid rgba(184, 149, 60, 0.15);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  }
+
   .header-scrolled {
     background: rgba(255, 255, 255, 0.97);
     box-shadow: 0 1px 0 var(--color-warm-200), 0 4px 24px rgba(12, 18, 34, 0.06);
@@ -299,6 +307,17 @@
   .header-scrolled-dark {
     background: rgba(7, 11, 21, 0.97);
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  /* ─── Focus Ring ─── */
+  .focus-ring-gold {
+    outline: none;
+  }
+
+  .focus-ring-gold:focus-visible {
+    outline: 2px solid var(--color-gold-400);
+    outline-offset: 2px;
+    border-radius: var(--radius-control);
   }
 
   /* ─── Animations ─── */
