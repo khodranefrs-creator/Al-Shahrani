@@ -31,11 +31,15 @@ function useCountUp(target: number, duration = 2000) {
         if (entry.isIntersecting && !started.current) {
           started.current = true;
           const start = performance.now();
+          let frame = 0;
           function tick(now: number) {
             const elapsed = now - start;
             const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setCount(Math.floor(eased * target));
+            frame++;
+            if (frame % 4 === 0 || progress >= 1) {
+              const eased = 1 - Math.pow(1 - progress, 3);
+              setCount(Math.floor(eased * target));
+            }
             if (progress < 1) requestAnimationFrame(tick);
           }
           requestAnimationFrame(tick);

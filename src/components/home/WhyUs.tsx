@@ -52,9 +52,11 @@ export function WhyUs({ locale }: WhyUsProps) {
           {reasons.map((reason, i) => (
             <div
               key={reason.key}
-              className="group relative pt-5 md:pt-6 pb-6 md:pb-7 px-6 md:px-8 rounded-2xl bg-navy-800/80 border border-white/[0.10] hover:border-gold-400/30 hover:-translate-y-1 transition-[border-color,box-shadow,transform] duration-500 hover:shadow-[0_8px_40px_rgba(184,149,60,0.12)] overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.25)]"
               style={{ animationDelay: `${i * 0.06}s` }}
             >
+              <div
+                className="group relative pt-5 md:pt-6 pb-6 md:pb-7 px-6 md:px-8 rounded-2xl bg-navy-800/80 border border-white/[0.10] hover:border-gold-400/30 transition-[border-color,box-shadow] duration-500 hover:shadow-[0_8px_40px_rgba(184,149,60,0.12)] overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.25)]"
+              >
               {/* Left gold accent bar */}
               <div aria-hidden="true" className="absolute start-0 top-2 bottom-2 w-px bg-gradient-to-b from-gold-400/30 via-gold-400/10 to-transparent rounded-full group-hover:from-gold-400/50 transition-opacity duration-500" />
 
@@ -99,6 +101,7 @@ export function WhyUs({ locale }: WhyUsProps) {
                   {t("links.governance")}
                   <span className="rtl:rotate-180 transition-transform duration-300 group-hover/link:translate-x-1">→</span>
                 </Link>
+              </div>
               </div>
             </div>
           ))}

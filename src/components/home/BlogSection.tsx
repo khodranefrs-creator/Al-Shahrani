@@ -62,12 +62,14 @@ export function BlogSection({ locale }: BlogSectionProps) {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post, idx) => (
-            <Link
+            <div
               key={post.key}
-              href={`/${locale}/blog`}
-              className="group block bg-white rounded-2xl border border-warm-100/60 hover:border-gold-400/30 hover:shadow-[0_4px_20px_rgba(184,149,60,0.2)] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
               style={{ animationDelay: `${idx * 0.1}s` }}
             >
+              <Link
+                href={`/${locale}/blog`}
+                className="group block bg-white rounded-2xl border border-warm-100/60 hover:border-gold-400/30 hover:shadow-[0_4px_20px_rgba(184,149,60,0.2)] transition-colors duration-300 overflow-hidden"
+              >
               {/* Image area — premium legal illustration */}
               <div className="h-44 md:h-[200px] bg-gradient-to-br from-navy-900 to-navy-950 rounded-t-2xl flex items-center justify-center overflow-hidden relative">
                 <div className="absolute inset-0 opacity-[0.03]">
@@ -106,6 +108,7 @@ export function BlogSection({ locale }: BlogSectionProps) {
                 </p>
               </div>
             </Link>
+            </div>
           ))}
         </div>
 

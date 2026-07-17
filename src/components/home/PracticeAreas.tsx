@@ -45,11 +45,11 @@ export function PracticeAreas({ locale }: PracticeAreasProps) {
           {services.map((service) => {
             const Icon = service.icon;
             return (
-              <Link
-                key={service.key}
-                href={`/${locale}/services#${service.key}`}
-                className="group flex flex-col h-full bg-white rounded-2xl border border-warm-100/60 hover:border-gold-400/30 hover:shadow-[0_4px_20px_rgba(184,149,60,0.2)] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
-              >
+              <div key={service.key}>
+                <Link
+                  href={`/${locale}/services#${service.key}`}
+                  className="group flex flex-col h-full bg-white rounded-2xl border border-warm-100/60 hover:border-gold-400/30 hover:shadow-[0_4px_20px_rgba(184,149,60,0.2)] transition-colors duration-300 overflow-hidden"
+                >
                 {/* Consistent gold top strip */}
                 <div className="h-1.5 bg-gradient-to-r from-gold-400/30 via-gold-400/15 to-transparent" />
                 <div className="p-5 md:p-7 flex flex-col flex-1">
@@ -75,6 +75,7 @@ export function PracticeAreas({ locale }: PracticeAreasProps) {
                   </div>
                 </div>
               </Link>
+              </div>
             );
           })}
         </div>

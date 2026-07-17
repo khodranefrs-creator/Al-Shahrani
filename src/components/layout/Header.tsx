@@ -61,7 +61,7 @@ export function Header({ locale }: HeaderProps) {
     <>
       <header
         className={cn(
-          "fixed top-0 inset-x-0 z-50 transition-all duration-500",
+          "fixed top-0 inset-x-0 z-50 transition-[background,box-shadow] duration-500",
           showDark
             ? "header-scrolled-dark border-b border-white/[0.06]"
             : isScrolled
@@ -73,15 +73,14 @@ export function Header({ locale }: HeaderProps) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div
             className={cn(
-              "flex items-center justify-between transition-all duration-500",
-              isScrolled ? "h-20 md:h-24" : "h-24 md:h-28"
+              "flex items-center justify-between h-20 md:h-24"
             )}
           >
             {/* Logo — dominant branding element, RTL-aware */}
             <Link
               href="/"
               className={cn(
-                "relative shrink-0 flex items-center transition-all duration-500",
+                "relative shrink-0 flex items-center",
                 locale === "ar" ? "order-last" : "order-first"
               )}
               aria-label={siteConfig.name[locale]}
@@ -94,7 +93,7 @@ export function Header({ locale }: HeaderProps) {
                 priority
                 quality={100}
                 className={cn(
-                  "w-auto object-contain transition-all duration-500",
+                  "w-auto object-contain transition-[height] duration-500",
                   isScrolled ? "h-14 md:h-18" : "h-16 md:h-20"
                 )}
                 sizes="(max-width: 768px) 200px, 280px"
